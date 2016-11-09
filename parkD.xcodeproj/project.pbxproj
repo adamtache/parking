@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54FF59561DD276F000F470F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59551DD276F000F470F6 /* AppDelegate.swift */; };
-		54FF59581DD276F000F470F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59571DD276F000F470F6 /* ViewController.swift */; };
-		54FF595B1DD276F000F470F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54FF59591DD276F000F470F6 /* Main.storyboard */; };
 		54FF595D1DD276F000F470F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54FF595C1DD276F000F470F6 /* Assets.xcassets */; };
-		54FF59601DD276F000F470F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54FF595E1DD276F000F470F6 /* LaunchScreen.storyboard */; };
 		54FF596B1DD276F000F470F6 /* parkDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF596A1DD276F000F470F6 /* parkDTests.swift */; };
 		54FF59761DD276F000F470F6 /* parkDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59751DD276F000F470F6 /* parkDUITests.swift */; };
+		66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */; };
+		66039DC71DD2A860004B494A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66039DC01DD2A860004B494A /* Main.storyboard */; };
+		66039DCA1DD2A898004B494A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DC91DD2A898004B494A /* AppDelegate.swift */; };
+		66039DCC1DD2A8AA004B494A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DCB1DD2A8AA004B494A /* ViewController.swift */; };
+		66039DD01DD2A965004B494A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DCF1DD2A965004B494A /* User.swift */; };
+		66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
+		66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
+		66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
+		66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */; };
+		66D1E8E91DD2C797004446AC /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingLot.swift */; };
+		6A4F7006D4322CB34EF9147C /* Pods_parkD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A787C4E92AD584D709C40AF /* Pods_parkD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,19 +41,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AA60806B4B3617B9014A063 /* Pods_parkDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54FF59521DD276F000F470F6 /* parkD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parkD.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		54FF59551DD276F000F470F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54FF59571DD276F000F470F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		54FF595A1DD276F000F470F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54FF595C1DD276F000F470F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		54FF595F1DD276F000F470F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		54FF59611DD276F000F470F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54FF59661DD276F000F470F6 /* parkDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = parkDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54FF596A1DD276F000F470F6 /* parkDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parkDTests.swift; sourceTree = "<group>"; };
 		54FF596C1DD276F000F470F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54FF59711DD276F000F470F6 /* parkDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = parkDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54FF59751DD276F000F470F6 /* parkDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parkDUITests.swift; sourceTree = "<group>"; };
 		54FF59771DD276F000F470F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		66039DC01DD2A860004B494A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		66039DC91DD2A898004B494A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../../.Trash/AppDelegate.swift; sourceTree = "<group>"; };
+		66039DCB1DD2A8AA004B494A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../../.Trash/ViewController.swift; sourceTree = "<group>"; };
+		66039DCD1DD2A8BD004B494A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../../.Trash/Info.plist; sourceTree = "<group>"; };
+		66039DCF1DD2A965004B494A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		66039DD11DD2AA37004B494A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingListTableViewController.swift; sourceTree = "<group>"; };
+		66D1E8E81DD2C797004446AC /* ParkingLot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
+		8A787C4E92AD584D709C40AF /* Pods_parkD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7C8874187AC6945B5C9D1D5 /* Pods_parkDUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkDUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2D16F89C89E65398BB6699 /* Pods-parkD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parkD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parkD/Pods-parkD.debug.xcconfig"; sourceTree = "<group>"; };
+		C7F0C9273270DDDD4193E6E9 /* Pods-parkD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parkD.release.xcconfig"; path = "Pods/Target Support Files/Pods-parkD/Pods-parkD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4F7006D4322CB34EF9147C /* Pods_parkD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +94,13 @@
 		54FF59491DD276F000F470F6 = {
 			isa = PBXGroup;
 			children = (
+				66039DD11DD2AA37004B494A /* GoogleService-Info.plist */,
 				54FF59541DD276F000F470F6 /* parkD */,
 				54FF59691DD276F000F470F6 /* parkDTests */,
 				54FF59741DD276F000F470F6 /* parkDUITests */,
 				54FF59531DD276F000F470F6 /* Products */,
+				F94A41809986DEB68FC317D7 /* Pods */,
+				6C7F941CC5CFBE69973DFD52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +117,12 @@
 		54FF59541DD276F000F470F6 /* parkD */ = {
 			isa = PBXGroup;
 			children = (
-				54FF59551DD276F000F470F6 /* AppDelegate.swift */,
-				54FF59571DD276F000F470F6 /* ViewController.swift */,
-				54FF59591DD276F000F470F6 /* Main.storyboard */,
+				66039DBA1DD2A860004B494A /* Controllers */,
+				66039DBC1DD2A860004B494A /* Files */,
+				66039DBE1DD2A860004B494A /* Layouts */,
+				66039DC11DD2A860004B494A /* Models */,
+				66039DC21DD2A860004B494A /* Other */,
 				54FF595C1DD276F000F470F6 /* Assets.xcassets */,
-				54FF595E1DD276F000F470F6 /* LaunchScreen.storyboard */,
-				54FF59611DD276F000F470F6 /* Info.plist */,
 			);
 			path = parkD;
 			sourceTree = "<group>";
@@ -125,6 +145,68 @@
 			path = parkDUITests;
 			sourceTree = "<group>";
 		};
+		66039DBA1DD2A860004B494A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				66039DCB1DD2A8AA004B494A /* ViewController.swift */,
+				66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		66039DBC1DD2A860004B494A /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				66039DCD1DD2A8BD004B494A /* Info.plist */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		66039DBE1DD2A860004B494A /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */,
+				66039DC01DD2A860004B494A /* Main.storyboard */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		66039DC11DD2A860004B494A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66039DCF1DD2A965004B494A /* User.swift */,
+				66D1E8E81DD2C797004446AC /* ParkingLot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66039DC21DD2A860004B494A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				66039DC91DD2A898004B494A /* AppDelegate.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		6C7F941CC5CFBE69973DFD52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A787C4E92AD584D709C40AF /* Pods_parkD.framework */,
+				4AA60806B4B3617B9014A063 /* Pods_parkDTests.framework */,
+				A7C8874187AC6945B5C9D1D5 /* Pods_parkDUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F94A41809986DEB68FC317D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF2D16F89C89E65398BB6699 /* Pods-parkD.debug.xcconfig */,
+				C7F0C9273270DDDD4193E6E9 /* Pods-parkD.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54FF597A1DD276F000F470F6 /* Build configuration list for PBXNativeTarget "parkD" */;
 			buildPhases = (
+				1B0663D8CEAE1480CAA9790C /* [CP] Check Pods Manifest.lock */,
 				54FF594E1DD276F000F470F6 /* Sources */,
 				54FF594F1DD276F000F470F6 /* Frameworks */,
 				54FF59501DD276F000F470F6 /* Resources */,
+				045133CE88FD4D1AC5AA6AEE /* [CP] Embed Pods Frameworks */,
+				D417758E5668F1786214AAA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,9 +320,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54FF59601DD276F000F470F6 /* LaunchScreen.storyboard in Resources */,
 				54FF595D1DD276F000F470F6 /* Assets.xcassets in Resources */,
-				54FF595B1DD276F000F470F6 /* Main.storyboard in Resources */,
+				66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */,
+				66039DC71DD2A860004B494A /* Main.storyboard in Resources */,
+				66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,18 +339,70 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		045133CE88FD4D1AC5AA6AEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-parkD/Pods-parkD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B0663D8CEAE1480CAA9790C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D417758E5668F1786214AAA7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-parkD/Pods-parkD-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54FF594E1DD276F000F470F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54FF59581DD276F000F470F6 /* ViewController.swift in Sources */,
-				54FF59561DD276F000F470F6 /* AppDelegate.swift in Sources */,
+				66039DCC1DD2A8AA004B494A /* ViewController.swift in Sources */,
+				66039DCA1DD2A898004B494A /* AppDelegate.swift in Sources */,
+				66D1E8E91DD2C797004446AC /* ParkingLot.swift in Sources */,
+				66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */,
+				66039DD01DD2A965004B494A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,25 +437,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		54FF59591DD276F000F470F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				54FF595A1DD276F000F470F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		54FF595E1DD276F000F470F6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				54FF595F1DD276F000F470F6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		54FF59781DD276F000F470F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -336,6 +456,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -386,6 +507,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -413,10 +535,19 @@
 		};
 		54FF597B1DD276F000F470F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF2D16F89C89E65398BB6699 /* Pods-parkD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
-				INFOPLIST_FILE = parkD/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/../../../.Trash/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkD;
@@ -427,10 +558,19 @@
 		};
 		54FF597C1DD276F000F470F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7F0C9273270DDDD4193E6E9 /* Pods-parkD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
-				INFOPLIST_FILE = parkD/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/../../../.Trash/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkD;
@@ -445,6 +585,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = U6J58C8CJT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = parkDTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkDTests;
@@ -460,6 +608,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = U6J58C8CJT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = parkDTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkDTests;
@@ -474,6 +630,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = parkDUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkDUITests;
@@ -488,6 +652,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks/frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = parkDUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ece590.parkDUITests;
@@ -516,6 +688,7 @@
 				54FF597C1DD276F000F470F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54FF597D1DD276F000F470F6 /* Build configuration list for PBXNativeTarget "parkDTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +697,7 @@
 				54FF597F1DD276F000F470F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54FF59801DD276F000F470F6 /* Build configuration list for PBXNativeTarget "parkDUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +706,7 @@
 				54FF59821DD276F000F470F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

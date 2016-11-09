@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E2879B36803FAD0CAFA4038F5E3EEC687901503E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "678BB770DE4C875AB583BDA0F8437DF4B5D870B1" : 9223372036854775807,
+    "E2879B36803FAD0CAFA4038F5E3EEC687901503E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9685B1CA-D16C-4AAD-AA65-619E856FB41D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "678BB770DE4C875AB583BDA0F8437DF4B5D870B1" : "",
+    "E2879B36803FAD0CAFA4038F5E3EEC687901503E" : "project\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "parkD",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "parkD.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.oit.duke.edu:at201\/at201-ece590-hw5.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "678BB770DE4C875AB583BDA0F8437DF4B5D870B1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/gitlab.oit.duke.edu\/Krombopulos\/project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E2879B36803FAD0CAFA4038F5E3EEC687901503E"
+    }
+  ]
+}
