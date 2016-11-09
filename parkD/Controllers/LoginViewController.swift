@@ -29,16 +29,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signupClick(_ sender: Any) {
-        print("Clicked sign up")
         if(checkFields()){
-            print("Validated")
             // Create user with email and password from textfields.
             let email = getEmail()
             let pass = getPassword()
             FIRAuth.auth()!.createUser(withEmail: email, password: pass) {
                 user, error in
                 if error == nil {
-                    print("Already exists")
                     // User account already exists. Sign in instead.
                     self.signIn(email: email, pass: pass)
                 }

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-struct ParkingLot {
+struct ParkingZone {
     
     let key: String
     let name: String
@@ -19,6 +19,7 @@ struct ParkingLot {
     var full: Bool
     var comments: [String]
     var capacity: Int
+    var image: UIImage!
     
     init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int){
         
