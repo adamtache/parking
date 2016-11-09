@@ -85,7 +85,6 @@
         <!--Parking Zones-->
         <scene sceneID="ynw-Kt-keZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qe-4c-xhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="t5M-Hh-mXM" customClass="ParkingListTableViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="aIe-gX-BeI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -105,10 +104,10 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="idd-qb-Lfc" id="Nae-Vw-Lrr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="897BA272-6AF3-4B78-B135-21309693F143" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="A931E5F1-BF49-4B92-AF09-D12020CB5BBE" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -142,12 +141,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Parking Zones" id="5tL-gz-dmM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dns-Ct-fgq"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dns-Ct-fgq">
+                            <connections>
+                                <segue destination="EpB-Ca-DB4" kind="show" id="GEC-Rt-CJC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="cuI-84-6Xj" id="dZS-UK-hYi"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qe-4c-xhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3828" y="862.21889055472275"/>
         </scene>
@@ -166,6 +170,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5yx-ev-aUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4681" y="862"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6zm-ZW-zZa">
+            <objects>
+                <navigationController id="EpB-Ca-DB4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0dd-pC-6pj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="c3j-6D-Mo2" kind="relationship" relationship="rootViewController" id="iNX-u0-b1i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGu-Iw-MMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4681" y="187"/>
+        </scene>
+        <!--New Parking Zone-->
+        <scene sceneID="eCf-tp-S6J">
+            <objects>
+                <viewController id="c3j-6D-Mo2" customClass="ZoneCreationViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UP5-yS-lYX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wZE-eb-lIC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YiC-gv-1z9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-aW-UUw">
+                                <rect key="frame" x="16" y="103" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIG-Oi-ZI2">
+                                <rect key="frame" x="16" y="150" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjF-Pd-iqR">
+                                <rect key="frame" x="16" y="203" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMc-FP-8u8">
+                                <rect key="frame" x="139" y="98" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="jfT-xD-HFI">
+                                <rect key="frame" x="121" y="447" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oo-qn-QWd">
+                                <rect key="frame" x="48" y="517" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="cameraButton:" destination="c3j-6D-Mo2" eventType="touchUpInside" id="guh-pi-FQk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIg-Jl-ycH">
+                                <rect key="frame" x="240" y="517" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Gallery"/>
+                                <connections>
+                                    <action selector="galleryButton:" destination="c3j-6D-Mo2" eventType="touchUpInside" id="yNm-nu-dF6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Passes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ph-k8-TV1">
+                                <rect key="frame" x="16" y="252" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Parking Zone" id="uiX-Cs-XcM">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="uDi-Bx-mCb">
+                            <connections>
+                                <action selector="cancelButton:" destination="c3j-6D-Mo2" id="k0W-JP-nZO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="EXb-OZ-Y98"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="capacityLabel" destination="PjF-Pd-iqR" id="ues-1r-l4a"/>
+                        <outlet property="locationLabel" destination="PIG-Oi-ZI2" id="mbC-8u-Lth"/>
+                        <outlet property="nameLabel" destination="Le2-aW-UUw" id="thw-xT-U9J"/>
+                        <outlet property="passesLabel" destination="7ph-k8-TV1" id="rdl-CG-xdp"/>
+                        <outlet property="submitButton" destination="EXb-OZ-Y98" id="7mc-KQ-AgI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNx-Da-ZmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5452" y="187"/>
         </scene>
         <!--Zone View Controller-->
         <scene sceneID="vKp-Q4-H4f">
@@ -227,7 +337,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SCJ-o6-N6k" id="Yrv-VS-oUI">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0Z-81-QMm">
@@ -307,7 +417,6 @@
         <!--Item 3-->
         <scene sceneID="29c-Bh-zQH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dhd-Y8-vz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Item 3" id="yIF-8N-kMJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="kEd-fe-ohv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JC4-d3-EfC">
@@ -318,13 +427,13 @@
                         <segue destination="bgF-fn-rCf" kind="relationship" relationship="rootViewController" id="k4b-2F-X2U"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dhd-Y8-vz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2889" y="1634"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Mys-No-1ak">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7iM-wb-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bgF-fn-rCf" customClass="ProfileViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uaC-bV-1yk"/>
@@ -343,6 +452,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7iM-wb-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3828" y="1633"/>
         </scene>
@@ -367,7 +477,6 @@
         <!--Map-->
         <scene sceneID="9fN-Dx-OFR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RDL-UU-MeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TKP-75-DXP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="8iG-Sd-35u"/>
                     <toolbarItems/>
@@ -380,6 +489,7 @@
                         <segue destination="0iV-lc-UUo" kind="relationship" relationship="rootViewController" id="xOt-mJ-kg1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDL-UU-MeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2889" y="192"/>
         </scene>
@@ -408,7 +518,7 @@
                 <tabBarController id="NI4-fP-Ubw" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="S69-Ja-9cI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
@@ -424,7 +534,6 @@
         <!--Search-->
         <scene sceneID="c32-eF-N4H">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zrN-TJ-SMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viA-cr-DDO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="WHw-n3-Tll"/>
                     <toolbarItems/>
@@ -437,12 +546,30 @@
                         <segue destination="t5M-Hh-mXM" kind="relationship" relationship="rootViewController" id="O68-Bd-xfx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zrN-TJ-SMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2889" y="863"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Gi6-P6-040">
+            <objects>
+                <viewController id="fbT-gb-lXO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eFN-J3-BjA"/>
+                        <viewControllerLayoutGuide type="bottom" id="uBV-PP-Fcd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pI8-zW-MB5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCC-uW-8QS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
-        <image name="897BA272-6AF3-4B78-B135-21309693F143" width="320" height="320">
+        <image name="A931E5F1-BF49-4B92-AF09-D12020CB5BBE" width="320" height="320">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -7323,5 +7450,6 @@ AAZKQQAGSkQABkpJAAZKUQAGSlQABkpmAAZKaQAGSm4AAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAA
 AAZKcA
 </mutableData>
         </image>
+        <image name="defaultPhoto" width="320" height="320"/>
     </resources>
 </document>
