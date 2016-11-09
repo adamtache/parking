@@ -13,6 +13,11 @@ class ProfileViewController: UIViewController {
 
     var user: User!
     
+    // MARK: Actions
+    @IBAction func signOutClick(_ sender: Any) {
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

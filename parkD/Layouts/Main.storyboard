@@ -108,7 +108,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="81911289-D0C0-4706-8743-6BAD2231B264" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="897BA272-6AF3-4B78-B135-21309693F143" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -167,15 +167,15 @@
             </objects>
             <point key="canvasLocation" x="4681" y="862"/>
         </scene>
-        <!--View Controller-->
+        <!--Zone View Controller-->
         <scene sceneID="vKp-Q4-H4f">
             <objects>
-                <viewController id="kvT-3D-r2S" sceneMemberID="viewController">
+                <viewController id="kvT-3D-r2S" customClass="ZoneViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HY7-tI-cQq"/>
                         <viewControllerLayoutGuide type="bottom" id="qMg-gN-42U"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8yY-3I-1qj" customClass="ParkingLotView">
+                    <view key="view" contentMode="scaleToFill" id="8yY-3I-1qj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -199,6 +199,20 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53v-su-BXi">
                                 <rect key="frame" x="16" y="175" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Capacity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d9-7P-Rj5">
+                                <rect key="frame" x="16" y="102" width="58" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjo-Ft-Xae">
+                                <rect key="frame" x="82" y="100" width="29" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -269,7 +283,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Xj-tR-UFM"/>
+                    <navigationItem key="navigationItem" id="GU6-Ba-yuw">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="refresh" id="ORw-ZU-a63">
+                            <connections>
+                                <action selector="refreshData:" destination="kvT-3D-r2S" id="wUm-0y-aj9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="capacityLabel" destination="5d9-7P-Rj5" id="WRC-mf-ObB"/>
+                        <outlet property="capacityValLabel" destination="Gjo-Ft-Xae" id="z7h-A6-xx0"/>
+                        <outlet property="commentsLabel" destination="53v-su-BXi" id="shV-fM-vXQ"/>
+                        <outlet property="commentsView" destination="XNJ-L9-Pzy" id="LMA-kn-reC"/>
+                        <outlet property="distanceLabel" destination="mTz-u8-n8R" id="Yde-XO-zqv"/>
+                        <outlet property="imageLabel" destination="Y9a-7s-N05" id="HIL-36-9ml"/>
+                        <outlet property="nameLabel" destination="4ls-4N-Lo7" id="wJI-Vw-bcY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZ8-GW-BaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -292,11 +321,11 @@
             </objects>
             <point key="canvasLocation" x="2889" y="1634"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile-->
         <scene sceneID="Mys-No-1ak">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iM-wb-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="bgF-fn-rCf" sceneMemberID="viewController">
+                <viewController id="bgF-fn-rCf" customClass="ProfileViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uaC-bV-1yk"/>
                         <viewControllerLayoutGuide type="bottom" id="ft7-UD-ZZd"/>
@@ -306,7 +335,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OIl-KU-HIk"/>
+                    <navigationItem key="navigationItem" title="Profile" id="C5G-7E-C3w">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="tnR-QZ-Kul">
+                            <connections>
+                                <action selector="signOutClick:" destination="bgF-fn-rCf" id="hYU-pC-vEf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="3828" y="1633"/>
@@ -407,7 +442,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="81911289-D0C0-4706-8743-6BAD2231B264" width="320" height="320">
+        <image name="897BA272-6AF3-4B78-B135-21309693F143" width="320" height="320">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
