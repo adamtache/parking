@@ -21,6 +21,9 @@ struct ParkingLot {
     var capacity: Int
     
     init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int){
+        
+        // Initializes parking lot through parameters.
+        
         self.key = key
         self.name = name
         self.addedByUser = addedByUser
@@ -31,6 +34,9 @@ struct ParkingLot {
     }
     
     init(snapshot: FIRDataSnapshot){
+        
+        // Initializes parking lot through Firebase data called 'FIRDataSnapshot'.
+        
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
@@ -43,6 +49,9 @@ struct ParkingLot {
     
     func toAnyObject() -> Any {
         return [
+            
+            // Creates data to be stored into Firebase database.
+            
             "name": name,
             "addedByUser": addedByUser,
             "full": full,

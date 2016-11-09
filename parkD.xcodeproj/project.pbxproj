@@ -11,15 +11,17 @@
 		54FF596B1DD276F000F470F6 /* parkDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF596A1DD276F000F470F6 /* parkDTests.swift */; };
 		54FF59761DD276F000F470F6 /* parkDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59751DD276F000F470F6 /* parkDUITests.swift */; };
 		66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */; };
-		66039DC71DD2A860004B494A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66039DC01DD2A860004B494A /* Main.storyboard */; };
 		66039DCA1DD2A898004B494A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DC91DD2A898004B494A /* AppDelegate.swift */; };
 		66039DCC1DD2A8AA004B494A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DCB1DD2A8AA004B494A /* ViewController.swift */; };
 		66039DD01DD2A965004B494A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DCF1DD2A965004B494A /* User.swift */; };
 		66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
+		663B64871DD2D5D300809A60 /* parkD.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 663B64861DD2D5D300809A60 /* parkD.xcworkspace */; };
+		667141031DD31A410012D6DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667141021DD31A410012D6DC /* Main.storyboard */; };
 		66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */; };
 		66D1E8E91DD2C797004446AC /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingLot.swift */; };
+		66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */; };
 		6A4F7006D4322CB34EF9147C /* Pods_parkD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A787C4E92AD584D709C40AF /* Pods_parkD.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,14 +53,18 @@
 		54FF59751DD276F000F470F6 /* parkDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parkDUITests.swift; sourceTree = "<group>"; };
 		54FF59771DD276F000F470F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		66039DC01DD2A860004B494A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66039DC91DD2A898004B494A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../../.Trash/AppDelegate.swift; sourceTree = "<group>"; };
 		66039DCB1DD2A8AA004B494A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../../.Trash/ViewController.swift; sourceTree = "<group>"; };
 		66039DCD1DD2A8BD004B494A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../../.Trash/Info.plist; sourceTree = "<group>"; };
 		66039DCF1DD2A965004B494A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66039DD11DD2AA37004B494A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		663B64831DD2D5D300809A60 /* parkD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = parkD.xcodeproj; sourceTree = "<group>"; };
+		663B64861DD2D5D300809A60 /* parkD.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = parkD.xcworkspace; sourceTree = "<group>"; };
+		667141021DD31A410012D6DC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		667141041DD31B660012D6DC /* parkD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = parkD.entitlements; sourceTree = "<group>"; };
 		66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingListTableViewController.swift; sourceTree = "<group>"; };
 		66D1E8E81DD2C797004446AC /* ParkingLot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
+		66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A787C4E92AD584D709C40AF /* Pods_parkD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C8874187AC6945B5C9D1D5 /* Pods_parkDUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkDUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2D16F89C89E65398BB6699 /* Pods-parkD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parkD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parkD/Pods-parkD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 		54FF59491DD276F000F470F6 = {
 			isa = PBXGroup;
 			children = (
+				663B64831DD2D5D300809A60 /* parkD.xcodeproj */,
+				663B64861DD2D5D300809A60 /* parkD.xcworkspace */,
 				66039DD11DD2AA37004B494A /* GoogleService-Info.plist */,
 				54FF59541DD276F000F470F6 /* parkD */,
 				54FF59691DD276F000F470F6 /* parkDTests */,
@@ -117,6 +125,7 @@
 		54FF59541DD276F000F470F6 /* parkD */ = {
 			isa = PBXGroup;
 			children = (
+				667141041DD31B660012D6DC /* parkD.entitlements */,
 				66039DBA1DD2A860004B494A /* Controllers */,
 				66039DBC1DD2A860004B494A /* Files */,
 				66039DBE1DD2A860004B494A /* Layouts */,
@@ -150,6 +159,7 @@
 			children = (
 				66039DCB1DD2A8AA004B494A /* ViewController.swift */,
 				66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */,
+				66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,8 +175,8 @@
 		66039DBE1DD2A860004B494A /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				667141021DD31A410012D6DC /* Main.storyboard */,
 				66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */,
-				66039DC01DD2A860004B494A /* Main.storyboard */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -186,6 +196,11 @@
 				66039DC91DD2A898004B494A /* AppDelegate.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		663B64841DD2D5D300809A60 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		6C7F941CC5CFBE69973DFD52 /* Frameworks */ = {
@@ -280,6 +295,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = U6J58C8CJT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					54FF59651DD276F000F470F6 = {
 						CreatedOnToolsVersion = 8.1;
@@ -306,6 +326,12 @@
 			mainGroup = 54FF59491DD276F000F470F6;
 			productRefGroup = 54FF59531DD276F000F470F6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 663B64841DD2D5D300809A60 /* Products */;
+					ProjectRef = 663B64831DD2D5D300809A60 /* parkD.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				54FF59511DD276F000F470F6 /* parkD */,
@@ -321,9 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				54FF595D1DD276F000F470F6 /* Assets.xcassets in Resources */,
+				667141031DD31A410012D6DC /* Main.storyboard in Resources */,
 				66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */,
-				66039DC71DD2A860004B494A /* Main.storyboard in Resources */,
 				66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */,
+				663B64871DD2D5D300809A60 /* parkD.xcworkspace in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */,
 				66039DCC1DD2A8AA004B494A /* ViewController.swift in Sources */,
 				66039DCA1DD2A898004B494A /* AppDelegate.swift in Sources */,
 				66D1E8E91DD2C797004446AC /* ParkingLot.swift in Sources */,
@@ -463,6 +491,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -514,6 +543,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -538,6 +568,7 @@
 			baseConfigurationReference = BF2D16F89C89E65398BB6699 /* Pods-parkD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = parkD/parkD.entitlements;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -561,6 +592,7 @@
 			baseConfigurationReference = C7F0C9273270DDDD4193E6E9 /* Pods-parkD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = parkD/parkD.entitlements;
 				DEVELOPMENT_TEAM = U6J58C8CJT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
