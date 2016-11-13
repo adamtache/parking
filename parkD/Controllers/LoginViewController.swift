@@ -13,62 +13,57 @@ class LoginViewController: UIViewController {
     
     // MARK: Constants
     let loginToList = "LoginToList"
+    let signUpSuccess = "signUpSuccess"
+    
+    let invalidEmailTitle = "Invalid Email"
+    let invalidEmailMessage = "Sorry, your email address is not valid."
+    let emptyEmailMessage = "Please enter an email address."
+    let invalidPasswordTitle = "Invalid Password"
+    let emptyPassMessage = "Please enter a password."
+
 
     // MARK: Outlets
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
-    @IBOutlet weak var alertView: UITextView!
-
     
+    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+        if(identifier == loginToList) {
+            if (checkFields()) {
+                return true
+            }
+        } else {
+            return false
+        }
+        return true
+    }
 
     
     // MARK: Actions
-    @IBAction func loginClick(_ sender: Any) {
-        if(checkFields()){
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == loginToList){
             signIn(email: getEmail(), pass: getPassword())
-        }
-        self.performSegue(withIdentifier: self.loginToList, sender: nil)
-    }
-    
-    @IBAction func signupClick(_ sender: Any) {
-        if(checkFields()){
-            // Create user with email and password from textfields.
-            let email = getEmail()
-            let pass = getPassword()
-            FIRAuth.auth()!.createUser(withEmail: email, password: pass) {
-                user, error in
-                if error == nil {
-                    // User account already exists. Sign in instead.
-                    self.signIn(email: email, pass: pass)
-                }
-            }
         }
     }
 
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
         //if(sender as!)
-        if(segue.identifier == "signUpSuccess"){
-            performSegue(withIdentifier: "LoginToList", sender: self)
+        if(segue.identifier == signUpSuccess){
+            
+            performSegue(withIdentifier: loginToList, sender: self)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        securePasswordField()
-        
-        // Create authentication observer.
+        // Create authentication observer
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-            // Test value of user.
+            // Test value of user
             if user != nil {
-                // Login validated. Perform segue to main screen.
+                // Login validated; Perform segue to main screen
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
-    }
-    
-    private func securePasswordField() {
-        passText.isSecureTextEntry = true
     }
     
     private func signIn(email: String, pass: String) {
@@ -76,30 +71,31 @@ class LoginViewController: UIViewController {
     }
     
     private func checkFields() -> Bool{
-        if(!checkEmail(email: getEmail())){
-            displayInvalidEmail()
-            return false
-        }
-        if(!checkPass(pass: getPassword())){
-            displayInvalidPass()
-            return false
-        }
-        displayValidLogin()
-        return true
+        return checkEmail() && checkPass()
     }
     
-    private func checkEmail(email: String) -> Bool{
+    private func checkEmail() -> Bool{
         // Checks for valid email via regex.
+        if (emailText.text?.isEmpty)! {
+            displayMessage(title: invalidEmailTitle, message: emptyEmailMessage)
+            return false
+        }
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
+        let isValid = emailTest.evaluate(with: getEmail())
+        if (!isValid) {
+            displayMessage(title: invalidEmailTitle, message: invalidEmailMessage)
+        }
+        return isValid
     }
     
-    private func checkPass(pass: String) -> Bool{
+    private func checkPass() -> Bool{
         // Checks for valid password via regex.
-        let passRegEx = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$"
-        let passTest = NSPredicate(format:"SELF MATCHES %@", passRegEx)
-        return passTest.evaluate(with: pass)
+        if((getPassword().isEmpty)){
+            displayMessage(title: invalidPasswordTitle, message: emptyPassMessage)
+            return false
+        }
+        return true
     }
     
     private func getEmail() -> String{
@@ -111,32 +107,13 @@ class LoginViewController: UIViewController {
         return passText.text!
     }
     
-    private func displayInvalidEmail() {
-        //let emailMessage = "Sorry, your email address is not valid."
-        //alertView.text = emailMessage
-        let controller = UIAlertController(title: "Invalid Email", message: "Sorry, your email address is not valid.", preferredStyle: .alert)
+    private func displayMessage(title: String, message: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
             
         }
         controller.addAction(alertAction)
         present(controller, animated: true, completion: nil)
     }
-    
-    private func displayInvalidPass() {
-        let passMessage = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
-        alertView.text = passMessage
-        let controller = UIAlertController(title: "Invalid Password", message: "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters.", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
-            
-        }
-        controller.addAction(alertAction)
-        present(controller, animated: true, completion: nil)
-    }
-    
-    private func displayValidLogin() {
-        //let loginMessage = "Login successful."
-        //alertView.text = loginMessage
-    }
-    
     
 }

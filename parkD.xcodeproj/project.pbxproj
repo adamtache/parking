@@ -13,7 +13,6 @@
 		54FF59851DD7FE7800F470F6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FF59841DD7FE7800F470F6 /* Default-568h@2x.png */; };
 		54FF59871DD80CED00F470F6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59861DD80CED00F470F6 /* SignUpViewController.swift */; };
 		54FF598A1DD81B2A00F470F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF59881DD81B2A00F470F6 /* AppDelegate.swift */; };
-		54FF598B1DD81B2A00F470F6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FF59891DD81B2A00F470F6 /* Info.plist */; };
 		66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */; };
 		66039DD01DD2A965004B494A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66039DCF1DD2A965004B494A /* User.swift */; };
 		66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
@@ -377,7 +376,6 @@
 				66039DC61DD2A860004B494A /* LaunchScreen.storyboard in Resources */,
 				663B64871DD2D5D300809A60 /* parkD.xcworkspace in Resources */,
 				54FF59851DD7FE7800F470F6 /* Default-568h@2x.png in Resources */,
-				54FF598B1DD81B2A00F470F6 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
