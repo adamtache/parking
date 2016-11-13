@@ -18,7 +18,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     @IBOutlet weak var alertView: UITextView!
+
     
+
     
     // MARK: Actions
     @IBAction func loginClick(_ sender: Any) {
@@ -40,6 +42,13 @@ class LoginViewController: UIViewController {
                     self.signIn(email: email, pass: pass)
                 }
             }
+        }
+    }
+
+    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
+        //if(sender as!)
+        if(segue.identifier == "signUpSuccess"){
+            performSegue(withIdentifier: "LoginToList", sender: self)
         }
     }
     
@@ -103,18 +112,31 @@ class LoginViewController: UIViewController {
     }
     
     private func displayInvalidEmail() {
-        let emailMessage = "Sorry, your email address is not valid."
-        alertView.text = emailMessage
+        //let emailMessage = "Sorry, your email address is not valid."
+        //alertView.text = emailMessage
+        let controller = UIAlertController(title: "Invalid Email", message: "Sorry, your email address is not valid.", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
+            
+        }
+        controller.addAction(alertAction)
+        present(controller, animated: true, completion: nil)
     }
     
     private func displayInvalidPass() {
         let passMessage = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
         alertView.text = passMessage
+        let controller = UIAlertController(title: "Invalid Password", message: "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters.", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
+            
+        }
+        controller.addAction(alertAction)
+        present(controller, animated: true, completion: nil)
     }
     
     private func displayValidLogin() {
-        let loginMessage = "Login successful."
-        alertView.text = loginMessage
+        //let loginMessage = "Login successful."
+        //alertView.text = loginMessage
     }
+    
     
 }
