@@ -30,9 +30,9 @@ class LoginViewController: UIViewController {
         if(identifier == loginToList) {
             if (checkFields()) {
                 return true
+            } else {
+                return false
             }
-        } else {
-            return false
         }
         return true
     }
@@ -41,7 +41,8 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == loginToList){
-            signIn(email: getEmail(), pass: getPassword())
+            print("should be going to main app")
+            //signIn(email: getEmail(), pass: getPassword())
         }
     }
 
@@ -56,6 +57,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Dismiss the keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         // Create authentication observer
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             // Test value of user
@@ -64,6 +69,11 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
+    }
+    
+    //Keyboard dismissal
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     private func signIn(email: String, pass: String) {

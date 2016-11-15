@@ -34,8 +34,15 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Dismiss the keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
+    //Keyboard dismissal
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
     
     private func checkFields() -> Bool{
         return checkEmail() && checkPass()
