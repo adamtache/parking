@@ -12,6 +12,7 @@ import Firebase
 class SignUpViewController: UIViewController {
     
     // MARK: Constants
+    let success = "signUpSuccess"
     let invalidEmailTitle = "Invalid Email"
     let invalidEmailMessage = "Sorry, your email address is not valid."
     let emptyEmailMessage = "Please enter an email address."
@@ -42,6 +43,17 @@ class SignUpViewController: UIViewController {
     //Keyboard dismissal
     func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+        if(identifier == success) {
+            if (checkFields()) {
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
     }
     
     private func checkFields() -> Bool{

@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
         //if(sender as!)
         if(segue.identifier == signUpSuccess){
-            
+            print("should be going from singup to the tab stuff")
             performSegue(withIdentifier: loginToList, sender: self)
         }
     }
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        // Create authentication observer
+        //Create authentication observer
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             // Test value of user
             if user != nil {
@@ -69,6 +69,11 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: self.loginToList, sender: nil)
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        //Password text will be erased
+        passText.text = ""
     }
     
     //Keyboard dismissal

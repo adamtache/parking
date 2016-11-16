@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="67P-T0-Bwd">
-                                <rect key="frame" x="36" y="214" width="303" height="30"/>
+                                <rect key="frame" x="36" y="164" width="303" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zzX-gg-WPV"/>
                                 </constraints>
@@ -123,7 +123,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCR-Lb-C4f">
-                                <rect key="frame" x="36" y="164" width="303" height="30"/>
+                                <rect key="frame" x="36" y="114" width="303" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="MzU-U5-wec"/>
                                 </constraints>
@@ -132,7 +132,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-type Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wE3-Mh-rxG">
-                                <rect key="frame" x="36" y="264" width="303" height="30"/>
+                                <rect key="frame" x="36" y="214" width="303" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="xCU-HF-l0t"/>
                                 </constraints>
@@ -141,13 +141,13 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98Y-f9-i8u">
-                                <rect key="frame" x="0.0" y="344" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="294" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="U6z-je-Ljf"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your permit:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdv-tj-6Yf">
-                                <rect key="frame" x="20" y="324" width="335" height="20"/>
+                                <rect key="frame" x="20" y="274" width="335" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Ihf-Bb-f4I"/>
                                 </constraints>
@@ -156,7 +156,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUH-Vi-loz">
-                                <rect key="frame" x="116" y="594" width="142.5" height="50"/>
+                                <rect key="frame" x="116" y="577" width="142.5" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="e6d-N3-4Wu"/>
                                     <constraint firstAttribute="height" constant="50" id="tMD-e8-l1z"/>
@@ -173,7 +173,6 @@
                         <constraints>
                             <constraint firstItem="wE3-Mh-rxG" firstAttribute="leading" secondItem="z4d-yc-p11" secondAttribute="leadingMargin" constant="20" id="0UA-Ya-Hdh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kUH-Vi-loz" secondAttribute="trailing" constant="100" id="6h8-06-Y4G"/>
-                            <constraint firstItem="kUH-Vi-loz" firstAttribute="top" secondItem="98Y-f9-i8u" secondAttribute="bottom" constant="50" id="8m8-ze-DRL"/>
                             <constraint firstItem="wE3-Mh-rxG" firstAttribute="top" secondItem="67P-T0-Bwd" secondAttribute="bottom" constant="20" id="Bvi-5G-ZdE"/>
                             <constraint firstItem="98Y-f9-i8u" firstAttribute="leading" secondItem="z4d-yc-p11" secondAttribute="leading" id="JUv-Tr-jar"/>
                             <constraint firstItem="98Y-f9-i8u" firstAttribute="top" secondItem="Zdv-tj-6Yf" secondAttribute="bottom" id="MXR-z6-ouG"/>
@@ -181,7 +180,8 @@
                             <constraint firstItem="67P-T0-Bwd" firstAttribute="top" secondItem="dCR-Lb-C4f" secondAttribute="bottom" constant="20" id="bhr-ac-Uwj"/>
                             <constraint firstItem="kUH-Vi-loz" firstAttribute="leading" secondItem="z4d-yc-p11" secondAttribute="leadingMargin" constant="100" id="dyx-iw-s3G"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wE3-Mh-rxG" secondAttribute="trailing" constant="20" id="e9N-7o-b03"/>
-                            <constraint firstItem="dCR-Lb-C4f" firstAttribute="top" secondItem="r3o-v4-qrr" secondAttribute="bottom" constant="100" id="g9D-FK-YIZ"/>
+                            <constraint firstItem="dCR-Lb-C4f" firstAttribute="top" secondItem="r3o-v4-qrr" secondAttribute="bottom" constant="50" id="g9D-FK-YIZ"/>
+                            <constraint firstItem="awI-Zr-hAP" firstAttribute="top" secondItem="kUH-Vi-loz" secondAttribute="bottom" constant="40" id="jNv-1p-qSP"/>
                             <constraint firstItem="67P-T0-Bwd" firstAttribute="leading" secondItem="z4d-yc-p11" secondAttribute="leadingMargin" constant="20" id="kgW-ys-6Oi"/>
                             <constraint firstItem="Zdv-tj-6Yf" firstAttribute="top" secondItem="wE3-Mh-rxG" secondAttribute="bottom" constant="30" id="mGs-aH-AMH"/>
                             <constraint firstAttribute="trailing" secondItem="Zdv-tj-6Yf" secondAttribute="trailing" constant="20" id="mOK-41-HWl"/>
@@ -235,7 +235,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="D03761A4-3079-4E4E-8D3B-3D33EA07B01C" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EFFA9F90-FAC7-4491-B224-E11BFBD905B1" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-e1-u1p">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -490,10 +490,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="P3c-kt-W05" kind="unwind" identifier="signout" unwindAction="unwindToLogin:" id="BJ7-e7-ObM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iM-wb-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="P3c-kt-W05" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3828" y="1633"/>
+            <point key="canvasLocation" x="3938" y="1633"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xjh-kJ-IvJ">
@@ -609,7 +613,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="D03761A4-3079-4E4E-8D3B-3D33EA07B01C" width="320" height="320">
+        <image name="EFFA9F90-FAC7-4491-B224-E11BFBD905B1" width="320" height="320">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
