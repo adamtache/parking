@@ -19,24 +19,21 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     var locationController : LocationController?
     
     // MARK: Outlets
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var searchBar: UISearchBar!
     
     // MARK: Actions
     @IBAction func cancelToParkingZoneTable(segue:UIStoryboardSegue) {
     }
     
-    static func instantiate() -> ParkingListTableViewController {
-        let storyboad = UIStoryboard(name: "ParkingListTableViewController", bundle: nil)
-        let controller = storyboad.instantiateViewController(withIdentifier: "ParkingListTableViewController") as! ParkingListTableViewController
-        return controller
-    }
-    
     func setLocationManager(locationController: LocationController) {
         self.locationController = locationController
+        print("setting location manager for list view")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("list view loaded")
         
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -45,7 +42,7 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
         }
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
+//        searchBar.delegate = self
         
         items = loadItems()!
         self.tableView.reloadData()

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleMaps
 import CoreLocation
+import MapKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
@@ -27,23 +28,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var user: User!
     var locationController : LocationController?
     
-    static func instantiate() -> MapViewController {
-        let storyboad = UIStoryboard(name: "MapViewController", bundle: nil)
-        let controller = storyboad.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        return controller
-    }
-    
-    func setLocationManager(locationController: LocationController) {
-        self.locationController = locationController
-    }
-    
-    //MARK: Outlets
-    @IBOutlet weak var mapView: GMSMapView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("map view loaded")
         // Create a GMSCameraPosition that tells the map to display the coordinate given
-//        mapSetup()
         
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -52,34 +40,42 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         }
     }
     
+    func setLocationManager(locationController: LocationController) {
+        self.locationController = locationController
+//        mapSetup()
+        print("map setting up")
+    }
+    
+    //MARK: Outlets
+    @IBOutlet var mapView: MKMapView!
+    
     func mapSetup() {
-        locationController!.locationManager.delegate = self
-        mapView.delegate = self
-        mapView.isMyLocationEnabled = true
-        //mapView.delegate = self
-        mapView.settings.myLocationButton = true
+//        locationController!.locationManager.delegate = self
+//        mapView.delegate = self
+//        mapView.isMyLocationEnabled = true
+//        mapView.settings.myLocationButton = true
     }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     //Change authorization status
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse:
-            print("Location AuthorizedWhenInUse")
-            mapView.isMyLocationEnabled = true
-            locationController!.locationManager.startUpdatingLocation()
-        default:
-            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
-        }
+//        switch status {
+//        case .authorizedWhenInUse:
+//            print("Location AuthorizedWhenInUse")
+//            mapView.isMyLocationEnabled = true
+//            locationController!.locationManager.startUpdatingLocation()
+//        default:
+//            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
+//        }
         
     }
     
     //Update current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            locationController!.locationManager.stopUpdatingLocation()
-        }
+//        if let location = locations.first {
+//            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+//            locationController!.locationManager.stopUpdatingLocation()
+//        }
     }
 }

@@ -9,35 +9,46 @@
 import UIKit
 import CoreLocation
 
-class MainTabViewController: UITabBarController {
+class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     
     var locationController : LocationController = LocationController()
-    
-    static func instantiate() -> UITabBarController {
-        let storyboad = UIStoryboard(name: "MainTabViewController", bundle: nil)
-        let controller = storyboad.instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
-        controller.setupControllers()
-        return controller
-    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        print("main tab loaded")
+        self.delegate = self
     }
     
-    private func setupControllers() {
-        let item1 = MapViewController()
-        print(item1)
-        print(locationManager)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("setting up controllers")
+        
+        let nav1 = UINavigationController()
+        let item1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        item1.title = "Map"
         item1.setLocationManager(locationController: locationController)
-        let item2 = ParkingListTableViewController()
+        nav1.title = "Map"
+        nav1.viewControllers = [item1]
+        
+        let nav2 = UINavigationController()
+        let item2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParkingListTableViewController") as! ParkingListTableViewController
+        item2.title = "List"
+        nav2.title = "List"
         item2.setLocationManager(locationController: locationController)
-        let item3 = ProfileViewController()
-        let controllers = [item1, item2, item3]
+        nav2.viewControllers = [item2]
+        
+        let nav3 = UINavigationController()
+        let item3 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        item3.title = "Profile"
+        nav3.title = "Profile"
+        nav3.viewControllers = [item3]
+        
+        let controllers = [nav1, nav2, nav3]
         self.viewControllers = controllers
     }
     
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         print("Should select viewController: \(viewController.title) ?")
         return true;
     }
