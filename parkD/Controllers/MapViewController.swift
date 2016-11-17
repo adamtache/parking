@@ -18,7 +18,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     let dukeLong    = -78.9382286
     
     //MARK: Variables for Google Maps
-    var locationManager = CLLocationManager()
     //var myCamera = GMSCameraPosition()
     var myMarker = GMSMarker()
     var didFindMyLocation = false
@@ -44,7 +43,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Create a GMSCameraPosition that tells the map to display the coordinate given
-        mapSetup()
+//        mapSetup()
         
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -54,11 +53,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     }
     
     func mapSetup() {
+        locationController!.locationManager.delegate = self
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         //mapView.delegate = self
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
         mapView.settings.myLocationButton = true
     }
 }
@@ -70,7 +68,7 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedWhenInUse:
             print("Location AuthorizedWhenInUse")
             mapView.isMyLocationEnabled = true
-            locationManager.startUpdatingLocation()
+            locationController!.locationManager.startUpdatingLocation()
         default:
             mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
         }
@@ -81,7 +79,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            locationManager.stopUpdatingLocation()
+            locationController!.locationManager.stopUpdatingLocation()
         }
     }
 }

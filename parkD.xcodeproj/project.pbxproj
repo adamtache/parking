@@ -31,6 +31,7 @@
 		6671410E1DD32D3C0012D6DC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671410D1DD32D3C0012D6DC /* ProfileViewController.swift */; };
 		66BA51631DDD952A0024E6CC /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA51621DDD952A0024E6CC /* LocationController.swift */; };
 		66BA51681DDD9F6A0024E6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66BA51671DDD9F6A0024E6CC /* Main.storyboard */; };
+		66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BA516B1DDDA9290024E6CC /* MapKit.framework */; };
 		66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */; };
 		66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingZone.swift */; };
 		66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */; };
@@ -90,6 +91,7 @@
 		6671410D1DD32D3C0012D6DC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		66BA51621DDD952A0024E6CC /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationController.swift; path = Controllers/LocationController.swift; sourceTree = "<group>"; };
 		66BA51671DDD9F6A0024E6CC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		66BA516B1DDDA9290024E6CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingListTableViewController.swift; sourceTree = "<group>"; };
 		66D1E8E81DD2C797004446AC /* ParkingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingZone.swift; sourceTree = "<group>"; };
 		66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */,
 				6A4F7006D4322CB34EF9147C /* Pods_parkD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +265,7 @@
 		6C7F941CC5CFBE69973DFD52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66BA516B1DDDA9290024E6CC /* MapKit.framework */,
 				8A787C4E92AD584D709C40AF /* Pods_parkD.framework */,
 				4AA60806B4B3617B9014A063 /* Pods_parkDTests.framework */,
 				A7C8874187AC6945B5C9D1D5 /* Pods_parkDUITests.framework */,
