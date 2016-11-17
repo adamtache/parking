@@ -19,6 +19,8 @@
 		66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D461DDD515E00B99C50 /* ParkingPass.swift */; };
+		66137D4B1DDD5C1200B99C50 /* TagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4A1DDD5C1200B99C50 /* TagLoader.swift */; };
+		66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */; };
 		662C6F641DDD323A0056CF21 /* UserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C6F631DDD323A0056CF21 /* UserVerifier.swift */; };
 		66345E211DDD4BC200789F5A /* ParkingZoneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66345E201DDD4BC200789F5A /* ParkingZoneLoader.swift */; };
 		66345E261DDD510C00789F5A /* ParkingPassLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66345E251DDD510C00789F5A /* ParkingPassLoader.swift */; };
@@ -31,8 +33,8 @@
 		66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingZone.swift */; };
 		66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */; };
 		66E0DE491DD33D67000E16FB /* ZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE481DD33D67000E16FB /* ZoneViewController.swift */; };
-		66E0DE4B1DD33E72000E16FB /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE4A1DD33E72000E16FB /* CommentTableViewCell.swift */; };
-		66E0DE4D1DD3410C000E16FB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE4C1DD3410C000E16FB /* Comment.swift */; };
+		66E0DE4B1DD33E72000E16FB /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE4A1DD33E72000E16FB /* TagTableViewCell.swift */; };
+		66E0DE4D1DD3410C000E16FB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE4C1DD3410C000E16FB /* Tag.swift */; };
 		66E0DE4F1DD34918000E16FB /* ZoneCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E0DE4E1DD34918000E16FB /* ZoneCreationViewController.swift */; };
 		6A4F7006D4322CB34EF9147C /* Pods_parkD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A787C4E92AD584D709C40AF /* Pods_parkD.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +74,8 @@
 		66039DCF1DD2A965004B494A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66039DD11DD2AA37004B494A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66137D461DDD515E00B99C50 /* ParkingPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingPass.swift; sourceTree = "<group>"; };
+		66137D4A1DDD5C1200B99C50 /* TagLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLoader.swift; sourceTree = "<group>"; };
+		66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
 		662C6F631DDD323A0056CF21 /* UserVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVerifier.swift; sourceTree = "<group>"; };
 		66345E201DDD4BC200789F5A /* ParkingZoneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingZoneLoader.swift; sourceTree = "<group>"; };
 		66345E251DDD510C00789F5A /* ParkingPassLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingPassLoader.swift; sourceTree = "<group>"; };
@@ -86,8 +90,8 @@
 		66D1E8E81DD2C797004446AC /* ParkingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingZone.swift; sourceTree = "<group>"; };
 		66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		66E0DE481DD33D67000E16FB /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
-		66E0DE4A1DD33E72000E16FB /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
-		66E0DE4C1DD3410C000E16FB /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		66E0DE4A1DD33E72000E16FB /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
+		66E0DE4C1DD3410C000E16FB /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		66E0DE4E1DD34918000E16FB /* ZoneCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneCreationViewController.swift; sourceTree = "<group>"; };
 		8A787C4E92AD584D709C40AF /* Pods_parkD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C8874187AC6945B5C9D1D5 /* Pods_parkDUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parkDUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,11 +194,13 @@
 				6671410B1DD32CED0012D6DC /* MapViewController.swift */,
 				6671410D1DD32D3C0012D6DC /* ProfileViewController.swift */,
 				66E0DE481DD33D67000E16FB /* ZoneViewController.swift */,
-				66E0DE4A1DD33E72000E16FB /* CommentTableViewCell.swift */,
+				66E0DE4A1DD33E72000E16FB /* TagTableViewCell.swift */,
 				66E0DE4E1DD34918000E16FB /* ZoneCreationViewController.swift */,
 				54FF59861DD80CED00F470F6 /* SignUpViewController.swift */,
 				66345E201DDD4BC200789F5A /* ParkingZoneLoader.swift */,
 				66345E251DDD510C00789F5A /* ParkingPassLoader.swift */,
+				66137D4A1DDD5C1200B99C50 /* TagLoader.swift */,
+				66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -220,7 +226,7 @@
 			children = (
 				66039DCF1DD2A965004B494A /* User.swift */,
 				66D1E8E81DD2C797004446AC /* ParkingZone.swift */,
-				66E0DE4C1DD3410C000E16FB /* Comment.swift */,
+				66E0DE4C1DD3410C000E16FB /* Tag.swift */,
 				662C6F631DDD323A0056CF21 /* UserVerifier.swift */,
 				66137D461DDD515E00B99C50 /* ParkingPass.swift */,
 			);
@@ -464,6 +470,7 @@
 			files = (
 				66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */,
 				66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */,
+				66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */,
 				667141061DD326E80012D6DC /* ParkingTableViewCell.swift in Sources */,
 				66E0DE491DD33D67000E16FB /* ZoneViewController.swift in Sources */,
 				66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */,
@@ -474,9 +481,10 @@
 				66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */,
 				54FF598A1DD81B2A00F470F6 /* AppDelegate.swift in Sources */,
 				66345E211DDD4BC200789F5A /* ParkingZoneLoader.swift in Sources */,
-				66E0DE4B1DD33E72000E16FB /* CommentTableViewCell.swift in Sources */,
-				66E0DE4D1DD3410C000E16FB /* Comment.swift in Sources */,
+				66E0DE4B1DD33E72000E16FB /* TagTableViewCell.swift in Sources */,
+				66E0DE4D1DD3410C000E16FB /* Tag.swift in Sources */,
 				54FF59871DD80CED00F470F6 /* SignUpViewController.swift in Sources */,
+				66137D4B1DDD5C1200B99C50 /* TagLoader.swift in Sources */,
 				6671410C1DD32CED0012D6DC /* MapViewController.swift in Sources */,
 				66345E261DDD510C00789F5A /* ParkingPassLoader.swift in Sources */,
 			);
