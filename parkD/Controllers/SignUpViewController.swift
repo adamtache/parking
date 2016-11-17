@@ -12,8 +12,9 @@ import Firebase
 class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Constants
-
+    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let success                 = "signUpSuccess"
+    let cancel                  = "signUpCancel"
     let invalidEmailTitle       = "Invalid Email"
     let invalidEmailMessage     = "Sorry, your email address is not valid."
     let emptyEmailMessage       = "Please enter an email address."
@@ -23,17 +24,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let invalidPasswordMessage  = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
     
     // MARK: Variables
-    var permitTypes     = ["Blue", "Commuter", "Green", "Faculty", "East"]
+    var permitTypes     : [ParkingPass] = []
     var myPermit        : String!
-    
-//    let success = "signUpSuccess"
-//    let invalidEmailTitle = "Invalid Email"
-//    let invalidEmailMessage = "Sorry, your email address is not valid."
-//    let emptyEmailMessage = "Please enter an email address."
-//    let invalidPasswordTitle = "Invalid Password"
-//    let emptyPassMessage = "Please enter a password."
-//    let passNotMatch = "The passwords don't match."
-//    let invalidPasswordMessage = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
  
     // MARK: Outlets
     @IBOutlet weak var myEmail: UITextField!
@@ -50,8 +42,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         getPermitTypes()
         
         //Set up the UIPickerView delegates
-        self.permitPicker.dataSource = self;
-        self.permitPicker.delegate = self;
+        self.permitPicker.dataSource = self
+        self.permitPicker.delegate = self
         //Dismiss the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -62,13 +54,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.view.endEditing(true)
     }
     
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-    
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-        print("trying to segue")
         if(identifier == success) {
             let email = getEmail()
             let pass = getPass()
@@ -90,27 +76,24 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 return false
             }
         }
-        print("signup not successful")
+        else if(identifier == cancel){
+            return true
+        }
         return false
     }
     
 
     //Get the permits from Firebase
     func getPermitTypes() {
-        
-        
-        //TODO: Assign the values of permitTypes based off what's on Firebase.
-        //Currently, they are given default values at the top of the file
+        permitTypes = ParkingPassLoader().getItems()
         
         //Set default pickerView selection
         permitPicker.selectRow(0, inComponent: 0, animated: true)
-        myPermit = permitTypes[0]
+        myPermit = permitTypes[0].name
     }
     
-    //Add the Duke permits to the UIPickerView
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getDefaults() -> [ParkingPass] {
+        return ParkingPassLoader().getItems()
     }
     
     // The number of columns of data
@@ -125,20 +108,17 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return permitTypes[row]
+        return permitTypes[row].name
     }
     
     // Catpure the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
-        myPermit = permitTypes[row]
+        myPermit = permitTypes[row].name
         print("the new selected permit is \(myPermit)")
     }
     
-//    private func checkFields() -> Bool{
-//        return checkEmail() && checkPass()
-//}
     private func getEmail() -> String{
         return myEmail.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }

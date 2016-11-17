@@ -27,14 +27,16 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
             guard let user = user else { return }
             self.user = User(authData: user)
         }
-        items = loadItems()!
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        items = loadItems()!
+        self.tableView.reloadData()
     }
     
     private func loadItems() -> [ParkingZone]? {
-        return []
+        return ParkingZoneLoader().getItems()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
