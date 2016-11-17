@@ -13,43 +13,24 @@ class LoginViewController: UIViewController {
     
     // MARK: Constants
     let loginToList = "LoginToList"
-    let signUpSuccess = "signUpSuccess"
+    let loginSuccessful = "LoginSuccessful"
+    let goToSignUp = "GoToSignUp"
     
     let invalidEmailTitle = "Invalid Email"
     let invalidEmailMessage = "Sorry, your email address is not valid."
-    let emptyEmailMessage = "Please enter an email address."
     let invalidPasswordTitle = "Invalid Password"
-    let emptyPassMessage = "Please enter a password."
-
+    let invalidPasswordMessage = "Sorry, your email address is not valid."
+    
+    let invalidLoginTitle = "Invalid Login"
+    let invalidLoginMessage = "Sorry, your login is not valid."
 
     // MARK: Outlets
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     
-    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-        if(identifier == loginToList) {
-            if (checkFields()) {
-                return true
-            } else {
-                return false
-            }
-        }
-        return true
-    }
-
-    
     // MARK: Actions
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == loginToList){
-            print("should be going to main app")
-            //signIn(email: getEmail(), pass: getPassword())
-        }
-    }
-
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
-        //if(sender as!)
-        if(segue.identifier == signUpSuccess){
-            print("should be going from singup to the tab stuff")
+        if(segue.identifier == loginSuccessful){
             performSegue(withIdentifier: loginToList, sender: self)
         }
     }
@@ -71,6 +52,26 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+        if(identifier == loginToList) {
+            if (UserVerifier().checkLogin(email: getEmail(), pass: getPass())) {
+                return true
+            } else {
+                displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
+                return false
+            }
+        }
+        if(identifier == goToSignUp){
+            return true
+        }
+        print("login failed")
+        return false
+    }
+    
+    // MARK: Actions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         //Password text will be erased
         passText.text = ""
@@ -81,44 +82,13 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    private func signIn(email: String, pass: String) {
-        FIRAuth.auth()!.signIn(withEmail: email, password: pass)
-    }
-    
-    private func checkFields() -> Bool{
-        return checkEmail() && checkPass()
-    }
-    
-    private func checkEmail() -> Bool{
-        // Checks for valid email via regex.
-        if (emailText.text?.isEmpty)! {
-            displayMessage(title: invalidEmailTitle, message: emptyEmailMessage)
-            return false
-        }
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let isValid = emailTest.evaluate(with: getEmail())
-        if (!isValid) {
-            displayMessage(title: invalidEmailTitle, message: invalidEmailMessage)
-        }
-        return isValid
-    }
-    
-    private func checkPass() -> Bool{
-        // Checks for valid password via regex.
-        if((getPassword().isEmpty)){
-            displayMessage(title: invalidPasswordTitle, message: emptyPassMessage)
-            return false
-        }
-        return true
-    }
-    
     private func getEmail() -> String{
-        // Returns user input
+        // Returns user input in email box
         return emailText.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
-    private func getPassword() -> String{
+    private func getPass() -> String{
+        // Returns user input in pass box
         return passText.text!
     }
     
