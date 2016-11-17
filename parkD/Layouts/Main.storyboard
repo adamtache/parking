@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDF-1d-uLg">
-                                <rect key="frame" x="197.5" y="542" width="141.5" height="50"/>
+                                <rect key="frame" x="198" y="542" width="141" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="P27-vb-G4c"/>
                                 </constraints>
@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-kH-Fzv">
-                                <rect key="frame" x="36" y="542" width="141.5" height="50"/>
+                                <rect key="frame" x="36" y="542" width="142" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="h6H-nB-n7e"/>
                                 </constraints>
@@ -215,7 +215,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80r-eu-8dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ListNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kCd-NI-czJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="78Z-Nw-gfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="78Z-Nw-gfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -298,7 +298,7 @@
         <scene sceneID="wLL-jw-1Sj">
             <objects>
                 <navigationController id="AdW-JX-qRA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p0N-aY-NUf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p0N-aY-NUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -415,7 +415,7 @@
         <scene sceneID="Rq5-cg-wQk">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pff-u8-JCx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KAX-qa-AVA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KAX-qa-AVA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -507,7 +507,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZo-je-wAR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7BQ-ad-IDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7BQ-ad-IDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -524,7 +524,7 @@
         <scene sceneID="4C7-cV-EUN">
             <objects>
                 <navigationController storyboardIdentifier="MapNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wPZ-vJ-ht4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oA3-uE-W0a">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oA3-uE-W0a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -570,7 +570,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azy-wG-Zpd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEv-Hx-GHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GEv-Hx-GHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

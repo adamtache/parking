@@ -42,7 +42,7 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
         }
         tableView.delegate = self
         tableView.dataSource = self
-//        searchBar.delegate = self
+        searchBar.delegate = self
         
         items = loadItems()!
         self.tableView.reloadData()

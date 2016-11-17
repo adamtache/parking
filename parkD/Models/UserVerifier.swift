@@ -18,9 +18,11 @@ class UserVerifier {
     
     func checkLogin(email: String, pass: String) -> Bool {
         if(!checkEmail(email: email) || !checkPass(pass: pass)){
+            print("email or pass failed")
             return false
         }
         if(!signIn(email: email, pass: pass)){
+            print("sign in failed")
             return false
         }
         return true
@@ -42,19 +44,28 @@ class UserVerifier {
     
     func checkSignup(email: String, pass: String, permit: String) -> Bool {
         print("trying to signup ")
+        var signedUp = true
         FIRAuth.auth()!.createUser(withEmail: email,
                                    password: pass) { user, error in
-                                    if error == nil {
-                                        FIRAuth.auth()!.signIn(withEmail: email,
-                                                               password: pass)
+                                    if error == nil { // user created successfully
+                                        print("user created successfully")
+                                        self.verifyUser(email: email, pass: pass)
+                                        if(!self.signIn(email: email, pass: pass)){
+                                            signedUp  = false
+                                        }
                                     }
                                     else{
                                         print("signup error")
                                     }
         }
-        print("adding user with permit to DB")
-        addUserWithPermitToDB(email: email, permit: permit)
-        return true
+        if(signedUp){
+            addUserWithPermitToDB(email: email, permit: permit)
+        }
+        return signedUp
+    }
+    
+    private func verifyUser(email: String, pass: String) {
+        FIREmailPasswordAuthProvider.credential(withEmail: email, password: pass)
     }
     
     private func addUserWithPermitToDB(email: String, permit: String){
@@ -68,11 +79,16 @@ class UserVerifier {
     }
     
     private func signIn(email: String, pass: String) -> Bool{
+        var signedIn : Bool = true
         FIRAuth.auth()?.signIn(withEmail: email, password: pass) { (user, error) in
-            
+            if(error == nil){ // successfuly signed in
+                signedIn = true
+            }
+            else{ // sign in failed
+                signedIn = false
+            }
         }
-        print("signed in")
-        return true
+        return signedIn
     }
 
 }

@@ -120,7 +120,6 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
         myPermit = permitTypes[row].name
-        print("the new selected permit is \(myPermit)")
     }
     
     private func getEmail() -> String{

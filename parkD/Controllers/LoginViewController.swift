@@ -64,7 +64,6 @@ class LoginViewController: UIViewController {
         if(identifier == goToSignUp){
             return true
         }
-        print("login failed")
         return false
     }
     

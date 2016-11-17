@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var permitLabel: UILabel!
     
     //MARK: Variables
-    var user            : User!
+    var myUser            : User!
     
     // MARK: Actions
     @IBAction func signOutClick(_ sender: Any) {
@@ -36,16 +36,23 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Authenticate user via Firebase.
-        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-        }
         setupLabels()
     }
     
     private func setupLabels() {
-        userRef.child(user.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+            // Test value of user
+            if user != nil {
+                // Login validated; Perform segue to main screen
+                self.myUser = User(authData: user!)
+            }
+        }
+        
+        if(self.myUser == nil){
+            return;
+        }
+        userRef.child(myUser.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
             let email = value?["email"] as! String
@@ -74,7 +81,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setUser(user: User) {
-        self.user = user
+        self.myUser = user
     }
 
 }

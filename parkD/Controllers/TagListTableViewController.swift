@@ -20,8 +20,6 @@ class TagListTableViewController: UITableViewController {
         tableView.dataSource = self
         
         items = loadItems()!
-        print("loading")
-        print(items.count)
         self.tableView.reloadData()
     }
     
