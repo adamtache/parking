@@ -8,11 +8,23 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class MapViewController: UIViewController {
     
     var items: [ParkingZone] = []
     var user: User!
+    var locationController : LocationController?
+    
+    static func instantiate() -> MapViewController {
+        let storyboad = UIStoryboard(name: "MapViewController", bundle: nil)
+        let controller = storyboad.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        return controller
+    }
+    
+    func setLocationManager(locationController: LocationController) {
+        self.locationController = locationController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
