@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     let signoutText     = "Yes"
     let cancelText      = "Cancel"
     let signoutSegue    = "signout"
+    let userRef = FIRDatabase.database().reference(withPath: "user-info")
     
     // MARK: Outlets
     @IBOutlet var emailLabel: UILabel!
@@ -40,13 +41,26 @@ class ProfileViewController: UIViewController {
             guard let user = user else { return }
             self.user = User(authData: user)
         }
+        setupLabels()
+    }
+    
+    private func setupLabels() {
+        userRef.child(user.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? [String: AnyObject]
+            let email = value?["email"] as! String
+            let permit = value?["permit"] as! String
+            self.emailLabel.text = email
+            self.permitLabel.text = permit
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
     private func displayMessage(title: String, message: String) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         //Confirms the user goes back to the login screen
         let signoutAction = UIAlertAction(title: signoutText, style: .destructive) { (action) in
-            print("should go back to login screen")
             self.performSegue(withIdentifier: self.signoutSegue, sender: self)
             try! FIRAuth.auth()!.signOut()
         }
@@ -57,6 +71,10 @@ class ProfileViewController: UIViewController {
         controller.addAction(signoutAction)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    func setUser(user: User) {
+        self.user = user
     }
 
 }

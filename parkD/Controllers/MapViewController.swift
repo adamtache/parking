@@ -26,22 +26,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //MARK: Other Variables
     var items: [ParkingZone] = []
     var user: User!
-    var locationController : LocationController?
+    var userController : UserController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("map view loaded")
         // Create a GMSCameraPosition that tells the map to display the coordinate given
-        
-        // Authenticate user via Firebase.
-        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-        }
     }
     
-    func setLocationManager(locationController: LocationController) {
-        self.locationController = locationController
+    func setLocationManager(userController: UserController) {
+        self.userController = userController
 //        mapSetup()
         print("map setting up")
     }
@@ -77,5 +71,9 @@ extension MapViewController: CLLocationManagerDelegate {
 //            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
 //            locationController!.locationManager.stopUpdatingLocation()
 //        }
+    }
+    
+    func setUser(user: User) {
+        self.user = user
     }
 }

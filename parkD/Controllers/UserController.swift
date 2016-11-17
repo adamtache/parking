@@ -8,10 +8,11 @@
 
 import CoreLocation
 
-class LocationController: NSObject, CLLocationManagerDelegate {
+class UserController: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     var lastLocation : CLLocation?
+    var user: User?
     
     override init(){
         super.init()
@@ -21,6 +22,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 10.0
+    }
+    
+    func setUser(user: User) {
+        self.user = user
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])

@@ -13,10 +13,10 @@ import CoreLocation
 class ParkingListTableViewController: UITableViewController, UISearchBarDelegate{
     
     var items: [ParkingZone] = []
-    var user: User!
     var searchActive : Bool = false
     var filtered = [ParkingZone]()
-    var locationController : LocationController?
+    var userController : UserController?
+    var user: User?
     
     // MARK: Outlets
     @IBOutlet var searchBar: UISearchBar!
@@ -25,8 +25,8 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     @IBAction func cancelToParkingZoneTable(segue:UIStoryboardSegue) {
     }
     
-    func setLocationManager(locationController: LocationController) {
-        self.locationController = locationController
+    func setLocationManager(userController: UserController) {
+        self.userController = userController
         print("setting location manager for list view")
     }
     
@@ -101,6 +101,10 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
             searchActive = true;
         }
         self.tableView.reloadData()
+    }
+    
+    func setUser(user: User) {
+        self.user = user
     }
     
 }
