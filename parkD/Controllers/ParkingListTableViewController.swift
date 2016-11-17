@@ -19,6 +19,10 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // MARK: Actions
+    @IBAction func cancelToParkingZoneTable(segue:UIStoryboardSegue) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
