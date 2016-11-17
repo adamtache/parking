@@ -42,14 +42,7 @@ class ProfileViewController: UIViewController {
         let signoutAction = UIAlertAction(title: signoutText, style: .destructive) { (action) in
             print("should go back to login screen")
             self.performSegue(withIdentifier: self.signoutSegue, sender: self)
-            
-            
-            
-            
-            //TODO: Use Firebird to signout of profile:
-            
-            
-            
+            try! FIRAuth.auth()!.signOut()
         }
         //Will cancel
         let cancelAction = UIAlertAction(title: cancelText, style: .destructive) { (action) in
