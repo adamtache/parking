@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class ParkingListTableViewController: UITableViewController, UISearchBarDelegate{
     
@@ -15,9 +16,24 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     var user: User!
     var searchActive : Bool = false
     var filtered = [ParkingZone]()
+    var locationController : LocationController?
     
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    // MARK: Actions
+    @IBAction func cancelToParkingZoneTable(segue:UIStoryboardSegue) {
+    }
+    
+    static func instantiate() -> ParkingListTableViewController {
+        let storyboad = UIStoryboard(name: "ParkingListTableViewController", bundle: nil)
+        let controller = storyboad.instantiateViewController(withIdentifier: "ParkingListTableViewController") as! ParkingListTableViewController
+        return controller
+    }
+    
+    func setLocationManager(locationController: LocationController) {
+        self.locationController = locationController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +43,16 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
             guard let user = user else { return }
             self.user = User(authData: user)
         }
-        items = loadItems()!
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        items = loadItems()!
+        self.tableView.reloadData()
     }
     
     private func loadItems() -> [ParkingZone]? {
-        return []
+        return ParkingZoneLoader().getItems()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

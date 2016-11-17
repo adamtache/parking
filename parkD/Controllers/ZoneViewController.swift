@@ -28,6 +28,7 @@ class ZoneViewController: UIViewController {
     var zone: ParkingZone!
     
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
     }
 

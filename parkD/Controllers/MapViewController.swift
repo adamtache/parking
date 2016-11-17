@@ -26,6 +26,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //MARK: Other Variables
     var items: [ParkingZone] = []
     var user: User!
+    var locationController : LocationController?
+    
+    static func instantiate() -> MapViewController {
+        let storyboad = UIStoryboard(name: "MapViewController", bundle: nil)
+        let controller = storyboad.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        return controller
+    }
+    
+    func setLocationManager(locationController: LocationController) {
+        self.locationController = locationController
+    }
     
     //MARK: Outlets
     @IBOutlet weak var mapView: GMSMapView!
