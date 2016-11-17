@@ -18,6 +18,10 @@ class ProfileViewController: UIViewController {
     let cancelText      = "Cancel"
     let signoutSegue    = "signout"
     
+    // MARK: Outlets
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var permitLabel: UILabel!
+    
     //MARK: Variables
     var user            : User!
     
@@ -25,6 +29,8 @@ class ProfileViewController: UIViewController {
     @IBAction func signOutClick(_ sender: Any) {
         //Verify if user wants to sign out
         displayMessage(title: signoutTitle, message: signoutMessage)
+    }
+    @IBAction func editClick(_ sender: Any) {
     }
     
     override func viewDidLoad() {

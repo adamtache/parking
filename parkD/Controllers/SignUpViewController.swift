@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 displayMessage(title: invalidPasswordTitle, message: passNotMatch)
                 return false
             }
-            if (UserVerifier().checkSignup(email: email, pass: pass)) {
+            if (UserVerifier().checkSignup(email: email, pass: pass, permit: getSelectedPermit())) {
                 return true
             } else {
                 return false
@@ -82,9 +82,13 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return false
     }
     
+    private func getSelectedPermit() -> String {
+        return permitTypes[0].name
+    }
+    
 
     //Get the permits from Firebase
-    func getPermitTypes() {
+    private func getPermitTypes() {
         permitTypes = ParkingPassLoader().getItems()
         
         //Set default pickerView selection
@@ -92,7 +96,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         myPermit = permitTypes[0].name
     }
     
-    func getDefaults() -> [ParkingPass] {
+    private func getDefaults() -> [ParkingPass] {
         return ParkingPassLoader().getItems()
     }
     

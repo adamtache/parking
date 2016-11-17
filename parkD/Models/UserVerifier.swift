@@ -9,6 +9,9 @@
 import Firebase
 
 class UserVerifier {
+    
+    // MARK: Constants
+    let userRef = FIRDatabase.database().reference(withPath: "user-info")
  
     init() {
     }
@@ -37,7 +40,7 @@ class UserVerifier {
         return passTest.evaluate(with: pass)
     }
     
-    func checkSignup(email: String, pass: String) -> Bool {
+    func checkSignup(email: String, pass: String, permit: String) -> Bool {
         print("trying to signup ")
         FIRAuth.auth()!.createUser(withEmail: email,
                                    password: pass) { user, error in
@@ -49,8 +52,19 @@ class UserVerifier {
                                         print("signup error")
                                     }
         }
-        print("signup succesful?")
+        print("adding user with permit to DB")
+        addUserWithPermitToDB(email: email, permit: permit)
         return true
+    }
+    
+    private func addUserWithPermitToDB(email: String, permit: String){
+        let user = createUser(email: email, permit: permit)
+        let localUserRef = userRef.child(user.email.replacingOccurrences(of: ".", with: ","))
+        localUserRef.setValue(user.toAnyObject())
+    }
+    
+    private func createUser(email: String, permit: String) -> EmailPermit{
+        return EmailPermit(email: email, permit: permit)
     }
     
     private func signIn(email: String, pass: String) -> Bool{
