@@ -11,6 +11,7 @@ import Firebase
 class TagLoader {
     
     let passRef = FIRDatabase.database().reference(withPath: "tags")
+//    let tags : [String] = "Full, Almost Full, Very Empty, "
     
     init() {
     }
