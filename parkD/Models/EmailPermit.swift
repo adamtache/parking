@@ -14,8 +14,8 @@ import FirebaseDatabase
 
 struct EmailPermit {
     
-    let email: String
-    let permit: String
+    var email: String
+    var permit: String
     let ref: FIRDatabaseReference?
     let key: String
     
