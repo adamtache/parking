@@ -31,6 +31,7 @@
 		6671410E1DD32D3C0012D6DC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671410D1DD32D3C0012D6DC /* ProfileViewController.swift */; };
 		6686D77F1DDE4F2F007D7CD3 /* EmailPermit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6686D77E1DDE4F2F007D7CD3 /* EmailPermit.swift */; };
 		6686D7811DDE9EBF007D7CD3 /* UserModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */; };
+		6686D7831DDEA6BB007D7CD3 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6686D7821DDEA6BB007D7CD3 /* UserController.swift */; };
 		66BA51631DDD952A0024E6CC /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA51621DDD952A0024E6CC /* UserController.swift */; };
 		66BA51681DDD9F6A0024E6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66BA51671DDD9F6A0024E6CC /* Main.storyboard */; };
 		66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BA516B1DDDA9290024E6CC /* MapKit.framework */; };
@@ -93,6 +94,7 @@
 		6671410D1DD32D3C0012D6DC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6686D77E1DDE4F2F007D7CD3 /* EmailPermit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailPermit.swift; sourceTree = "<group>"; };
 		6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModifier.swift; sourceTree = "<group>"; };
+		6686D7821DDEA6BB007D7CD3 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		66BA51621DDD952A0024E6CC /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserController.swift; path = Controllers/UserController.swift; sourceTree = "<group>"; };
 		66BA51671DDD9F6A0024E6CC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66BA516B1DDDA9290024E6CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -200,6 +202,7 @@
 		66039DBA1DD2A860004B494A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6686D7821DDEA6BB007D7CD3 /* UserController.swift */,
 				66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */,
 				66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */,
 				667141051DD326E80012D6DC /* ParkingTableViewCell.swift */,
@@ -510,6 +513,7 @@
 				66BA51631DDD952A0024E6CC /* UserController.swift in Sources */,
 				66345E211DDD4BC200789F5A /* ParkingZoneLoader.swift in Sources */,
 				66E0DE4B1DD33E72000E16FB /* TagTableViewCell.swift in Sources */,
+				6686D7831DDEA6BB007D7CD3 /* UserController.swift in Sources */,
 				66E0DE4D1DD3410C000E16FB /* Tag.swift in Sources */,
 				54FF59871DD80CED00F470F6 /* SignUpViewController.swift in Sources */,
 				66137D4B1DDD5C1200B99C50 /* TagLoader.swift in Sources */,
