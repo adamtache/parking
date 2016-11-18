@@ -26,7 +26,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //MARK: Other Variables
     var items: [ParkingZone] = []
     var user: User!
-    var userController : UserController?
+    var userController: UserController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
