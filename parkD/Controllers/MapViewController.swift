@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import GoogleMaps
 import CoreLocation
-import MapKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
+    
+    //MARK: Typealiases
+    typealias polycoordinates = (lat: Double, long: Double)
     
     //MARK: Constants
     let dukeLat     = 36.0014258
@@ -26,54 +28,57 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //MARK: Other Variables
     var items: [ParkingZone] = []
     var user: User!
-    var userController: UserController?
+    var userController: UserController!
+    var locationManager: CLLocationManager!
+    var zones = ParkingZoneLoader()
+    
+    //MARK: Outlets
+    @IBOutlet weak var mapView: GMSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("map view loaded")
-        // Create a GMSCameraPosition that tells the map to display the coordinate given
+        mapSetup()
+        tempSetup()
+    }
+    
+    func mapSetup() {
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+        mapView.delegate = self
+    }
+    
+    func tempSetup() {
+        let camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
+        mapView.camera = camera
+        createZoneOverlay(zone: zones.getBlueZone())
+    }
+    
+    func createZoneOverlay(zone: ParkingZone) {
+        let coordinates = zone.polycoordinates
+        let path = GMSMutablePath()
+        for (lat, long) in coordinates! {
+            path.add(CLLocationCoordinate2D(latitude: lat, longitude: long))
+        }
+        let polygon = GMSPolygon(path: path)
+        polygon.fillColor = zone.overlayColor
+        polygon.title = zone.name
+        polygon.isTappable = true
+        polygon.map = mapView
     }
     
     func setLocationManager(userController: UserController) {
         self.userController = userController
-//        mapSetup()
+        locationManager = userController.locationManager
         print("map setting up")
-    }
-    
-    //MARK: Outlets
-    @IBOutlet var mapView: MKMapView!
-    
-    func mapSetup() {
-//        locationController!.locationManager.delegate = self
-//        mapView.delegate = self
-//        mapView.isMyLocationEnabled = true
-//        mapView.settings.myLocationButton = true
-    }
-}
-
-extension MapViewController: CLLocationManagerDelegate {
-    //Change authorization status
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        switch status {
-//        case .authorizedWhenInUse:
-//            print("Location AuthorizedWhenInUse")
-//            mapView.isMyLocationEnabled = true
-//            locationController!.locationManager.startUpdatingLocation()
-//        default:
-//            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
-//        }
-        
-    }
-    
-    //Update current location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.first {
-//            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-//            locationController!.locationManager.stopUpdatingLocation()
-//        }
     }
     
     func setUser(user: User) {
         self.user = user
+    }
+    
+    //GMSMapViewDelegate methods
+    func mapView(_ mapView: GMSMapView, didTap overlay: GMSOverlay) {
+        print("you tapped the miracle lot")
     }
 }

@@ -12,6 +12,8 @@ import FirebaseDatabase
 
 struct ParkingZone {
     
+    typealias polycoordinates = (lat: Double, long: Double)
+    
     let key: String
     let name: String
     let addedByUser: String
@@ -20,8 +22,10 @@ struct ParkingZone {
     var comments: [String]
     var capacity: Int
     var image: UIImage!
+    var polycoordinates: [polycoordinates]!
+    var overlayColor: UIColor!
     
-    init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int){
+    init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int, polycoordinates: [polycoordinates], overlayColor: UIColor){
         
         // Initializes parking lot through parameters.
         
@@ -32,6 +36,8 @@ struct ParkingZone {
         self.ref = nil
         self.comments = comments
         self.capacity = capacity
+        self.polycoordinates = polycoordinates
+        self.overlayColor = overlayColor
     }
     
     init(snapshot: FIRDataSnapshot){

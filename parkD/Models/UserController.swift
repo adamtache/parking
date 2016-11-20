@@ -30,7 +30,23 @@ class UserController: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+//        if let location = locations.first {
+//                        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+//                        locationController!.locationManager.stopUpdatingLocation()
+//                    }
         lastLocation = locations.last! as CLLocation
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //        switch status {
+        //        case .authorizedWhenInUse:
+        //            print("Location AuthorizedWhenInUse")
+        //            mapView.isMyLocationEnabled = true
+        //            locationController!.locationManager.startUpdatingLocation()
+        //        default:
+        //            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
+        //        }
+        
     }
     
     func getCurrLocation() -> CLLocation{
