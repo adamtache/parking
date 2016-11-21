@@ -13,14 +13,16 @@ class UserController: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     var lastLocation : CLLocation?
     var user: User?
+    var zoneLoader = ParkingZoneLoader()
+    var passLoader = ParkingPassLoader()
     
     override init(){
         super.init()
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
+        //locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 10.0
     }
     
@@ -38,14 +40,12 @@ class UserController: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //        switch status {
-        //        case .authorizedWhenInUse:
-        //            print("Location AuthorizedWhenInUse")
-        //            mapView.isMyLocationEnabled = true
-        //            locationController!.locationManager.startUpdatingLocation()
-        //        default:
-        //            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 13.0)
-        //        }
+                switch status {
+                case .authorizedWhenInUse:
+                    print("Location AuthorizedWhenInUse")
+                    locationManager.startUpdatingLocation()
+                default: break
+                }
         
     }
     

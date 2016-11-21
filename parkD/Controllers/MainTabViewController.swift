@@ -19,7 +19,6 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     {
         super.viewDidLoad()
         self.delegate = self
-        
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)

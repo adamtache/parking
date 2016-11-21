@@ -17,6 +17,9 @@ class ProfileViewController: UIViewController {
     let signoutText     = "Yes"
     let cancelText      = "Cancel"
     let signoutSegue    = "signout"
+    let editSuccess     = "editProfileSuccess"
+    let editPressed     = "editProfilePressed"
+    let editCancel      = "editProfileCancelled"
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
     
     // MARK: Outlets
@@ -31,8 +34,14 @@ class ProfileViewController: UIViewController {
         //Verify if user wants to sign out
         displayMessage(title: signoutTitle, message: signoutMessage)
     }
-    @IBAction func editClick(_ sender: Any) {
+    
+    @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
+        if (segue.identifier == editSuccess) {
+            print("shit is edited")
+        }
     }
+    
+    // MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +91,21 @@ class ProfileViewController: UIViewController {
     
     func setUser(user: User) {
         self.myUser = user
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        if (segue.identifier == editPressed) {
+            let navController = segue.destination as! UINavigationController
+            let viewController = navController.topViewController as! EditProfileViewController
+            // Pass the selected object to the new view controller.
+            if (myUser != nil) {
+                viewController.setUser(user: myUser)
+            }
+        }
     }
 
 }

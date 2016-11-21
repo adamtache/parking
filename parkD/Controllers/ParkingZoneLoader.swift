@@ -30,7 +30,7 @@ class ParkingZoneLoader {
         return zones
     }
     
-    func getBlueZone() -> ParkingZone {
+    private func getBlueZone() -> ParkingZone {
         let name = "Blue Zone"
         let addedByUser = "Admin"
         let full = false
