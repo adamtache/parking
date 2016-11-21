@@ -60,12 +60,6 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         self.viewControllers = controllers
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-    }
-    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         return true;
     }

@@ -12,13 +12,14 @@ import GoogleMaps
 import CoreLocation
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
-    
+
     //MARK: Typealiases
     typealias polycoordinates = (lat: Double, long: Double)
     
     //MARK: Constants
     let dukeLat     = 36.0014258
     let dukeLong    = -78.9382286
+    let mapToZone   = "mapToZone"
     
     //MARK: Variables for Google Maps
     //var myCamera = GMSCameraPosition()
@@ -34,6 +35,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var mapView: GMSMapView!
+    
+    @IBAction func unwindFromZoneViewController(segue: UIStoryboardSegue) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,5 +94,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //GMSMapViewDelegate methods
     func mapView(_ mapView: GMSMapView, didTap overlay: GMSOverlay) {
         print("you tapped a lot")
+        performSegue(withIdentifier: mapToZone, sender: self)
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        if (segue.identifier == mapToZone) {
+            let navController = segue.destination as! UINavigationController
+            let viewController = navController.topViewController as! ZoneViewController
+            //TODO: Perform the methods to load the proper zone in the ZVC
+        }
     }
 }

@@ -22,7 +22,8 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     @IBOutlet var searchBar: UISearchBar!
     
     // MARK: Actions
-    @IBAction func cancelToParkingZoneTable(segue:UIStoryboardSegue) {
+    @IBAction func unwindFromZoneViewController(segue: UIStoryboardSegue) {
+        
     }
     
     func setLocationManager(userController: UserController) {

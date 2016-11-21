@@ -11,6 +11,9 @@ import Firebase
 
 class ZoneViewController: UIViewController {
     
+    //MARK: Constants
+    let unwindFromZone  = "unwindFromZoneViewController"
+    
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageLabel: UIImageView!
@@ -24,6 +27,11 @@ class ZoneViewController: UIViewController {
     @IBAction func refreshData(_ sender: Any) {
         
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.performSegue(withIdentifier: unwindFromZone, sender: self)
+    }
+    
     
     var zone: ParkingZone!
     
