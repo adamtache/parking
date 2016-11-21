@@ -37,6 +37,7 @@ class ParkingZoneLoader {
         let comments = [""]
         let capacity = 1000
         let overlayColor = UIColor.blue
+        let markerPosition = (lat: 35.997452, long: -78.939005)
         var coordinates : [polycoordinates] = []
         //Create coordinate layouts for the zone
         coordinates.append( (lat: 35.997452, long: -78.939005) )
@@ -55,7 +56,7 @@ class ParkingZoneLoader {
         coordinates.append( (lat: 35.997448, long: -78.939106) )
         coordinates.append( (lat: 35.997452, long: -78.939005) )
 
-        return ParkingZone(name: name, addedByUser: addedByUser, full: full, comments: comments, capacity: capacity, polycoordinates: coordinates, overlayColor: overlayColor)
+        return ParkingZone(name: name, addedByUser: addedByUser, full: full, comments: comments, capacity: capacity, polycoordinates: coordinates, overlayColor: overlayColor, markerPosition: markerPosition)
     }
     
 }

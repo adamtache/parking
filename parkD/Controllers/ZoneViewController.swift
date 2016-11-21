@@ -14,6 +14,9 @@ class ZoneViewController: UIViewController {
     //MARK: Constants
     let unwindFromZone  = "unwindFromZoneViewController"
     
+    //MARK: Vars
+    var zone: ParkingZone!
+    
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageLabel: UIImageView!
@@ -32,12 +35,18 @@ class ZoneViewController: UIViewController {
         self.performSegue(withIdentifier: unwindFromZone, sender: self)
     }
     
-    
-    var zone: ParkingZone!
-    
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
+        updateInfo()
+    }
+    
+    private func updateInfo() {
+        if (zone != nil) {
+            nameLabel.text = zone.name
+            capacityLabel.text = String(zone.capacity)
+            
+        }
     }
 
 }

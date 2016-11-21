@@ -24,8 +24,9 @@ struct ParkingZone {
     var image: UIImage!
     var polycoordinates: [polycoordinates]!
     var overlayColor: UIColor!
+    var markerPosition: polycoordinates!
     
-    init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int, polycoordinates: [polycoordinates], overlayColor: UIColor){
+    init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int, polycoordinates: [polycoordinates], overlayColor: UIColor, markerPosition: polycoordinates){
         
         // Initializes parking lot through parameters.
         
@@ -38,6 +39,7 @@ struct ParkingZone {
         self.capacity = capacity
         self.polycoordinates = polycoordinates
         self.overlayColor = overlayColor
+        self.markerPosition = markerPosition
     }
     
     init(snapshot: FIRDataSnapshot){

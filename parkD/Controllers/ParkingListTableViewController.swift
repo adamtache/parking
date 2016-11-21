@@ -12,11 +12,17 @@ import CoreLocation
 
 class ParkingListTableViewController: UITableViewController, UISearchBarDelegate{
     
+    //MARK: Constants
+    let listToZone = "zoneCellToZoneInfo"
+    
+    // MARK: Vars
     var items: [ParkingZone] = []
     var searchActive : Bool = false
     var filtered = [ParkingZone]()
     var userController : UserController?
     var user: User?
+    var current: ParkingZone?
+    var lastSelected = 0
     
     // MARK: Outlets
     @IBOutlet var searchBar: UISearchBar!
@@ -106,6 +112,16 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     
     func setUser(user: User) {
         self.user = user
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == listToZone) {
+            let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)
+            let navController = segue.destination as! UINavigationController
+            let zoneVC = navController.topViewController as! ZoneViewController
+            zoneVC.zone = self.items[(selectedIndex?.row)!]
+        }
     }
     
 }

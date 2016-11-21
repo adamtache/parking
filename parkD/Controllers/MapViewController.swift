@@ -21,17 +21,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     let dukeLong    = -78.9382286
     let mapToZone   = "mapToZone"
     
-    //MARK: Variables for Google Maps
-    //var myCamera = GMSCameraPosition()
-    var myMarker = GMSMarker()
-    var didFindMyLocation = false
-    
     //MARK: Other Variables
-    var items: [ParkingZone] = []
+    var zonesDict = [String:ParkingZone]()
     var user: User!
     var userController: UserController!
     var locationManager: CLLocationManager!
     var zones: ParkingZoneLoader!
+    var zoneTapped: ParkingZone?
     
     //MARK: Outlets
     @IBOutlet weak var mapView: GMSMapView!
@@ -43,6 +39,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapSetup()
+        addZonesToDict(zones: zones.getDefaults())
         addZoneOverlays()
     }
     
@@ -62,6 +59,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
     func addZoneOverlays() {
         createZoneOverlay(zones: zones.getDefaults())
+        createZoneMarkers(zones: zones.getDefaults())
+    }
+    
+    func addZonesToDict(zones: [ParkingZone]) {
+        for zone in zones {
+            zonesDict[zone.name] = zone
+        }
     }
     
     func createZoneOverlay(zones: [ParkingZone]) {
@@ -76,6 +80,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             polygon.title = zone.name
             polygon.isTappable = true
             polygon.map = mapView
+        }
+    }
+    
+    func createZoneMarkers(zones: [ParkingZone]) {
+        for zone in zones {
+            let coordinates = zone.markerPosition
+            let position = CLLocationCoordinate2DMake((coordinates?.lat)!, (coordinates?.long)!)
+            let marker = GMSMarker(position: position)
+            marker.title = zone.name
+            marker.map = mapView
         }
     }
     
@@ -94,16 +108,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //GMSMapViewDelegate methods
     func mapView(_ mapView: GMSMapView, didTap overlay: GMSOverlay) {
         print("you tapped a lot")
+        let tapped = overlay as! GMSPolygon
+        zoneTapped = zonesDict[tapped.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
     }
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
         if (segue.identifier == mapToZone) {
             let navController = segue.destination as! UINavigationController
-            let viewController = navController.topViewController as! ZoneViewController
-            //TODO: Perform the methods to load the proper zone in the ZVC
+            let zoneVC = navController.topViewController as! ZoneViewController
+            zoneVC.zone = zoneTapped
         }
     }
 }
