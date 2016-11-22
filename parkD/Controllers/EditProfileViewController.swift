@@ -22,6 +22,8 @@ class EditProfileViewController: UIViewController {
     private var user: User!
 
     //MARK: Outlets
+    
+    
     @IBOutlet weak var myEmailField: UITextField!
     @IBOutlet weak var myCurrentPassField: UITextField!
     @IBOutlet weak var myNewPassField: UITextField!
@@ -37,6 +39,8 @@ class EditProfileViewController: UIViewController {
     
     func setUser(user: User) {
         self.user = user
+        print(user.email)
+        print(myEmailField)
         myEmailField.text = user.email
     }
     
@@ -56,8 +60,7 @@ class EditProfileViewController: UIViewController {
             return false
         }
         
-        //TODO: Update email here
-        return true
+        return UserModifier().changeEmail(email: myEmailField.text!, newEmail: getEmail())
     }
     
     func updatePassword() -> Bool {
@@ -78,9 +81,7 @@ class EditProfileViewController: UIViewController {
             }
         }
         
-        //TODO: Update password here
-        
-        return true
+        return UserModifier().changePass(email: myEmailField.text!, newPass: myNewPassField.text!)
     }
     
     private func displayMessage(title: String, message: String) {

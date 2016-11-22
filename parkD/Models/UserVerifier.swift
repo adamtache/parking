@@ -79,7 +79,7 @@ class UserVerifier {
     }
     
     private func signIn(email: String, pass: String) -> Bool{
-        var signedIn : Bool = true
+        var signedIn : Bool = false
         FIRAuth.auth()?.signIn(withEmail: email, password: pass) { (user, error) in
             if(error == nil){ // successfuly signed in
                 signedIn = true
