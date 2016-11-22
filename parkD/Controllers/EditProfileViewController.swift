@@ -33,15 +33,15 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (!user.email.isEmpty) {
+            myEmailField.text = user.email
+        }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
     func setUser(user: User) {
         self.user = user
-        print(user.email)
-        print(myEmailField)
-        myEmailField.text = user.email
     }
     
     //Keyboard dismissal
