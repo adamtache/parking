@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import GoogleMaps
 
 class UserController: NSObject, CLLocationManagerDelegate {
     
@@ -16,13 +17,14 @@ class UserController: NSObject, CLLocationManagerDelegate {
     var zoneLoader = ParkingZoneLoader()
     var passLoader = ParkingPassLoader()
     
-    override init(){
+    override init() {
         super.init()
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        //locationManager.startUpdatingLocation()
+        if (CLLocationManager.authorizationStatus() == .notDetermined) {
+            locationManager.requestWhenInUseAuthorization()
+        }
         locationManager.distanceFilter = 10.0
     }
     
@@ -30,23 +32,28 @@ class UserController: NSObject, CLLocationManagerDelegate {
         self.user = user
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-//        if let location = locations.first {
-//                        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-//                        locationController!.locationManager.stopUpdatingLocation()
-//                    }
-        lastLocation = locations.last! as CLLocation
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            //No additional code needed currently, but the func needs to remain
+            print("location:: \(location)")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-                switch status {
-                case .authorizedWhenInUse:
-                    print("Location AuthorizedWhenInUse")
-                    locationManager.startUpdatingLocation()
-                default: break
-                }
-        
+        switch status {
+        case .authorizedWhenInUse:
+            locationManager.requestLocation()
+            print("Location only when in the app")
+        case .authorizedAlways:
+            locationManager.requestLocation()
+            print("Location always in use")
+        default:
+            print("No location tracking")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error)")
     }
     
     func getCurrLocation() -> CLLocation{

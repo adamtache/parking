@@ -39,26 +39,34 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapSetup()
-        addZonesToDict(zones: zones.getDefaults())
-        addZoneOverlays()
     }
     
     func mapSetup() {
-        //Default camera origin if user doesn't give location access
-        if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
-            let camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
-            mapView.camera = camera
-        } else {
-            //TODO: Move camera to current location, I'm not sure why it isn't happening automatically
-        }
+        //Basic map setup code
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self
+        
+        //Default camera origin if user doesn't give location access
+        let location = locationManager.location
+        if (CLLocationManager.authorizationStatus() == .denied || location == nil) {
+            mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
+        } else {
+            mapView.camera = GMSCameraPosition(target:(location?.coordinate)!, zoom:15,bearing:0, viewingAngle:0)
+        }
+        
+        //Setting the zones in the array into a dictionary for easy reference
+        addZonesToDict(zones: zones.getDefaults())
+        
+        //Drawing the zones on the map
+        addZoneOverlays()
         print("map view loaded")
     }
 
     func addZoneOverlays() {
+        //Add drawn zones on map
         createZoneOverlay(zones: zones.getDefaults())
+        //Add markers for each zone
         createZoneMarkers(zones: zones.getDefaults())
     }
     
@@ -111,6 +119,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         let tapped = overlay as! GMSPolygon
         zoneTapped = zonesDict[tapped.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        print("the location button was tapped")
+        if (CLLocationManager.authorizationStatus() == .denied) {
+            //TODO: Add either an alert or link to settings to change locaiton permission
+            print("asking again to use location")
+        }
+        return false
     }
     
     //MARK: Navigation

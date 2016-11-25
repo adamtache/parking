@@ -44,7 +44,7 @@ class ZoneViewController: UIViewController {
     private func updateInfo() {
         if (zone != nil) {
             nameLabel.text = zone.name
-            capacityLabel.text = String(zone.capacity)
+            capacityValLabel.text = String(zone.capacity)
             
         }
     }
