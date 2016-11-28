@@ -33,24 +33,21 @@ class LoginViewController: UIViewController {
         let pass = getPass()
         if(!UserVerifier().checkEmail(email: email) || !UserVerifier().checkPass(pass: pass)){
             signInFailed()
+            return
         }
         FIRAuth.auth()?.signIn(withEmail: email, password: pass) { (user, error) in
             if error != nil {
                 self.signInFailed()
-                return
+                return;
             }
-            self.signedIn(user!)
+            else{
+                self.signedIn()
+            }
         }
-    }
-    @IBAction func signUpClicked(_ sender: Any) {
-        performSegue(withIdentifier: goToSignUp, sender: nil)
     }
     
-    // MARK: Actions
-    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
-        if(segue.identifier == loginSuccessful){
-            performSegue(withIdentifier: loginToList, sender: self)
-        }
+    @IBAction func signUpClicked(_ sender: Any) {
+        performSegue(withIdentifier: goToSignUp, sender: nil)
     }
     
     override func viewDidLoad() {
@@ -60,7 +57,7 @@ class LoginViewController: UIViewController {
         self.dismissKeyboardAction()
         
         if (FIRAuth.auth()?.currentUser) != nil {
-            self.performSegue(withIdentifier: self.loginToList, sender: nil)
+            signedIn()
         }
     }
     
@@ -73,8 +70,17 @@ class LoginViewController: UIViewController {
         displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
     }
     
-    // MARK: Actions
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+        if(identifier == goToSignUp){
+            return true
+        }
+        return false
+    }
+    
+    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
+        if(segue.identifier == loginSuccessful){
+            performSegue(withIdentifier: loginToList, sender: self)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -106,8 +112,11 @@ class LoginViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
-    private func signedIn(_ user: FIRUser?) {
-        performSegue(withIdentifier: loginToList, sender: nil)
+    private func signedIn() {
+        if (FIRAuth.auth()?.currentUser) != nil {
+            print("current user isn't nil")
+            performSegue(withIdentifier: loginToList, sender: nil)
+        }
     }
     
 }
