@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
         if (segue.identifier == editSuccess) {
-            print("shit is edited")
+            setupLabels()
         }
     }
     
@@ -87,13 +87,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func signOut() {
-        print("tryna sign out")
         UserVerifier().signOut()
         if (FIRAuth.auth()?.currentUser) == nil {
             self.performSegue(withIdentifier: self.signoutSegue, sender: self)
-        }
-        else{
-            print("sign out fucking failed :( ")
         }
     }
 
@@ -105,7 +101,6 @@ class ProfileViewController: UIViewController {
         }
         //Will cancel
         let cancelAction = UIAlertAction(title: cancelText, style: .destructive) { (action) in
-            print("cancel button pressed")
             //No action for cancel
         }
         controller.addAction(signoutAction)
