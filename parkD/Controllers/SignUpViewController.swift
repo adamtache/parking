@@ -13,7 +13,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     // MARK: Constants
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
-    let success                 = "signUpSuccess"
+    let signUpClick             = "signUpClick"
     let cancel                  = "signUpCancel"
     let invalidEmailTitle       = "Invalid Email"
     let invalidEmailMessage     = "Sorry, your email address is not valid."
@@ -22,6 +22,10 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let emptyPassMessage        = "Please enter a password."
     let passNotMatch            = "The passwords don't match."
     let invalidPasswordMessage  = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
+    let invalidSignupTitle      = "Invalid signup"
+    let invalidSignupMessage    = "Sorry, your signup is not valid."
+    let emailTakenTitle         = "Email taken"
+    let emailTakenMessage       = "Sorry, a user with that email already exists."
     
     // MARK: Variables
     var permitTypes     : [ParkingPass] = []
@@ -53,30 +57,40 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    @IBAction func signUpClick(_ sender: Any) {
+        let email = getEmail()
+        let pass = getPass()
+        if(!UserVerifier().checkEmail(email: email)){
+            displayMessage(title: invalidPasswordTitle, message: invalidPasswordTitle)
+        }
+        else if(!UserVerifier().checkPass(pass: pass)){
+            displayMessage(title: invalidPasswordTitle, message: invalidPasswordMessage)
+        }
+        else if(myReTypePassword.text != myPassword.text){
+            displayMessage(title: invalidPasswordTitle, message: passNotMatch)
+        }
+        FIRAuth.auth()?.createUser(withEmail: email, password: pass) { (user, error) in
+            if error != nil {
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        self.displayMessage(title: self.invalidSignupTitle, message: self.invalidSignupMessage)
+                        return
+                    case .errorCodeEmailAlreadyInUse:
+                        self.displayMessage(title: self.emailTakenTitle, message: self.emailTakenMessage)
+                        return
+                    default:
+                        self.displayMessage(title: self.invalidSignupTitle, message: self.invalidSignupMessage)
+                        return
+                    }
+                }
+            }
+            self.signedUp(user!, email: email)
+        }
+    }
     
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-        if(identifier == success) {
-            let email = getEmail()
-            let pass = getPass()
-            if(!UserVerifier().checkEmail(email: email)){
-                displayMessage(title: invalidPasswordTitle, message: invalidPasswordTitle)
-                return false
-            }
-            else if(!UserVerifier().checkPass(pass: pass)){
-                displayMessage(title: invalidPasswordTitle, message: invalidPasswordMessage)
-                return false
-            }
-            else if(myReTypePassword.text != myPassword.text){
-                displayMessage(title: invalidPasswordTitle, message: passNotMatch)
-                return false
-            }
-            if (UserVerifier().checkSignup(email: email, pass: pass, permit: getSelectedPermit())) {
-                return true
-            } else {
-                return false
-            }
-        }
-        else if(identifier == cancel){
+        if(identifier == cancel){
             return true
         }
         return false
@@ -137,6 +151,11 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         controller.addAction(alertAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    private func signedUp(_ user: FIRUser?, email: String) {
+        UserVerifier().addUserWithPermitToDB(email: email, permit: self.getSelectedPermit())
+        performSegue(withIdentifier: signUpClick, sender: nil)
     }
 
 }

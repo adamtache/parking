@@ -28,6 +28,24 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     
+    @IBAction func signInClicked(_ sender: Any) {
+        let email = getEmail()
+        let pass = getPass()
+        if(!UserVerifier().checkEmail(email: email) || !UserVerifier().checkPass(pass: pass)){
+            signInFailed()
+        }
+        FIRAuth.auth()?.signIn(withEmail: email, password: pass) { (user, error) in
+            if error != nil {
+                self.signInFailed()
+                return
+            }
+            self.signedIn(user!)
+        }
+    }
+    @IBAction func signUpClicked(_ sender: Any) {
+        performSegue(withIdentifier: goToSignUp, sender: nil)
+    }
+    
     // MARK: Actions
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
         if(segue.identifier == loginSuccessful){
@@ -39,32 +57,20 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //Dismiss the keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        self.dismissKeyboardAction()
         
-        //Create authentication observer
-        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-            // Test value of user
-            if user != nil {
-                // Login validated; Perform segue to main screen
-                self.performSegue(withIdentifier: self.loginToList, sender: nil)
-            }
+        if (FIRAuth.auth()?.currentUser) != nil {
+            self.performSegue(withIdentifier: self.loginToList, sender: nil)
         }
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-        if(identifier == loginToList) {
-            if (UserVerifier().checkLogin(email: getEmail(), pass: getPass())) {
-                return true
-            } else {
-                displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
-                return false
-            }
-        }
-        if(identifier == goToSignUp){
-            return true
-        }
-        return false
+    private func dismissKeyboardAction() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func signInFailed() {
+        displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
     }
     
     // MARK: Actions
@@ -98,6 +104,10 @@ class LoginViewController: UIViewController {
         }
         controller.addAction(alertAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    private func signedIn(_ user: FIRUser?) {
+        performSegue(withIdentifier: loginToList, sender: nil)
     }
     
 }
