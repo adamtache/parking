@@ -42,10 +42,10 @@ class ZoneViewController: UIViewController {
     }
     
     private func updateInfo() {
+        print("Zone: \(zone)")
         if (zone != nil) {
             nameLabel.text = zone.name
             capacityValLabel.text = String(zone.capacity)
-            
         }
     }
 

@@ -13,9 +13,6 @@ import CoreLocation
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
 
-    //MARK: Typealiases
-    typealias polycoordinates = (lat: Double, long: Double)
-    
     //MARK: Constants
     let dukeLat     = 36.0014258
     let dukeLong    = -78.9382286
@@ -26,7 +23,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var user: User!
     var userController: UserController!
     var locationManager: CLLocationManager!
-    var zones: ParkingZoneLoader!
     var zoneTapped: ParkingZone?
     
     //MARK: Outlets
@@ -55,57 +51,73 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             mapView.camera = GMSCameraPosition(target:(location?.coordinate)!, zoom:15,bearing:0, viewingAngle:0)
         }
         
-        //Setting the zones in the array into a dictionary for easy reference
-        addZonesToDict(zones: zones.getDefaults())
-        
         //Drawing the zones on the map
-        addZoneOverlays()
         print("map view loaded")
     }
-
-    func addZoneOverlays() {
-        //Add drawn zones on map
-        createZoneOverlay(zones: zones.getDefaults())
-        //Add markers for each zone
-        createZoneMarkers(zones: zones.getDefaults())
+    
+    func addZone(zone: ParkingZone) {
+        zonesDict[zone.name] = zone
+        self.addZoneOverlay(zone: zone)
     }
     
-    func addZonesToDict(zones: [ParkingZone]) {
+    private func addZoneOverlay(zone: ParkingZone){
+        createZoneOverlay(zone: zone)
+        createZoneMarker(zone: zone)
+    }
+
+//    private func addZoneOverlays() {
+//        //Add drawn zones on map
+//        createZoneOverlay(zones: zones.getItems()!)
+//        //Add markers for each zone
+//        createZoneMarkers(zones: zones.getItems()!)
+//    }
+    
+    private func addZonesToDict(zones: [ParkingZone]) {
         for zone in zones {
             zonesDict[zone.name] = zone
         }
     }
     
+    private func createZoneOverlay(zone: ParkingZone){
+//        let coordinates = zone.coordinates
+        let coordinates : [Double: Double] = [:]
+        let path = GMSMutablePath()
+        for (lat, long) in coordinates {
+            path.add(CLLocationCoordinate2D(latitude: lat, longitude: long))
+        }
+        let polygon = GMSPolygon(path: path)
+        polygon.fillColor = zone.overlayColor
+        polygon.title = zone.name
+        polygon.isTappable = true
+        polygon.map = mapView
+    }
+    
     func createZoneOverlay(zones: [ParkingZone]) {
         for zone in zones {
-            let coordinates = zone.polycoordinates
-            let path = GMSMutablePath()
-            for (lat, long) in coordinates! {
-                path.add(CLLocationCoordinate2D(latitude: lat, longitude: long))
-            }
-            let polygon = GMSPolygon(path: path)
-            polygon.fillColor = zone.overlayColor
-            polygon.title = zone.name
-            polygon.isTappable = true
-            polygon.map = mapView
+            self.createZoneOverlay(zone: zone)
         }
     }
     
     func createZoneMarkers(zones: [ParkingZone]) {
         for zone in zones {
-            let coordinates = zone.markerPosition
-            let position = CLLocationCoordinate2DMake((coordinates?.lat)!, (coordinates?.long)!)
-            let marker = GMSMarker(position: position)
-            marker.title = zone.name
-            marker.map = mapView
+            self.createZoneMarker(zone: zone)
         }
+    }
+    
+    private func createZoneMarker(zone: ParkingZone) {
+//        let coordinates = zone.coordinates
+        let coordinates : [Double: Double] = [:]
+        let position = CLLocationCoordinate2DMake((zone.markerLat), (zone.markerLong))
+        let marker = GMSMarker(position: position)
+        marker.title = zone.name
+        marker.map = mapView
     }
     
     //Setting location manager, user and zone loader so it's the same as with the list view
     func setLocationManager(userController: UserController) {
         self.userController = userController
         self.locationManager = userController.locationManager
-        self.zones = userController.zoneLoader
+//        self.zones = userController.zoneLoader
         print("location manager and parking zone loader set for the map")
     }
     

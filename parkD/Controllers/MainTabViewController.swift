@@ -9,11 +9,15 @@
 import UIKit
 import FirebaseAuth
 import CoreLocation
+import FirebaseDatabase
 
 class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     
     var userController : UserController = UserController()
     var user: User?
+    
+    let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
+    let zoneNames : [String] = ["Blue"]
     
     override func viewDidLoad()
     {
@@ -56,8 +60,35 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         nav3.title = "Profile"
         nav3.viewControllers = [item3]
         
+        setupZones(listController: item2, mapController: item1)
+        
         let controllers = [nav1, nav2, nav3]
         self.viewControllers = controllers
+    }
+    
+    private func setupZones(listController: ParkingListTableViewController, mapController: MapViewController) {
+        for name in zoneNames {
+            zoneRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let addedByUser = value?["addedByUser"] as? String ?? ""
+                let capacity = value?["capacity"] as! Int
+                let markerLat = value?["markerLat"] as! Double
+                let markerLong = value?["markerLong"] as! Double
+                var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, markerLat: markerLat, markerLong: markerLong)
+                listController.items.append(zone)
+                mapController.addZone(zone: zone)
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func getZone(name: String, addedByUser: String, capacity: Int, markerLat: Double, markerLong: Double)-> ParkingZone {
+        let overlayColor = UIColor.blue
+        let image = UIImage(named: "defaultPhoto")!
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
