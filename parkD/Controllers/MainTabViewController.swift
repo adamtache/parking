@@ -19,6 +19,14 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     let zoneNames : [String] = ["Blue"]
     
+    let mapIdentifier = "MapViewController"
+    let listIdentifier = "ParkingListTableViewController"
+    let profileIdentifier = "ProfileViewController"
+    let mainIdentifier = "Main"
+    let profileTitle = "Profile"
+    let mapTitle = "Map"
+    let listTitle = "List"
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,38 +40,52 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         let nav1 = UINavigationController()
-        let item1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        item1.title = "Map"
-        item1.setLocationManager(userController: userController)
-        if(self.user != nil){
-            item1.setUser(user: self.user!)
-        }
-        nav1.title = "Map"
-        nav1.viewControllers = [item1]
+        let mapController = self.getMapController(nav: nav1)
         
         let nav2 = UINavigationController()
-        let item2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParkingListTableViewController") as! ParkingListTableViewController
-        item2.title = "List"
-        if(self.user != nil){
-            item2.setUser(user: self.user!)
-        }
-        nav2.title = "List"
-        item2.setLocationManager(userController: userController)
-        nav2.viewControllers = [item2]
+        let listController = self.getListController(nav: nav2)
         
         let nav3 = UINavigationController()
-        let item3 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        item3.title = "Profile"
-        if(self.user != nil){
-            item3.setUser(user: self.user!)
-        }
-        nav3.title = "Profile"
-        nav3.viewControllers = [item3]
+        self.setupProfileController(nav: nav3)
         
-        setupZones(listController: item2, mapController: item1)
+        setupZones(listController: listController, mapController: mapController)
         
         let controllers = [nav1, nav2, nav3]
         self.viewControllers = controllers
+    }
+    
+    private func getMapController(nav: UINavigationController) -> MapViewController {
+        let mapController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: mapIdentifier) as! MapViewController
+        mapController.title = mapTitle
+        mapController.setLocationManager(userController: userController)
+        if(self.user != nil){
+            mapController.setUser(user: self.user!)
+        }
+        nav.title = mapTitle
+        nav.viewControllers = [mapController]
+        return mapController
+    }
+    
+    private func getListController(nav: UINavigationController) -> ParkingListTableViewController {
+        let listController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: listIdentifier) as! ParkingListTableViewController
+        listController.title = listTitle
+        if(self.user != nil){
+            listController.setUser(user: self.user!)
+        }
+        nav.title = listTitle
+        listController.setLocationManager(userController: userController)
+        nav.viewControllers = [listController]
+        return listController
+    }
+    
+    private func setupProfileController(nav: UINavigationController) {
+        let profileController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: profileIdentifier) as! ProfileViewController
+        profileController.title = profileTitle
+        if(self.user != nil){
+            profileController.setUser(user: self.user!)
+        }
+        nav.title = profileTitle
+        nav.viewControllers = [profileController]
     }
     
     private func setupZones(listController: ParkingListTableViewController, mapController: MapViewController) {
