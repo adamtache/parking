@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class ZoneViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ZoneViewController: UIViewController {
     
     //MARK: Vars
     var zone: ParkingZone!
+    var coordinate: CLLocationCoordinate2D?
     
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -29,6 +31,15 @@ class ZoneViewController: UIViewController {
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
         
+    }
+    
+    @IBAction func navigateButton(_ sender: Any) {
+        if (coordinate == nil) {
+            coordinate = CLLocationCoordinate2DMake(70, 70)
+        }
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate!, addressDictionary:nil))
+        mapItem.name = zone.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
     
     @IBAction func backButton(_ sender: Any) {

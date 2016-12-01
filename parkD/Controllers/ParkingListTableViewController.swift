@@ -19,7 +19,8 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     var items: [ParkingZone] = []
     var searchActive : Bool = false
     var filtered = [ParkingZone]()
-    var userController : UserController?
+    var userController : UserController!
+    var locationManager: CLLocationManager!
     var user: User?
     var current: ParkingZone?
     var lastSelected = 0
@@ -34,6 +35,7 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     
     func setLocationManager(userController: UserController) {
         self.userController = userController
+        self.locationManager = userController.locationManager
     }
     
     override func viewDidLoad() {
@@ -113,6 +115,9 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
             let navController = segue.destination as! UINavigationController
             let zoneVC = navController.topViewController as! ZoneViewController
             zoneVC.zone = self.items[(selectedIndex?.row)!]
+            if (locationManager.location?.coordinate != nil) {
+                zoneVC.coordinate = locationManager.location?.coordinate
+            }
         }
     }
     
