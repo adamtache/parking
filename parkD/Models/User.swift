@@ -20,7 +20,7 @@ struct User {
     }
     
     init() {
-        self.email = "guest@guest.com"
+        self.email = "None"
         self.uid = "0"
     }
     

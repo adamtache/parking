@@ -46,6 +46,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabels()
+        if(myUser == nil || myUser.email == "None" ){
+            navigationItem.leftBarButtonItem = nil
+        }
     }
     
     func setUser(user: User) {
