@@ -12,6 +12,7 @@ import Firebase
 class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Constants
+    let passNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let signUpClick             = "signUpClick"
     let cancel                  = "signUpCancel"
@@ -103,11 +104,24 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     //Get the permits from Firebase
     private func getPermitTypes() {
-        permitTypes = ParkingPassLoader().getItems()
-        
+        ParkingPassLoader().setDefaults()
+        for name in passNames {
+            passRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let number = value?["number"] as! Int64
+                self.permitTypes.append(self.getPass(name: name, number: number))
+                self.permitPicker.selectRow(0, inComponent: 0, animated: true)
+                self.myPermit = self.permitTypes[0].name
+                self.permitPicker.reloadAllComponents()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
         //Set default pickerView selection
-        permitPicker.selectRow(0, inComponent: 0, animated: true)
-        myPermit = "Blue"
+//        permitPicker.selectRow(0, inComponent: 0, animated: true)
+//        myPermit = "Blue"
 //        myPermit = permitTypes[0].name
     }
     
@@ -134,8 +148,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
-        myPermit = "Blue"
-//        myPermit = permitTypes[row].name
+//        myPermit = "Blue"
+        myPermit = permitTypes[row].name
     }
     
     private func getEmail() -> String{
@@ -158,6 +172,10 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     private func signedUp(_ user: FIRUser?, email: String) {
         UserVerifier().addUserWithPermitToDB(email: email, permit: self.getSelectedPermit())
         performSegue(withIdentifier: signUpClick, sender: nil)
+    }
+    
+    private func getPass(name: String, number: Int64) -> ParkingPass {
+        return ParkingPass(name: name, number: number)
     }
 
 }
