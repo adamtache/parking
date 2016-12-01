@@ -58,26 +58,23 @@ class ProfileViewController: UIViewController {
             if user != nil {
                 // Login validated; Continue to display information
                 self.myUser = User(authData: user!)
+                self.userRef.child(self.myUser.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user values
+                    let value = snapshot.value as? [String: AnyObject]
+                    if(value == nil){
+                        return;
+                    }
+                    let email = value?["email"] as! String
+                    let permit = value?["permit"] as! String
+                    // Set user values as labels
+                    self.updateLabels(emailLabel: email, permitLabel: permit)
+                }) { (error) in
+                }
             }
             else{
+                self.navigationItem.leftBarButtonItem = nil
                 return;
             }
-        }
-        if(self.myUser == nil){
-            return
-        }
-        userRef.child(myUser.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user values
-            let value = snapshot.value as? [String: AnyObject]
-            if(value == nil){
-                return;
-            }
-            let email = value?["email"] as! String
-            let permit = value?["permit"] as! String
-            // Set user values as labels
-            self.updateLabels(emailLabel: email, permitLabel: permit)
-        }) { (error) in
-            print(error.localizedDescription)
         }
     }
     
@@ -106,7 +103,6 @@ class ProfileViewController: UIViewController {
         controller.addAction(signoutAction)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
-        print("here....")
     }
     
     // MARK: - Navigation
