@@ -5,4 +5,5 @@ target 'parkD' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'GoogleMaps'
+  pod 'Firebase/Storage'
 end

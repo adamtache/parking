@@ -12,34 +12,47 @@ import FirebaseDatabase
 
 struct ParkingZone {
     
-    typealias polycoordinates = (lat: Double, long: Double)
-    
     let key: String
     let name: String
     let addedByUser: String
     let ref: FIRDatabaseReference?
-    var full: Bool
-    var comments: [String]
     var capacity: Int
     var image: UIImage!
-    var polycoordinates: [polycoordinates]!
     var overlayColor: UIColor!
-    var markerPosition: polycoordinates!
+    var markerLat : Double
+    var markerLong : Double
+//    var coordinates: [Double:Double]
     
-    init(name: String, addedByUser: String, full: Bool, key: String = "", comments: [String], capacity: Int, polycoordinates: [polycoordinates], overlayColor: UIColor, markerPosition: polycoordinates){
+//    init(name: String, addedByUser: String, key: String = "", capacity: Int, coordinates: [Double:Double], overlayColor: UIColor, markerLat: Double, markerLong: Double, image: UIImage){
+//        
+//        // Initializes parking lot through parameters.
+//        
+//        self.key = key
+//        self.name = name
+//        self.addedByUser = addedByUser
+//        self.ref = nil
+//        self.capacity = capacity
+//        self.coordinates = coordinates
+//        self.overlayColor = overlayColor
+//        self.markerLat = markerLat
+//        self.markerLong = markerLong
+//        self.image = image
+//    }
+    
+    init(name: String, addedByUser: String, key: String = "", capacity: Int, overlayColor: UIColor, markerLat: Double, markerLong: Double, image: UIImage){
         
         // Initializes parking lot through parameters.
         
         self.key = key
         self.name = name
         self.addedByUser = addedByUser
-        self.full = full
         self.ref = nil
-        self.comments = comments
         self.capacity = capacity
-        self.polycoordinates = polycoordinates
+//        self.coordinates = coordinates
         self.overlayColor = overlayColor
-        self.markerPosition = markerPosition
+        self.markerLat = markerLat
+        self.markerLong = markerLong
+        self.image = image
     }
     
     init(snapshot: FIRDataSnapshot){
@@ -50,9 +63,10 @@ struct ParkingZone {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
         addedByUser = snapshotValue["addedByUser"] as! String
-        full = snapshotValue["full"] as! Bool
-        comments = snapshotValue["comments"] as! [String]
         capacity = snapshotValue["capacity"] as! Int
+//        coordinates = snapshotValue["coordinates"] as! [Double:Double]!
+        markerLat = snapshotValue["markerLat"] as! Double
+        markerLong = snapshotValue["markerLong"] as! Double
         ref = snapshot.ref
     }
     
@@ -63,9 +77,10 @@ struct ParkingZone {
             
             "name": name,
             "addedByUser": addedByUser,
-            "full": full,
-            "comments": comments,
-            "capacity": capacity
+            "capacity": capacity,
+//            "coordinates": coordinates,
+            "markerLat": markerLat,
+            "markerLong": markerLong
         ]
     }
     

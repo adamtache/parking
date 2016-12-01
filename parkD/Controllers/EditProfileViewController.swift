@@ -59,12 +59,8 @@ class EditProfileViewController: UIViewController {
             displayMessage(title: invalidPasswordTitle, message: invalidPasswordTitle)
             return false
         }
-//        var oldUser = createUser(email: email, permit: "Blue")
-//        return true//UserModifier().changeEmail(email: myEmailField.text!, newEmail: getEmail())
-//        var oldUser = createUser(email: myEmailField.text, permit: "Blue")
-//        let localUserRef = userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
-//        oldUser.email = myEmailField.text
-//        localUserRef.setValue(oldUser.toAnyObject())
+        
+        UserModifier().changeEmail(email: user.email, newEmail: getEmail())
         return true
     }
     

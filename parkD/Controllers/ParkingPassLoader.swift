@@ -11,27 +11,43 @@ import Firebase
 class ParkingPassLoader {
     
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
+    let passNames : [String] = ["Blue"]
     
     init() {
     }
     
-    func getItems() -> [ParkingPass] {
-        // TODO: Grab this from Firebase
-        return getDefaults()
+    func load() {
+        setDefaults()
     }
     
-    func getDefaults() -> [ParkingPass] {
+    func getItems() -> [ParkingPass] {
         var passes : [ParkingPass] = []
-        let bluePass = getBluePass()
-        let bluePassRef = passRef.child(bluePass.name)
-        bluePassRef.setValue(bluePass.toAnyObject())
-        passes.append(bluePass)
+        for name in passNames {
+            passRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let number = value?["number"] as! Int64
+                passes.append(self.getPass(name: name, number: number))
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
         return passes
     }
     
-    private func getBluePass() -> ParkingPass {
-        let name = "Blue"
-        return ParkingPass(name: name, number: 0)
+    func setDefaults() {
+        let bluePass = getPass(name: "Blue", number: 0)
+        storeInDB(pass: bluePass)
+    }
+    
+    private func storeInDB(pass: ParkingPass) {
+        let bluePassRef = passRef.child(pass.name)
+        bluePassRef.setValue(pass.toAnyObject())
+    }
+    
+    private func getPass(name: String, number: Int64) -> ParkingPass {
+        return ParkingPass(name: name, number: number)
     }
     
 }

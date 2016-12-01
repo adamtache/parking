@@ -19,6 +19,7 @@
 		66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
+		661294011DEF656700F3B8FB /* AsyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661294001DEF656700F3B8FB /* AsyncHandler.swift */; };
 		66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D461DDD515E00B99C50 /* ParkingPass.swift */; };
 		66137D4B1DDD5C1200B99C50 /* TagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4A1DDD5C1200B99C50 /* TagLoader.swift */; };
 		66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */; };
@@ -80,6 +81,7 @@
 		66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66039DCF1DD2A965004B494A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66039DD11DD2AA37004B494A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		661294001DEF656700F3B8FB /* AsyncHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncHandler.swift; path = Controllers/AsyncHandler.swift; sourceTree = "<group>"; };
 		66137D461DDD515E00B99C50 /* ParkingPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingPass.swift; sourceTree = "<group>"; };
 		66137D4A1DDD5C1200B99C50 /* TagLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagLoader.swift; path = Controllers/TagLoader.swift; sourceTree = "<group>"; };
 		66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		66D3FB721DDEBC2500DE4069 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				661294001DEF656700F3B8FB /* AsyncHandler.swift */,
 				66137D4A1DDD5C1200B99C50 /* TagLoader.swift */,
 				66345E201DDD4BC200789F5A /* ParkingZoneLoader.swift */,
 				66345E251DDD510C00789F5A /* ParkingPassLoader.swift */,
@@ -509,6 +512,7 @@
 				66E0DE4F1DD34918000E16FB /* ZoneCreationViewController.swift in Sources */,
 				6671410E1DD32D3C0012D6DC /* ProfileViewController.swift in Sources */,
 				66039DD01DD2A965004B494A /* User.swift in Sources */,
+				661294011DEF656700F3B8FB /* AsyncHandler.swift in Sources */,
 				662C6F641DDD323A0056CF21 /* UserVerifier.swift in Sources */,
 				66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */,
 				54FF598A1DD81B2A00F470F6 /* AppDelegate.swift in Sources */,

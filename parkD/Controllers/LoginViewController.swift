@@ -29,11 +29,26 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     
-    // MARK: Actions
-    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
-        if(segue.identifier == loginSuccessful){
-            performSegue(withIdentifier: loginToList, sender: self)
+    @IBAction func signInClicked(_ sender: Any) {
+        let email = getEmail()
+        let pass = getPass()
+        if(!UserVerifier().checkEmail(email: email) || !UserVerifier().checkPass(pass: pass)){
+            signInFailed()
+            return
         }
+        FIRAuth.auth()?.signIn(withEmail: email, password: pass) { (user, error) in
+            if error != nil {
+                self.signInFailed()
+                return;
+            }
+            else{
+                self.signedIn()
+            }
+        }
+    }
+    
+    @IBAction func signUpClicked(_ sender: Any) {
+        performSegue(withIdentifier: goToSignUp, sender: nil)
     }
     
     override func viewDidLoad() {
@@ -43,45 +58,48 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        //Create authentication observer
-        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
-            // Test value of user
-            if user != nil {
-                // Login validated; Perform segue to main screen
-                self.performSegue(withIdentifier: self.loginToList, sender: nil)
-            }
+        if (FIRAuth.auth()?.currentUser) != nil {
+            signedIn()
         }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-        if(identifier == loginToList) {
-            if (UserVerifier().checkLogin(email: getEmail(), pass: getPass())) {
-                return true
-            } else {
-                displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
-                return false
-            }
-        } else if (identifier == goToSignUp) {
-            return true
-        } else if (identifier == continueAsGuest) {
-            
-        }
-        return false
-    }
-    
-    // MARK: Actions
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        //Password text will be erased
-        passText.text = ""
     }
     
     //Keyboard dismissal
     func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
+    private func signInFailed() {
+        displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+//        if(identifier == loginToList) {
+//            if (UserVerifier().checkLogin(email: getEmail(), pass: getPass())) {
+//                return true
+//            } else {
+//                displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
+//                return false
+//            }
+//        } else if (identifier == goToSignUp) {
+        if(identifier == goToSignUp) {
+            return true
+        } else if (identifier == continueAsGuest) {
+            return true
+        }
+        return false
+    }
+    
+    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue){
+        if(segue.identifier == loginSuccessful){
+            performSegue(withIdentifier: loginToList, sender: self)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        //Password text will be erased
+        passText.text = ""
+    }
+
     
     private func getEmail() -> String{
         // Returns user input in email box
@@ -100,6 +118,13 @@ class LoginViewController: UIViewController {
         }
         controller.addAction(alertAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    private func signedIn() {
+        if (FIRAuth.auth()?.currentUser) != nil {
+            print("current user isn't nil")
+            performSegue(withIdentifier: loginToList, sender: nil)
+        }
     }
     
 }

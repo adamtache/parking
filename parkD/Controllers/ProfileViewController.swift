@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
         if (segue.identifier == editSuccess) {
-            print("shit is edited")
+            setupLabels()
         }
     }
     
@@ -48,28 +48,48 @@ class ProfileViewController: UIViewController {
         setupLabels()
     }
     
+    func setUser(user: User) {
+        self.myUser = user
+    }
+    
     private func setupLabels() {
-        
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             // Test value of user
             if user != nil {
-                // Login validated; Perform segue to main screen
+                // Login validated; Continue to display information
                 self.myUser = User(authData: user!)
             }
+            else{
+                return;
+            }
         }
-        
         if(self.myUser == nil){
-            return;
+            return
         }
         userRef.child(myUser.email.replacingOccurrences(of: ".", with: ",")).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
+            // Get user values
             let value = snapshot.value as? [String: AnyObject]
+            if(value == nil){
+                return;
+            }
             let email = value?["email"] as! String
             let permit = value?["permit"] as! String
-            self.emailLabel.text = email
-            self.permitLabel.text = permit
+            // Set user values as labels
+            self.updateLabels(emailLabel: email, permitLabel: permit)
         }) { (error) in
             print(error.localizedDescription)
+        }
+    }
+    
+    private func updateLabels(emailLabel: String, permitLabel: String) {
+        self.emailLabel.text = emailLabel
+        self.permitLabel.text = permitLabel
+    }
+    
+    private func signOut() {
+        UserVerifier().signOut()
+        if (FIRAuth.auth()?.currentUser) == nil {
+            self.performSegue(withIdentifier: self.signoutSegue, sender: self)
         }
     }
 
@@ -77,8 +97,7 @@ class ProfileViewController: UIViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         //Confirms the user goes back to the login screen
         let signoutAction = UIAlertAction(title: signoutText, style: .destructive) { (action) in
-            self.performSegue(withIdentifier: self.signoutSegue, sender: self)
-            try! FIRAuth.auth()!.signOut()
+            self.signOut()
         }
         //Will cancel
         let cancelAction = UIAlertAction(title: cancelText, style: .destructive) { (action) in
@@ -87,10 +106,7 @@ class ProfileViewController: UIViewController {
         controller.addAction(signoutAction)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
-    }
-    
-    func setUser(user: User) {
-        self.myUser = user
+        print("here....")
     }
     
     // MARK: - Navigation

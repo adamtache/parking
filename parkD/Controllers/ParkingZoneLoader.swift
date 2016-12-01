@@ -11,52 +11,45 @@ import Firebase
 class ParkingZoneLoader {
     
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
-    typealias polycoordinates = (lat: Double, long: Double)
     
-    init() {
+    func load() {
+        setDefaults()
     }
     
-    func getItems() -> [ParkingZone]? {
-        // TODO: Grab this from Firebase
-        return getDefaults()
-    }
-    
-    func getDefaults() -> [ParkingZone] {
-        var zones : [ParkingZone] = []
+    func setDefaults() {
         let blueZone = getBlueZone()
         let blueZoneRef = zoneRef.child(blueZone.name)
         blueZoneRef.setValue(blueZone.toAnyObject())
-        zones.append(blueZone)
-        return zones
     }
     
     private func getBlueZone() -> ParkingZone {
-        let name = "Blue Zone"
+        let name = "Blue"
         let addedByUser = "Admin"
-        let full = false
-        let comments = [""]
         let capacity = 1000
         let overlayColor = UIColor.blue
-        let markerPosition = (lat: 35.997452, long: -78.939005)
-        var coordinates : [polycoordinates] = []
+        let markerLat = 35.997452
+        let markerLong = -78.939005
+        let image = UIImage(named: "defaultPhoto")!
+        var coordinates = [Double:Double]()
         //Create coordinate layouts for the zone
-        coordinates.append( (lat: 35.997452, long: -78.939005) )
-        coordinates.append( (lat: 35.99743, long: -78.938479) )
-        coordinates.append( (lat: 35.99648, long: -78.938082) )
-        coordinates.append( (lat: 35.996124, long: -78.938028) )
-        coordinates.append( (lat: 35.995846, long: -78.938334) )
-        coordinates.append( (lat: 35.994943, long: -78.93835) )
-        coordinates.append( (lat: 35.994262, long: -78.937422) )
-        coordinates.append( (lat: 35.993654, long: -78.938693) )
-        coordinates.append( (lat: 35.993963, long: -78.938752) )
-        coordinates.append( (lat: 35.99391, long: -78.940442) )
-        coordinates.append( (lat: 35.995538, long: -78.940147) )
-        coordinates.append( (lat: 35.996163, long: -78.940212) )
-        coordinates.append( (lat: 35.996502, long: -78.939047) )
-        coordinates.append( (lat: 35.997448, long: -78.939106) )
-        coordinates.append( (lat: 35.997452, long: -78.939005) )
+        coordinates[35.997452] = -78.939005
+        coordinates[35.99743] = -78.938479
+        coordinates[35.99648] = -78.938082
+        coordinates[35.996124] = -78.938028
+        coordinates[35.995846] = -78.938334
+        coordinates[35.994943] = -78.93835
+        coordinates[35.994262] = -78.937422
+        coordinates[35.993654] = -78.938693
+        coordinates[35.993963] = -78.938752
+        coordinates[35.99391] = -78.940442
+        coordinates[35.995538] = -78.940147
+        coordinates[35.996163] = -78.940212
+        coordinates[35.996502] = -78.939047
+        coordinates[35.997448] = -78.939106
+        coordinates[35.997452] = -78.939005
 
-        return ParkingZone(name: name, addedByUser: addedByUser, full: full, comments: comments, capacity: capacity, polycoordinates: coordinates, overlayColor: overlayColor, markerPosition: markerPosition)
+//        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, coordinates: coordinates, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity,overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
 }

@@ -34,13 +34,10 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     
     func setLocationManager(userController: UserController) {
         self.userController = userController
-        print("setting location manager for list view")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("list view loaded")
         
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -51,12 +48,7 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
         tableView.dataSource = self
         searchBar.delegate = self
         
-        items = loadItems()!
         self.tableView.reloadData()
-    }
-    
-    private func loadItems() -> [ParkingZone]? {
-        return ParkingZoneLoader().getItems()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

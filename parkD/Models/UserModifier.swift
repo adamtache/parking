@@ -50,6 +50,26 @@ class UserModifier{
         oldUser.email = newEmail
         localUserRef.setValue(oldUser.toAnyObject())
         return true
+//    func changeEmail(email: String, newEmail: String) {
+//        let user = FIRAuth.auth()!.currentUser!
+//        user.updateEmail(newEmail, completion: { (error) in
+//            if(error == nil){
+//                var permit : String?
+//                let localUserRef = self.userRef.child((email.replacingOccurrences(of: ".", with: ",")))
+//                localUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//                    // Get user value
+//                    let value = snapshot.value as? [String: AnyObject]
+//                    permit = value?["permit"] as? String
+//                    if(permit == nil){
+//                        return
+//                    }
+//                    localUserRef.removeValue()
+//                    UserVerifier().addUserWithPermitToDB(email: newEmail, permit: permit!)
+//                }) { (error) in
+//                    print("user not found")
+//                }
+//            }
+//        })
     }
     
     func changePermit(email: String, newPermit: String) {
