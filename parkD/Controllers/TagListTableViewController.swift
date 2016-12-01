@@ -11,7 +11,11 @@ import Firebase
 
 class TagListTableViewController: UITableViewController {
     
-    var items: [Tag] = []
+    let tagRef = FIRDatabase.database().reference(withPath: "tags")
+    
+    //var tagNames : [String] = ["Ticketing", "Towing", "Full"]
+    
+    var items : [Tag] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,7 @@ class TagListTableViewController: UITableViewController {
         }
         cell.agreeCountLabel.text = "\(tag.agreeScore)"
         cell.disagreeCountLabel.text = "\(tag.disagreeScore)"
+        cell.nameLabel.text = "\(tag.name)"
         return cell
     }
     
