@@ -26,6 +26,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var zoneTapped: ParkingZone?
     
     //MARK: Outlets
+    
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBAction func unwindFromZoneViewController(segue: UIStoryboardSegue) {
@@ -34,7 +35,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapSetup()
     }
     
     func mapSetup() {
@@ -64,13 +64,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         createZoneOverlay(zone: zone)
         createZoneMarker(zone: zone)
     }
-
-//    private func addZoneOverlays() {
-//        //Add drawn zones on map
-//        createZoneOverlay(zones: zones.getItems()!)
-//        //Add markers for each zone
-//        createZoneMarkers(zones: zones.getItems()!)
-//    }
     
     private func addZonesToDict(zones: [ParkingZone]) {
         for zone in zones {
@@ -117,7 +110,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     func setLocationManager(userController: UserController) {
         self.userController = userController
         self.locationManager = userController.locationManager
-//        self.zones = userController.zoneLoader
         print("location manager and parking zone loader set for the map")
     }
     

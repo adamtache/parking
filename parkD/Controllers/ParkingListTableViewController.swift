@@ -10,10 +10,11 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class ParkingListTableViewController: UITableViewController, UISearchBarDelegate{
+class ParkingListTableViewController: UITableViewController {
     
     //MARK: Constants
     let listToZone = "zoneCellToZoneInfo"
+    let cellIdentifier = "ParkingTableViewCell"
     
     // MARK: Vars
     var items: [ParkingZone] = []
@@ -33,6 +34,10 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
         
     }
     
+    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
+        
+    }
+    
     func setLocationManager(userController: UserController) {
         self.userController = userController
         self.locationManager = userController.locationManager
@@ -48,7 +53,6 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
         }
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
         
         self.tableView.reloadData()
     }
@@ -65,43 +69,13 @@ class ParkingListTableViewController: UITableViewController, UISearchBarDelegate
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingTableViewCell", for: indexPath) as! ParkingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ParkingTableViewCell
         let zone : ParkingZone
         zone = searchActive ? filtered[(indexPath as NSIndexPath).row] : items[(indexPath as NSIndexPath).row]
         cell.zone = zone
         cell.nameLabel.text = zone.name
         cell.photoView.image = zone.image
         return cell
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filtered = items.filter({ (item) -> Bool in
-            let tmp: NSString = item.name as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        self.tableView.reloadData()
     }
     
     func setUser(user: User) {

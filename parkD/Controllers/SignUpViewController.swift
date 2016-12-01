@@ -107,7 +107,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         //Set default pickerView selection
         permitPicker.selectRow(0, inComponent: 0, animated: true)
-        myPermit = permitTypes[0].name
+        myPermit = "Blue"
+//        myPermit = permitTypes[0].name
     }
     
     private func getDefaults() -> [ParkingPass] {
@@ -133,7 +134,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
-        myPermit = permitTypes[row].name
+        myPermit = "Blue"
+//        myPermit = permitTypes[row].name
     }
     
     private func getEmail() -> String{

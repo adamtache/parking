@@ -73,14 +73,6 @@ class LoginViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
-//        if(identifier == loginToList) {
-//            if (UserVerifier().checkLogin(email: getEmail(), pass: getPass())) {
-//                return true
-//            } else {
-//                displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
-//                return false
-//            }
-//        } else if (identifier == goToSignUp) {
         if(identifier == goToSignUp) {
             return true
         } else if (identifier == continueAsGuest) {
@@ -122,7 +114,6 @@ class LoginViewController: UIViewController {
     
     private func signedIn() {
         if (FIRAuth.auth()?.currentUser) != nil {
-            print("current user isn't nil")
             performSegue(withIdentifier: loginToList, sender: nil)
         }
     }
