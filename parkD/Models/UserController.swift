@@ -7,7 +7,6 @@
 //
 
 import CoreLocation
-import GoogleMaps
 
 class UserController: NSObject, CLLocationManagerDelegate {
     

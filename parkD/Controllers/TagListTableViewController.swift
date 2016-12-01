@@ -40,7 +40,8 @@ class TagListTableViewController: UITableViewController {
         let tag : Tag
         tag = items[(indexPath as NSIndexPath).row]
         cell.cellTag = tag
-        if(cell == nil || tag == nil){
+        //if(cell == nil || tag == nil){
+        if (tag == nil) {
             return cell
         }
         cell.agreeCountLabel.text = "\(tag.agreeScore)"

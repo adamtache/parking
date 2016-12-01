@@ -25,9 +25,9 @@ class UserModifier{
         let user = FIRAuth.auth()?.currentUser
         var permit : String?
         
-        var userEmail = user?.email
+        let userEmail = user?.email
         
-        print(userEmail)
+        print(userEmail ?? "no user email")
         
         if(userEmail == nil){
             return false
@@ -41,7 +41,7 @@ class UserModifier{
             print(error.localizedDescription)
         }
         
-        var updated = user?.updateEmail(newEmail)
+        let updated = user?.updateEmail(newEmail)
         if(updated == nil){
             return false
         }

@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     let loginToList = "LoginToList"
     let loginSuccessful = "LoginSuccessful"
     let goToSignUp = "GoToSignUp"
+    let continueAsGuest = "continueAsGuest"
     
     let invalidEmailTitle = "Invalid Email"
     let invalidEmailMessage = "Sorry, your email address is not valid."
@@ -60,9 +61,10 @@ class LoginViewController: UIViewController {
                 displayMessage(title: invalidLoginTitle, message: invalidLoginMessage)
                 return false
             }
-        }
-        if(identifier == goToSignUp){
+        } else if (identifier == goToSignUp) {
             return true
+        } else if (identifier == continueAsGuest) {
+            
         }
         return false
     }
