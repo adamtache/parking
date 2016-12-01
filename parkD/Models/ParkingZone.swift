@@ -17,6 +17,7 @@ struct ParkingZone {
     let addedByUser: String
     let ref: FIRDatabaseReference?
     var capacity: Int
+    var percentFull: Int
     var image: UIImage!
     var overlayColor: UIColor!
     var markerLat : Double
@@ -39,7 +40,7 @@ struct ParkingZone {
 //        self.image = image
 //    }
     
-    init(name: String, addedByUser: String, key: String = "", capacity: Int, overlayColor: UIColor, markerLat: Double, markerLong: Double, image: UIImage){
+    init(name: String, addedByUser: String, key: String = "", capacity: Int, percentFull: Int, overlayColor: UIColor, markerLat: Double, markerLong: Double, image: UIImage){
         
         // Initializes parking lot through parameters.
         
@@ -48,6 +49,7 @@ struct ParkingZone {
         self.addedByUser = addedByUser
         self.ref = nil
         self.capacity = capacity
+        self.percentFull = percentFull
 //        self.coordinates = coordinates
         self.overlayColor = overlayColor
         self.markerLat = markerLat
@@ -64,6 +66,7 @@ struct ParkingZone {
         name = snapshotValue["name"] as! String
         addedByUser = snapshotValue["addedByUser"] as! String
         capacity = snapshotValue["capacity"] as! Int
+        percentFull = snapshotValue["percentFull"] as! Int
 //        coordinates = snapshotValue["coordinates"] as! [Double:Double]!
         markerLat = snapshotValue["markerLat"] as! Double
         markerLong = snapshotValue["markerLong"] as! Double

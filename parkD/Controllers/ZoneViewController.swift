@@ -30,7 +30,7 @@ class ZoneViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
-        
+        updateInfo()
     }
     
     @IBAction func navigateButton(_ sender: Any) {
@@ -56,7 +56,7 @@ class ZoneViewController: UIViewController {
         print("Zone: \(zone)")
         if (zone != nil) {
             nameLabel.text = zone.name
-            capacityValLabel.text = String(zone.capacity)
+            capacityValLabel.text = String(zone.percentFull)
         }
     }
 

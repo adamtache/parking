@@ -143,9 +143,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 let name = value?["name"] as? String ?? ""
                 let addedByUser = value?["addedByUser"] as? String ?? ""
                 let capacity = value?["capacity"] as! Int
+                let percentFull = value?["percentFull"] as! Int
                 let markerLat = value?["markerLat"] as! Double
                 let markerLong = value?["markerLong"] as! Double
-                let zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, markerLat: markerLat, markerLong: markerLong)
+                let zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
                 self.items.append(zone)
                 listController.items.append(zone)
                 listController.tableView.reloadData()
@@ -157,10 +158,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    private func getZone(name: String, addedByUser: String, capacity: Int, markerLat: Double, markerLong: Double)-> ParkingZone {
+    private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Int,  markerLat: Double, markerLong: Double)-> ParkingZone {
         let overlayColor = UIColor.blue
         let image = UIImage(named: "defaultPhoto")!
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: percentFull, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
     private func getDefaultUser() -> User{

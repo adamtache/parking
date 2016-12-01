@@ -26,6 +26,7 @@ class ParkingZoneLoader {
         let name = "Blue"
         let addedByUser = "Admin"
         let capacity = 1000
+        let percentFull = 75
         let overlayColor = UIColor.blue
         let markerLat = 35.997452
         let markerLong = -78.939005
@@ -49,7 +50,7 @@ class ParkingZoneLoader {
         coordinates[35.997452] = -78.939005
 
 //        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, coordinates: coordinates, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity,overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: percentFull, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
 }
