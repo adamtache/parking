@@ -20,7 +20,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var user: User?
     
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
-    let zoneNames : [String] = ["Blue"]
+    let zoneNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     
     // MARK: Constants
     let mapIdentifier = "MapViewController"

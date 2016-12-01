@@ -19,7 +19,8 @@ class ParkingZoneLoader {
     func setDefaults() {
         let blueZone = getBlueZone()
         let blueZoneRef = zoneRef.child(blueZone.name)
-        blueZoneRef.setValue(blueZone.toAnyObject())
+        
+        //blueZoneRef.setValue(blueZone.toAnyObject())
     }
     
     private func getBlueZone() -> ParkingZone {
