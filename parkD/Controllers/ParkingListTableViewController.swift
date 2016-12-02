@@ -42,6 +42,9 @@ class ParkingListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
@@ -52,6 +55,12 @@ class ParkingListTableViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
+    
+    //Keyboard dismissal
+//    func dismissKeyboard() {
+//        self.view.endEditing(true)
+//    }
+//    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -87,9 +96,6 @@ class ParkingListTableViewController: UITableViewController {
             let zoneVC = navController.topViewController as! ZoneViewController
             zoneVC.userController = userController
             zoneVC.zone = self.items[(selectedIndex?.row)!]
-            if (locationManager.location?.coordinate != nil) {
-                zoneVC.coordinate = locationManager.location?.coordinate
-            }
         }
     }
     

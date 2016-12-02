@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.permitPicker.dataSource = self
         self.permitPicker.delegate = self
         //Dismiss the keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

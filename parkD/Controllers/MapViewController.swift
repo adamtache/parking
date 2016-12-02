@@ -139,6 +139,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         return false
     }
     
+    private func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) {
+        let placeMarker = marker as GMSMarker
+        print("marker tapped")
+        zoneTapped = zonesDict[placeMarker.title!]
+        performSegue(withIdentifier: mapToZone, sender: self)
+    }
+    
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == mapToZone) {

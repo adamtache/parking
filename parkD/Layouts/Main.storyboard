@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -239,7 +239,7 @@
             <objects>
                 <navigationController id="dES-ha-fsZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Y35-cE-8UL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fu2-Ab-aro">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Fu2-Ab-aro">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -400,7 +400,7 @@
         <scene sceneID="wLL-jw-1Sj">
             <objects>
                 <navigationController id="AdW-JX-qRA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p0N-aY-NUf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p0N-aY-NUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -660,7 +660,7 @@
             <objects>
                 <navigationController id="Rst-3W-mJH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="q3D-8q-pdA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sQa-86-fQ8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sQa-86-fQ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -972,7 +972,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZo-je-wAR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7BQ-ad-IDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7BQ-ad-IDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1026,7 +1026,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azy-wG-Zpd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GEv-Hx-GHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEv-Hx-GHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1191,7 +1191,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bOJ-9W-oXr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LyH-UJ-cJ9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LyH-UJ-cJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1212,8 +1212,8 @@ if you want to change it</string>
         <image name="defaultPhoto" width="320" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9dL-hW-e1Z"/>
         <segue reference="2yG-0r-VbO"/>
         <segue reference="udL-s6-j5N"/>
-        <segue reference="uWH-P5-Xd2"/>
     </inferredMetricsTieBreakers>
 </document>

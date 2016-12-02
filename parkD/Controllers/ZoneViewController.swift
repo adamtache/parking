@@ -17,7 +17,6 @@ class ZoneViewController: UIViewController {
     
     //MARK: Vars
     var zone: ParkingZone!
-    var coordinate: CLLocationCoordinate2D?
     var userController : UserController?
     
     // MARK: Outlets
@@ -36,10 +35,8 @@ class ZoneViewController: UIViewController {
     }
     
     @IBAction func navigateButton(_ sender: Any) {
-        if (coordinate == nil) {
-            coordinate = CLLocationCoordinate2DMake(70, 70)
-        }
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate!, addressDictionary:nil))
+        let coordinate = CLLocationCoordinate2DMake(zone.markerLat, zone.markerLong)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = zone.name
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
