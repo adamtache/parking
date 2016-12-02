@@ -11,7 +11,7 @@ import Firebase
 class TagLoader {
     
     let passRef = FIRDatabase.database().reference(withPath: "tags")
-    let tags : [String] = ["Full", "Ticketing"]
+    var tags : [String] = ["Space Available", "Full", "Ticketing", "Towing", "Blocked"]
     
     init() {
     }
@@ -41,7 +41,7 @@ class TagLoader {
     
     private func getAllTags() -> [Tag] {
         var tagRet : [Tag] = []
-        for name in tags{
+        for name in tags {
             let name = name
             let agreeScore = 0
             let disagreeScore = 0

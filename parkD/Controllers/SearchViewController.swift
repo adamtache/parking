@@ -18,9 +18,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var userController : UserController = UserController()
     var user: User?
-    
-    let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
-    let zoneNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
+    var searchActive : Bool = false
+    var items = [ParkingZone]()
+    var filtered = [ParkingZone]()
+    var listController : ParkingListTableViewController?
+    var mapController : MapViewController?
+    var searchBar = UISearchBar()
+    var mapActive : Bool = false
     
     // MARK: Constants
     let mapIdentifier = "MapViewController"
@@ -29,17 +33,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     let mainIdentifier = "Main"
     let listTitle = "List"
     let mapTitle = "Map"
-    
-    var searchActive : Bool = false
-    var items = [ParkingZone]()
-    var filtered = [ParkingZone]()
-    
-    var listController : ParkingListTableViewController?
-    var mapController : MapViewController?
-    
-    var searchBar = UISearchBar()
-    
-    var mapActive : Bool = false
+    let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
+    let zoneNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     
     @IBAction func refreshClicked(_ sender: UIBarButtonItem) {
         

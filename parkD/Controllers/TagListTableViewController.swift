@@ -13,7 +13,7 @@ class TagListTableViewController: UITableViewController {
     
     let tagRef = FIRDatabase.database().reference(withPath: "tags")
     
-    //var tagNames : [String] = ["Ticketing", "Towing", "Full"]
+    var tagNames : [String] = ["Space Available", "Full", "Ticketing", "Towing", "Blocked"]
     
     var items : [Tag] = []
     
@@ -44,7 +44,6 @@ class TagListTableViewController: UITableViewController {
         let tag : Tag
         tag = items[(indexPath as NSIndexPath).row]
         cell.cellTag = tag
-        //if(cell == nil || tag == nil){
         if (tag == nil) {
             return cell
         }

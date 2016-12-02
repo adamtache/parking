@@ -21,35 +21,27 @@ class UserModifier{
         return ((user?.updatePassword(newPass)) != nil)
     }
     
-    func changeEmail(email: String, newEmail: String) -> Bool {
+    func changeEmail(email: String, newEmail: String) {
         let user = FIRAuth.auth()?.currentUser
         var permit : String?
         
         let userEmail = user?.email
         
-        print(userEmail ?? "no user email")
-        
         if(userEmail == nil){
-            return false
+            return
         }
         
         userRef.child((userEmail!.replacingOccurrences(of: ".", with: ","))).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
             permit = value?["permit"] as? String
+            var oldUser = self.createUser(email: email, permit: permit!)
+            let localUserRef = self.userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
+            oldUser.email = newEmail
+            localUserRef.setValue(oldUser.toAnyObject())
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        let updated = user?.updateEmail(newEmail)
-        if(updated == nil){
-            return false
-        }
-        var oldUser = createUser(email: email, permit: permit!)
-        let localUserRef = userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
-        oldUser.email = newEmail
-        localUserRef.setValue(oldUser.toAnyObject())
-        return true
     }
     
     func changePermit(email: String, newPermit: String) {
