@@ -52,14 +52,14 @@ class UserModifier{
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
             permit = value?["permit"] as? String
+            var oldUser = self.createUser(email: email, permit: permit!)
+            let localUserRef = self.userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
+            oldUser.permit = newPermit
+            print(newPermit)
+            localUserRef.setValue(oldUser.toAnyObject())
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        var oldUser = createUser(email: email, permit: permit!)
-        let localUserRef = userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
-        oldUser.permit = newPermit
-        localUserRef.setValue(oldUser.toAnyObject())
     }
     
     private func createUser(email: String, permit: String) -> EmailPermit{

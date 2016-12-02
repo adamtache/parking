@@ -7,23 +7,26 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //Mark: Constants
+    let passNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
+    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let missingFieldsTitle      = "Missing password fields"
     let missingFieldsMessage    = "You need to enter and re-enter your new password"
     let invalidPasswordTitle    = "Invalid Password"
     let invalidPasswordMessage  = "Sorry, your password is not valid. Please include at least one uppercase letter, one number, and eight characters."
     let passNotMatch            = "The passwords don't match."
     let editSuccess     = "editProfileSuccess"
-
-    //MARK: Vars
+    
+    // MARK: Variables
+    var permitTypes     : [ParkingPass] = []
+    var myPermit        : String!
     private var user: User!
-
-    //MARK: Outlets
     
-    
+    // MARK: Outlets
     @IBOutlet weak var myEmailField: UITextField!
     @IBOutlet weak var myCurrentPassField: UITextField!
     @IBOutlet weak var myNewPassField: UITextField!
@@ -38,6 +41,12 @@ class EditProfileViewController: UIViewController {
         }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        //Load the pickerView data from Firebase
+        getPermitTypes()
+        
+        self.myPermitPicker.dataSource = self
+        self.myPermitPicker.delegate = self
     }
     
     func setUser(user: User) {
@@ -85,6 +94,10 @@ class EditProfileViewController: UIViewController {
         return UserModifier().changePass(email: myEmailField.text!, newPass: myNewPassField.text!)
     }
     
+    func updatePermit() {
+        UserModifier().changePermit(email: myEmailField.text!, newPermit: self.getSelectedPermit())
+    }
+    
     private func displayMessage(title: String, message: String) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
@@ -94,21 +107,59 @@ class EditProfileViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
-    // MARK: - Navigation
+    //Get the permits from Firebase
+    private func getPermitTypes() {
+        ParkingPassLoader().setDefaults()
+        for name in passNames {
+            passRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let number = value?["number"] as! Int64
+                self.permitTypes.append(self.getPass(name: name, number: number))
+                self.myPermitPicker.selectRow(0, inComponent: 0, animated: true)
+                self.myPermit = self.permitTypes[0].name
+                self.myPermitPicker.reloadAllComponents()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func getPass(name: String, number: Int64) -> ParkingPass {
+        return ParkingPass(name: name, number: number)
+    }
     
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
         if (identifier == editSuccess) {
+            updatePermit()
             return updateEmail() && updatePassword()
         }
         return true
     }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+    
+    // The number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return permitTypes.count
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return permitTypes[row].name
+    }
+    
+    // Catpure the picker view selection
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        myPermit = permitTypes[row].name
+    }
+    
+    private func getSelectedPermit() -> String {
+        return permitTypes[0].name
     }
  
-
 }

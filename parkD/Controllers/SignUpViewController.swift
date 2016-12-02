@@ -100,7 +100,6 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     private func getSelectedPermit() -> String {
         return permitTypes[0].name
     }
-    
 
     //Get the permits from Firebase
     private func getPermitTypes() {
