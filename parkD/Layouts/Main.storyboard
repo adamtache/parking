@@ -283,13 +283,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="parkD Table" id="gE9-ZC-8gM">
                         <barButtonItem key="leftBarButtonItem" title="Map" id="rSb-iA-v73">
                             <connections>
                                 <action selector="flipButton:" destination="ws8-Bx-p9l" id="JLi-aY-vIu"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="rys-WB-TLZ">
+                            <connections>
+                                <action selector="refreshClicked:" destination="ws8-Bx-p9l" id="fLZ-5C-WhG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerA" destination="Ns1-XW-9vB" id="FuK-UT-xc5"/>
                         <outlet property="containerB" destination="dpi-8r-FhY" id="9Ti-ye-FmK"/>
@@ -327,7 +334,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.5m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-AG-Ryn">
-                                            <rect key="frame" x="328" y="7" width="39" height="21"/>
+                                            <rect key="frame" x="212" y="37" width="88" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -336,7 +343,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="distanceLabel" destination="CfB-AG-Ryn" id="4TM-9t-xFX"/>
+                                    <outlet property="distanceLabel" destination="CfB-AG-Ryn" id="Y2p-UG-C81"/>
                                     <outlet property="nameLabel" destination="U0v-iD-o9K" id="iTk-Kl-Hdt"/>
                                     <outlet property="photoView" destination="MUG-e1-u1p" id="5bz-LI-UcW"/>
                                     <segue destination="AdW-JX-qRA" kind="show" identifier="zoneCellToZoneInfo" id="9dL-hW-e1Z"/>
@@ -924,7 +931,7 @@ if you want to change it</string>
                     <tabBarItem key="tabBarItem" title="Item" id="WDB-vH-4eL"/>
                     <navigationItem key="navigationItem" id="IYF-W7-mOc"/>
                     <connections>
-                        <outlet property="mapView" destination="StP-2F-YOj" id="acE-Va-cuJ"/>
+                        <outlet property="mapView" destination="StP-2F-YOj" id="gG6-mD-kzt"/>
                         <segue destination="AdW-JX-qRA" kind="presentation" identifier="mapToZone" id="uWH-P5-Xd2"/>
                     </connections>
                 </viewController>

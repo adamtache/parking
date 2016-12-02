@@ -22,6 +22,8 @@ struct ParkingZone {
     var overlayColor: UIColor!
     var markerLat : Double
     var markerLong : Double
+    var distanceAway : Double = 0.0
+    
 //    var coordinates: [Double:Double]
     
 //    init(name: String, addedByUser: String, key: String = "", capacity: Int, coordinates: [Double:Double], overlayColor: UIColor, markerLat: Double, markerLong: Double, image: UIImage){

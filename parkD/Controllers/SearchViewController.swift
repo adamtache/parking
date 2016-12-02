@@ -41,6 +41,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var mapActive : Bool = false
     
+    @IBAction func refreshClicked(_ sender: UIBarButtonItem) {
+        
+    }
+    
     @IBAction func flipButton(_ sender: UIBarButtonItem) {
         if(mapActive){
             UIView.animate(withDuration: 0.5, animations: {
@@ -105,6 +109,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        print("Updating location")
         userController.lastLocation = locations.last!
     }
     

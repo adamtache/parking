@@ -19,7 +19,6 @@
 		66039DD21DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD31DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
 		66039DD41DD2AA37004B494A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66039DD11DD2AA37004B494A /* GoogleService-Info.plist */; };
-		661294011DEF656700F3B8FB /* AsyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661294001DEF656700F3B8FB /* AsyncHandler.swift */; };
 		66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D461DDD515E00B99C50 /* ParkingPass.swift */; };
 		66137D4B1DDD5C1200B99C50 /* TagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4A1DDD5C1200B99C50 /* TagLoader.swift */; };
 		66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */; };
@@ -38,6 +37,7 @@
 		66CDF8931DF0C5340092BF4F /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */; };
 		66CDF8951DF0C5C30092BF4F /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */; };
 		66CDF8971DF13B1F0092BF4F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8961DF13B1E0092BF4F /* FilterViewController.swift */; };
+		66CDF8991DF14F070092BF4F /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8981DF14F070092BF4F /* DistanceCalculator.swift */; };
 		66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */; };
 		66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingZone.swift */; };
 		66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */; };
@@ -84,7 +84,6 @@
 		66039DBF1DD2A860004B494A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66039DCF1DD2A965004B494A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66039DD11DD2AA37004B494A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		661294001DEF656700F3B8FB /* AsyncHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncHandler.swift; path = Controllers/AsyncHandler.swift; sourceTree = "<group>"; };
 		66137D461DDD515E00B99C50 /* ParkingPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingPass.swift; sourceTree = "<group>"; };
 		66137D4A1DDD5C1200B99C50 /* TagLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagLoader.swift; path = Controllers/TagLoader.swift; sourceTree = "<group>"; };
 		66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		66CDF8961DF13B1E0092BF4F /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		66CDF8981DF14F070092BF4F /* DistanceCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
 		66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingListTableViewController.swift; sourceTree = "<group>"; };
 		66D1E8E81DD2C797004446AC /* ParkingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingZone.swift; sourceTree = "<group>"; };
 		66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -218,9 +218,9 @@
 				66E0DE481DD33D67000E16FB /* ZoneViewController.swift */,
 				66E0DE4E1DD34918000E16FB /* ZoneCreationViewController.swift */,
 				54FF59861DD80CED00F470F6 /* SignUpViewController.swift */,
+				66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */,
 				66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */,
 				66CDF88F1DF011C00092BF4F /* SearchViewController.swift */,
-				66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */,
 				66CDF8961DF13B1E0092BF4F /* FilterViewController.swift */,
 			);
 			path = Controllers;
@@ -253,6 +253,7 @@
 				6686D77E1DDE4F2F007D7CD3 /* EmailPermit.swift */,
 				6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */,
 				66D3FB741DDEBC5A00DE4069 /* UserController.swift */,
+				66CDF8981DF14F070092BF4F /* DistanceCalculator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -265,7 +266,6 @@
 		66D3FB721DDEBC2500DE4069 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				661294001DEF656700F3B8FB /* AsyncHandler.swift */,
 				66137D4A1DDD5C1200B99C50 /* TagLoader.swift */,
 				66345E201DDD4BC200789F5A /* ParkingZoneLoader.swift */,
 				66345E251DDD510C00789F5A /* ParkingPassLoader.swift */,
@@ -515,6 +515,7 @@
 				66D3FB751DDEBC5A00DE4069 /* UserController.swift in Sources */,
 				66E0DE491DD33D67000E16FB /* ZoneViewController.swift in Sources */,
 				6686D77F1DDE4F2F007D7CD3 /* EmailPermit.swift in Sources */,
+				66CDF8991DF14F070092BF4F /* DistanceCalculator.swift in Sources */,
 				66CDF8901DF011C00092BF4F /* SearchViewController.swift in Sources */,
 				6060B9321DE2AAF400A9AEF8 /* EditProfileViewController.swift in Sources */,
 				66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */,
@@ -523,7 +524,6 @@
 				6671410E1DD32D3C0012D6DC /* ProfileViewController.swift in Sources */,
 				66CDF8971DF13B1F0092BF4F /* FilterViewController.swift in Sources */,
 				66039DD01DD2A965004B494A /* User.swift in Sources */,
-				661294011DEF656700F3B8FB /* AsyncHandler.swift in Sources */,
 				66CDF8931DF0C5340092BF4F /* FilterTableViewCell.swift in Sources */,
 				662C6F641DDD323A0056CF21 /* UserVerifier.swift in Sources */,
 				66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */,

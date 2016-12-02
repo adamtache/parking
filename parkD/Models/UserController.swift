@@ -13,8 +13,10 @@ class UserController: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     var lastLocation : CLLocation?
     var user: User?
-    var zoneLoader = ParkingZoneLoader()
-    var passLoader = ParkingPassLoader()
+    
+    // MARK: Constants
+    let dukeLat     = 36.0014258
+    let dukeLong    = -78.9382286
     
     override init() {
         super.init()
@@ -56,15 +58,14 @@ class UserController: NSObject, CLLocationManagerDelegate {
     }
     
     func getCurrLocation() -> CLLocation{
+        if(lastLocation == nil){
+            return CLLocation(latitude: dukeLat, longitude: dukeLong)
+        }
         return lastLocation!
     }
     
     static func calcDistance(loc1: CLLocation, loc2: CLLocation) -> Double {
-        let coord1 = loc1.coordinate
-        let coord2 = loc2.coordinate
-        let d1 = pow(coord1.latitude - coord2.latitude, 2)
-        let d2 = pow(coord1.longitude - coord2.longitude, 2)
-        return sqrt(d1 + d2)
+        return loc1.distance(from: loc2)/1609.344
     }
     
 }

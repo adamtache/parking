@@ -71,6 +71,7 @@ class ParkingListTableViewController: UITableViewController {
         cell.zone = zone
         cell.nameLabel.text = zone.name
         cell.photoView.image = zone.image
+        cell.distanceLabel.text = DistanceCalculator.getDistanceString(userController: userController, zone: zone)
         return cell
     }
     
@@ -84,6 +85,7 @@ class ParkingListTableViewController: UITableViewController {
             let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)
             let navController = segue.destination as! UINavigationController
             let zoneVC = navController.topViewController as! ZoneViewController
+            zoneVC.userController = userController
             zoneVC.zone = self.items[(selectedIndex?.row)!]
             if (locationManager.location?.coordinate != nil) {
                 zoneVC.coordinate = locationManager.location?.coordinate

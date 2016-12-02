@@ -27,7 +27,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     //MARK: Outlets
     
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet var mapView: GMSMapView!
+   
     
     @IBAction func unwindFromZoneViewController(segue: UIStoryboardSegue) {
         
@@ -35,24 +36,28 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+        }
+        mapSetup()
     }
     
     func mapSetup() {
         //Basic map setup code
+        mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
-        mapView.delegate = self
-        
-        //Default camera origin if user doesn't give location access
+        setupCamera()
+    }
+    
+    func setupCamera() {
         let location = locationManager.location
         if (CLLocationManager.authorizationStatus() == .denied || location == nil) {
             mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
         } else {
             mapView.camera = GMSCameraPosition(target:(location?.coordinate)!, zoom:15,bearing:0, viewingAngle:0)
         }
-        
-        //Drawing the zones on the map
-        print("map view loaded")
     }
     
     func addZone(zone: ParkingZone) {
