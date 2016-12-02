@@ -130,6 +130,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         performSegue(withIdentifier: mapToZone, sender: self)
     }
     
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("you tapped a marker")
+        zoneTapped = zonesDict[marker.title!]
+        performSegue(withIdentifier: mapToZone, sender: self)
+        return true
+    }
+    
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         print("the location button was tapped")
         if (CLLocationManager.authorizationStatus() == .denied) {
@@ -137,13 +144,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             print("asking again to use location")
         }
         return false
-    }
-    
-    private func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) {
-        let placeMarker = marker as GMSMarker
-        print("marker tapped")
-        zoneTapped = zonesDict[placeMarker.title!]
-        performSegue(withIdentifier: mapToZone, sender: self)
     }
     
     //MARK: Navigation
