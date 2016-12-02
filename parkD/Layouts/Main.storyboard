@@ -1055,14 +1055,8 @@ if you want to change it</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-QR-q5U">
-                                            <rect key="frame" x="8" y="14" width="45" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-j6-Egw">
-                                            <rect key="frame" x="96" y="19" width="20" height="20"/>
+                                            <rect key="frame" x="154" y="21" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="Mbn-ca-PX4"/>
                                             </constraints>
@@ -1071,7 +1065,7 @@ if you want to change it</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZi-ao-ISS">
-                                            <rect key="frame" x="208" y="19" width="10" height="20"/>
+                                            <rect key="frame" x="258" y="21" width="10" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="10" id="56b-Gq-YcN"/>
                                             </constraints>
@@ -1080,13 +1074,13 @@ if you want to change it</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accurate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbI-DD-9Sy">
-                                            <rect key="frame" x="73" y="-1" width="66" height="18"/>
+                                            <rect key="frame" x="131" y="1" width="66" height="18"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYF-1g-xgB">
-                                            <rect key="frame" x="68" y="20" width="20" height="20"/>
+                                            <rect key="frame" x="126" y="22" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="lrS-sd-0FB"/>
                                                 <constraint firstAttribute="width" constant="20" id="vRt-st-ePM"/>
@@ -1097,7 +1091,7 @@ if you want to change it</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOE-Br-SBA">
-                                            <rect key="frame" x="124" y="20" width="20" height="20"/>
+                                            <rect key="frame" x="182" y="22" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="MfB-MR-2TL"/>
                                                 <constraint firstAttribute="height" constant="20" id="npu-LC-2Il"/>
@@ -1108,7 +1102,7 @@ if you want to change it</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7h-k0-ope">
-                                            <rect key="frame" x="180" y="20" width="20" height="20"/>
+                                            <rect key="frame" x="230" y="22" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="BGh-D1-M6Y"/>
                                                 <constraint firstAttribute="width" constant="20" id="zZK-62-3xd"/>
@@ -1118,14 +1112,8 @@ if you want to change it</string>
                                                 <action selector="notAccurateUp:" destination="c94-hd-XJ8" eventType="touchUpInside" id="o1e-Wb-1Or"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Accurate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQC-Yv-ruA">
-                                            <rect key="frame" x="170" y="-2" width="86" height="19"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBp-9A-xu4">
-                                            <rect key="frame" x="226" y="20" width="20" height="20"/>
+                                            <rect key="frame" x="276" y="22" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="KnO-IT-bG4"/>
                                                 <constraint firstAttribute="width" constant="20" id="g9z-4x-4i9"/>
@@ -1135,6 +1123,18 @@ if you want to change it</string>
                                                 <action selector="notAccurateDown:" destination="c94-hd-XJ8" eventType="touchUpInside" id="Hoa-ir-Y1b"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Accurate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQC-Yv-ruA">
+                                            <rect key="frame" x="220" y="0.0" width="86" height="19"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-QR-q5U">
+                                            <rect key="frame" x="0.0" y="10" width="115" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XYF-1g-xgB" firstAttribute="top" secondItem="ym1-j6-Egw" secondAttribute="top" constant="1" id="05Z-Ac-nF9"/>
@@ -1143,24 +1143,25 @@ if you want to change it</string>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="height" secondItem="XYF-1g-xgB" secondAttribute="height" id="7FE-xF-fUw"/>
                                         <constraint firstItem="fBp-9A-xu4" firstAttribute="leading" secondItem="bZi-ao-ISS" secondAttribute="trailing" constant="8" id="884-ea-7Cr"/>
                                         <constraint firstItem="EbI-DD-9Sy" firstAttribute="centerY" secondItem="zQC-Yv-ruA" secondAttribute="centerY" id="Cf3-du-tZc"/>
-                                        <constraint firstItem="EbI-DD-9Sy" firstAttribute="top" secondItem="aP8-se-h0s" secondAttribute="topMargin" constant="-9" id="FCK-hd-2Rk"/>
-                                        <constraint firstItem="XYF-1g-xgB" firstAttribute="leading" secondItem="kf1-QR-q5U" secondAttribute="trailing" constant="15" id="J6b-0R-UbK"/>
-                                        <constraint firstItem="zQC-Yv-ruA" firstAttribute="leading" secondItem="EbI-DD-9Sy" secondAttribute="trailing" constant="31" id="KYA-Gn-4LM"/>
+                                        <constraint firstItem="EbI-DD-9Sy" firstAttribute="top" secondItem="aP8-se-h0s" secondAttribute="topMargin" constant="-7" id="FCK-hd-2Rk"/>
+                                        <constraint firstItem="XYF-1g-xgB" firstAttribute="leading" secondItem="kf1-QR-q5U" secondAttribute="trailing" constant="8" id="J6b-0R-UbK"/>
+                                        <constraint firstItem="zQC-Yv-ruA" firstAttribute="leading" secondItem="EbI-DD-9Sy" secondAttribute="trailing" constant="23" id="KYA-Gn-4LM"/>
+                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="centerY" secondItem="aP8-se-h0s" secondAttribute="centerY" id="M72-a6-nLr"/>
                                         <constraint firstItem="EbI-DD-9Sy" firstAttribute="centerX" secondItem="ym1-j6-Egw" secondAttribute="centerX" id="MDW-oW-EFp"/>
-                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="leading" secondItem="aP8-se-h0s" secondAttribute="leadingMargin" id="PI0-7h-Ir8"/>
+                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="leading" secondItem="aP8-se-h0s" secondAttribute="leadingMargin" constant="-5" id="PI0-7h-Ir8"/>
                                         <constraint firstItem="x7h-k0-ope" firstAttribute="width" secondItem="XYF-1g-xgB" secondAttribute="width" id="Qql-nj-Hpt"/>
                                         <constraint firstItem="bZi-ao-ISS" firstAttribute="top" secondItem="fBp-9A-xu4" secondAttribute="top" constant="-1" id="Rbj-vc-KR7"/>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="width" secondItem="XYF-1g-xgB" secondAttribute="width" id="Rgm-WB-dC9"/>
                                         <constraint firstItem="x7h-k0-ope" firstAttribute="top" secondItem="bZi-ao-ISS" secondAttribute="top" constant="1" id="WvN-MM-u4Q"/>
-                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="bottom" secondItem="aP8-se-h0s" secondAttribute="bottomMargin" id="Xag-Wy-Tsy"/>
+                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="bottom" secondItem="aP8-se-h0s" secondAttribute="bottomMargin" constant="-3" id="Xag-Wy-Tsy"/>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="leading" secondItem="ym1-j6-Egw" secondAttribute="trailing" constant="8" id="acC-pi-06V"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zQC-Yv-ruA" secondAttribute="trailing" constant="56" id="buV-yj-keP"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zQC-Yv-ruA" secondAttribute="trailing" constant="6" id="buV-yj-keP"/>
                                         <constraint firstItem="ym1-j6-Egw" firstAttribute="leading" secondItem="XYF-1g-xgB" secondAttribute="trailing" constant="8" id="dCJ-Pw-tt4"/>
                                         <constraint firstItem="fBp-9A-xu4" firstAttribute="width" secondItem="XYF-1g-xgB" secondAttribute="width" id="gJw-dA-j6m"/>
-                                        <constraint firstItem="EbI-DD-9Sy" firstAttribute="leading" secondItem="kf1-QR-q5U" secondAttribute="trailing" constant="20" id="ncO-OD-eW0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="fBp-9A-xu4" secondAttribute="trailing" constant="66" id="nwN-xU-BUG"/>
+                                        <constraint firstItem="EbI-DD-9Sy" firstAttribute="leading" secondItem="kf1-QR-q5U" secondAttribute="trailing" constant="13" id="ncO-OD-eW0"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fBp-9A-xu4" secondAttribute="trailing" constant="16" id="nwN-xU-BUG"/>
                                         <constraint firstItem="zQC-Yv-ruA" firstAttribute="centerX" secondItem="bZi-ao-ISS" secondAttribute="centerX" id="oAD-hR-Vcu"/>
-                                        <constraint firstItem="x7h-k0-ope" firstAttribute="leading" secondItem="sOE-Br-SBA" secondAttribute="trailing" constant="36" id="pMX-Xh-Ji6"/>
+                                        <constraint firstItem="x7h-k0-ope" firstAttribute="leading" secondItem="sOE-Br-SBA" secondAttribute="trailing" constant="28" id="pMX-Xh-Ji6"/>
                                         <constraint firstItem="EbI-DD-9Sy" firstAttribute="trailing" secondItem="sOE-Br-SBA" secondAttribute="trailing" constant="-5" id="qdN-v2-Fud"/>
                                         <constraint firstItem="x7h-k0-ope" firstAttribute="height" secondItem="XYF-1g-xgB" secondAttribute="height" id="rBS-gT-f34"/>
                                         <constraint firstItem="bZi-ao-ISS" firstAttribute="baseline" secondItem="ym1-j6-Egw" secondAttribute="firstBaseline" id="sxN-VH-hyl"/>

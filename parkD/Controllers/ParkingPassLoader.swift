@@ -36,8 +36,8 @@ class ParkingPassLoader {
     }
     
     private func storeInDB(pass: ParkingPass) {
-        let bluePassRef = passRef.child(pass.name)
-        bluePassRef.setValue(pass.toAnyObject())
+        let localPassRef = passRef.child(pass.name)
+        localPassRef.setValue(pass.toAnyObject())
     }
     
     private func getPass(name: String, number: Int64) -> ParkingPass {

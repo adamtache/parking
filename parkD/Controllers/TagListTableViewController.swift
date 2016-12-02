@@ -23,12 +23,9 @@ class TagListTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        items = loadItems()!
         self.tableView.reloadData()
-    }
-    
-    private func loadItems() -> [Tag]? {
-        return TagLoader().getItems()
+        
+        getPermitTypes()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,13 +41,32 @@ class TagListTableViewController: UITableViewController {
         let tag : Tag
         tag = items[(indexPath as NSIndexPath).row]
         cell.cellTag = tag
-        if (tag == nil) {
-            return cell
-        }
         cell.agreeCountLabel.text = "\(tag.agreeScore)"
         cell.disagreeCountLabel.text = "\(tag.disagreeScore)"
         cell.nameLabel.text = "\(tag.name)"
         return cell
+    }
+    
+    //Get the tags from Firebase
+    private func getPermitTypes() {
+        TagLoader().setDefaults()
+        for name in tagNames {
+            tagRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let agreeScore = value?["agreeScore"] as! Int
+                let disagreeScore = value?["disagreeScore"] as! Int
+                self.items.append(self.getTag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore))
+                self.tableView.reloadData()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func getTag(name: String, agreeScore: Int, disagreeScore: Int) -> Tag {
+        return Tag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore)
     }
     
 }

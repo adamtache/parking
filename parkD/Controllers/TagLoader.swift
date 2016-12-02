@@ -10,47 +10,37 @@ import Firebase
 
 class TagLoader {
     
-    let passRef = FIRDatabase.database().reference(withPath: "tags")
+    let tagRef = FIRDatabase.database().reference(withPath: "tags")
     var tags : [String] = ["Space Available", "Full", "Ticketing", "Towing", "Blocked"]
     
     init() {
+        setDefaults()
     }
     
-    func getItems() -> [Tag] {
-        // TODO: Grab this from Firebase
-        return getDefaults()
+    func setDefaults() {
+        let fullTag = getTag(name: "Full", agreeScore: 0, disagreeScore: 0)
+        storeInDB(tag: fullTag)
+        
+        let spaceTag = getTag(name: "Space Available", agreeScore: 0, disagreeScore: 0)
+        storeInDB(tag: spaceTag)
+        
+        let ticketingTag = getTag(name: "Ticketing", agreeScore: 0, disagreeScore: 0)
+        storeInDB(tag: ticketingTag)
+        
+        let towingTag = getTag(name: "Towing", agreeScore: 0, disagreeScore: 0)
+        storeInDB(tag: towingTag)
+        
+        let blockedTag = getTag(name: "Blocked", agreeScore: 0, disagreeScore: 0)
+        storeInDB(tag: blockedTag)
     }
     
-    func getDefaults() -> [Tag] {
-        var tags : [Tag] = []
-        let fullTag = getFullTag()
-        let fullTagRef = passRef.child(fullTag.name)
-        fullTagRef.setValue(fullTag.toAnyObject())
-        tags.append(fullTag)
-        return tags
+    private func storeInDB(tag: Tag) {
+        let tagRef = self.tagRef.child(tag.name)
+        tagRef.setValue(tag.toAnyObject())
     }
     
-    private func getFullTag() -> Tag {
-        let name = "Full"
-        let agreeScore = 0
-        let disagreeScore = 0
-        let lastAgree = 0
-        let lastDisagree = 0
-        return Tag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore, lastAgree: lastAgree, lastDisagree: lastDisagree)
-    }
-    
-    private func getAllTags() -> [Tag] {
-        var tagRet : [Tag] = []
-        for name in tags {
-            let name = name
-            let agreeScore = 0
-            let disagreeScore = 0
-            let lastAgree = 0
-            let lastDisagree = 0
-            tagRet.append(Tag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore, lastAgree: lastAgree, lastDisagree: lastDisagree))
-        }
-
-        return tagRet
+    private func getTag(name: String, agreeScore: Int, disagreeScore: Int) -> Tag {
+        return Tag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore)
     }
 
 }

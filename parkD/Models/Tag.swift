@@ -14,18 +14,14 @@ struct Tag {
     let key: String
     let name: String
     var agreeScore: Int
-    var lastAgree: Int
-    var lastDisagree: Int
     var disagreeScore: Int
     let ref: FIRDatabaseReference?
     
-    init(name: String, agreeScore: Int, disagreeScore: Int, lastAgree: Int, lastDisagree: Int){
+    init(name: String, agreeScore: Int, disagreeScore: Int){
         // Initializes comment through parameters.
         self.name = name
         self.agreeScore = agreeScore
         self.disagreeScore = disagreeScore
-        self.lastAgree = lastAgree
-        self.lastDisagree = lastDisagree
         self.key = ""
         self.ref = nil
     }
@@ -37,8 +33,6 @@ struct Tag {
         name = snapshotValue["name"] as! String
         agreeScore = snapshotValue["agreeScore"] as! Int
         disagreeScore = snapshotValue["disagreeScore"] as! Int
-        lastAgree = snapshotValue["lastAgree"] as! Int
-        lastDisagree = snapshotValue["lastDisagree"] as! Int
         ref = snapshot.ref
     }
     
@@ -47,9 +41,7 @@ struct Tag {
             // Creates data to be stored into Firebase database.
             "name": name,
             "agreeScore": agreeScore,
-            "disagreeScore": disagreeScore,
-            "lastAgree": lastAgree,
-            "lastDisagree": lastDisagree
+            "disagreeScore": disagreeScore
         ]
     }
     
