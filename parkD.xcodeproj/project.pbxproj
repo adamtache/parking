@@ -35,6 +35,8 @@
 		66BA51681DDD9F6A0024E6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66BA51671DDD9F6A0024E6CC /* Main.storyboard */; };
 		66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BA516B1DDDA9290024E6CC /* MapKit.framework */; };
 		66CDF8901DF011C00092BF4F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF88F1DF011C00092BF4F /* SearchViewController.swift */; };
+		66CDF8931DF0C5340092BF4F /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */; };
+		66CDF8951DF0C5C30092BF4F /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */; };
 		66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */; };
 		66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8E81DD2C797004446AC /* ParkingZone.swift */; };
 		66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */; };
@@ -99,6 +101,8 @@
 		66BA51671DDD9F6A0024E6CC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66BA516B1DDDA9290024E6CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66CDF88F1DF011C00092BF4F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		66D1E8E61DD2C702004446AC /* ParkingListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingListTableViewController.swift; sourceTree = "<group>"; };
 		66D1E8E81DD2C797004446AC /* ParkingZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingZone.swift; sourceTree = "<group>"; };
 		66D1E8EA1DD2CC72004446AC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				54FF59861DD80CED00F470F6 /* SignUpViewController.swift */,
 				66137D4C1DDD5FE100B99C50 /* TagListTableViewController.swift */,
 				66CDF88F1DF011C00092BF4F /* SearchViewController.swift */,
+				66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			children = (
 				667141051DD326E80012D6DC /* ParkingTableViewCell.swift */,
 				66E0DE4A1DD33E72000E16FB /* TagTableViewCell.swift */,
+				66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */,
+				66CDF8951DF0C5C30092BF4F /* FilterTableViewController.swift in Sources */,
 				66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */,
 				66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */,
 				667141061DD326E80012D6DC /* ParkingTableViewCell.swift in Sources */,
@@ -513,6 +520,7 @@
 				6671410E1DD32D3C0012D6DC /* ProfileViewController.swift in Sources */,
 				66039DD01DD2A965004B494A /* User.swift in Sources */,
 				661294011DEF656700F3B8FB /* AsyncHandler.swift in Sources */,
+				66CDF8931DF0C5340092BF4F /* FilterTableViewCell.swift in Sources */,
 				662C6F641DDD323A0056CF21 /* UserVerifier.swift in Sources */,
 				66137D471DDD515E00B99C50 /* ParkingPass.swift in Sources */,
 				54FF598A1DD81B2A00F470F6 /* AppDelegate.swift in Sources */,

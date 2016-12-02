@@ -93,6 +93,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             mapController.setUser(user: defaultUser)
         }
         
+        mapController.setLocationManager(userController: userController)
+        listController.setLocationManager(userController: userController)
+        
         addChildViewController(listController)
         listController.view.translatesAutoresizingMaskIntoConstraints = false
         containerA.addSubview(listController.view)
@@ -117,15 +120,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     private func getMapController() -> MapViewController {
-        let mapController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: mapIdentifier) as! MapViewController
-        mapController.setLocationManager(userController: userController)
-        if(self.user != nil){
-            mapController.setUser(user: self.user!)
-        }
-        else{
-            mapController.setUser(user: getDefaultUser())
-        }
-        return mapController
+        return UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: mapIdentifier) as! MapViewController
     }
 
     private func getListController() -> ParkingListTableViewController {
