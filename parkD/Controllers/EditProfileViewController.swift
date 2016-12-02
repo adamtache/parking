@@ -27,7 +27,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private var user: User!
     
     // MARK: Outlets
-    @IBOutlet weak var myEmailField: UITextField!
     @IBOutlet weak var myCurrentPassField: UITextField!
     @IBOutlet weak var myNewPassField: UITextField!
     @IBOutlet weak var myRetypePassField: UITextField!
@@ -36,10 +35,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if (!user.email.isEmpty) {
-            myEmailField.text = user.email
-        }
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -60,21 +55,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.view.endEditing(true)
     }
     
-    private func getEmail() -> String{
-        return myEmailField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-    
-    func updateEmail() {
-        //Check email format
-        let newEmail = getEmail()
-        if(!UserVerifier().checkEmail(email: newEmail)){
-            displayMessage(title: invalidPasswordTitle, message: invalidPasswordTitle)
-            return
-        }
-        UserModifier().changeEmail(email: user.email, newEmail: newEmail)
-        myEmailField.text = newEmail
-    }
-    
     func updatePassword() {
         //Only check password logic if current password field is not empty, so the user wants to change the password
         if (!(myCurrentPassField.text?.isEmpty)!) {
@@ -93,7 +73,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         
-        UserModifier().changePass(email: myEmailField.text!, newPass: myNewPassField.text!)
+        UserModifier().changePass(email: user.email, newPass: myNewPassField.text!)
     }
     
     func updatePermit() {
@@ -103,7 +83,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 self.myPermit = self.permitTypes[0].name
             }
         }
-        UserModifier().changePermit(email: myEmailField.text!, newPermit: self.myPermit)
+        UserModifier().changePermit(email: user.email, newPermit: self.myPermit)
         
     }
     
@@ -140,7 +120,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
         if (identifier == editSuccess) {
             updatePassword()
-            updateEmail()
             updatePermit()
         }
         return true
@@ -171,7 +150,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Get the new view controller using segue.destinationViewController.
         if (segue.identifier == editSuccess) {
             let profileController = segue.destination as! ProfileViewController
-            profileController.emailLabel.text = self.myEmailField.text
+            profileController.emailLabel.text = user.email
             profileController.permitLabel.text = self.myPermit
         }
     }
