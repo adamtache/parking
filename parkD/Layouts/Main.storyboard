@@ -239,7 +239,7 @@
             <objects>
                 <navigationController id="dES-ha-fsZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Y35-cE-8UL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fu2-Ab-aro">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Fu2-Ab-aro">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -400,7 +400,7 @@
         <scene sceneID="wLL-jw-1Sj">
             <objects>
                 <navigationController id="AdW-JX-qRA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p0N-aY-NUf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p0N-aY-NUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -660,7 +660,7 @@
             <objects>
                 <navigationController id="Rst-3W-mJH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="q3D-8q-pdA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sQa-86-fQ8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sQa-86-fQ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -742,13 +742,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n3-EG-Bey">
-                                <rect key="frame" x="184" y="120" width="41" height="21"/>
+                                <rect key="frame" x="100" y="120" width="184" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe6-zX-vwm">
-                                <rect key="frame" x="184" y="201" width="41" height="21"/>
+                                <rect key="frame" x="100" y="201" width="184" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -756,13 +756,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0n3-EG-Bey" firstAttribute="baseline" secondItem="nDx-yo-tLx" secondAttribute="baseline" id="4GK-9K-Dxz"/>
-                            <constraint firstItem="Fe6-zX-vwm" firstAttribute="leading" secondItem="0n3-EG-Bey" secondAttribute="leading" id="7WD-pM-Aut"/>
                             <constraint firstItem="YEE-2N-Akj" firstAttribute="top" secondItem="nDx-yo-tLx" secondAttribute="bottom" constant="60" id="CGs-J4-dre"/>
-                            <constraint firstItem="Fe6-zX-vwm" firstAttribute="baseline" secondItem="YEE-2N-Akj" secondAttribute="baseline" id="M0m-zv-Cqh"/>
+                            <constraint firstItem="0n3-EG-Bey" firstAttribute="baseline" secondItem="nDx-yo-tLx" secondAttribute="baseline" id="HcB-KU-dyz"/>
+                            <constraint firstItem="0n3-EG-Bey" firstAttribute="centerX" secondItem="nDx-yo-tLx" secondAttribute="centerX" constant="32" id="JXA-wl-o9v"/>
+                            <constraint firstItem="0n3-EG-Bey" firstAttribute="leading" secondItem="amh-e2-AMm" secondAttribute="leadingMargin" constant="84" id="Jly-3w-bst"/>
+                            <constraint firstItem="0n3-EG-Bey" firstAttribute="trailing" secondItem="Fe6-zX-vwm" secondAttribute="trailing" id="Moq-mh-Fzl"/>
+                            <constraint firstItem="0n3-EG-Bey" firstAttribute="leading" secondItem="Fe6-zX-vwm" secondAttribute="leading" id="QGy-e0-RYJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YEE-2N-Akj" secondAttribute="trailing" constant="20" id="SPb-cP-7E1"/>
                             <constraint firstItem="YEE-2N-Akj" firstAttribute="leading" secondItem="amh-e2-AMm" secondAttribute="leadingMargin" constant="20" id="UJn-Ph-Q3W"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0n3-EG-Bey" secondAttribute="trailing" constant="79" id="mbO-si-tvG"/>
+                            <constraint firstItem="Fe6-zX-vwm" firstAttribute="baseline" secondItem="YEE-2N-Akj" secondAttribute="baseline" id="cGQ-6X-ns1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nDx-yo-tLx" secondAttribute="trailing" constant="20" id="rOn-HK-cSf"/>
                             <constraint firstItem="nDx-yo-tLx" firstAttribute="leading" secondItem="amh-e2-AMm" secondAttribute="leadingMargin" constant="20" id="sHb-p9-WTC"/>
                             <constraint firstItem="nDx-yo-tLx" firstAttribute="top" secondItem="uaC-bV-1yk" secondAttribute="bottom" constant="100" id="xfW-Z6-Zf6"/>
@@ -790,7 +792,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iM-wb-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="P3c-kt-W05" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="270" y="2702"/>
+            <point key="canvasLocation" x="270" y="2701.25"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="wd6-76-qe6">
@@ -972,7 +974,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZo-je-wAR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7BQ-ad-IDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7BQ-ad-IDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1026,7 +1028,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azy-wG-Zpd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GEv-Hx-GHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEv-Hx-GHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1191,7 +1193,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bOJ-9W-oXr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LyH-UJ-cJ9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LyH-UJ-cJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

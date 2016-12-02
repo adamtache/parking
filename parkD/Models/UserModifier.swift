@@ -16,9 +16,9 @@ class UserModifier{
     init() {
     }
     
-    func changePass(email: String, newPass: String) -> Bool {
+    func changePass(email: String, newPass: String) {
         let user = FIRAuth.auth()?.currentUser
-        return ((user?.updatePassword(newPass)) != nil)
+        user?.updatePassword(newPass)
     }
     
     func changeEmail(email: String, newEmail: String) {
@@ -55,8 +55,9 @@ class UserModifier{
             var oldUser = self.createUser(email: email, permit: permit!)
             let localUserRef = self.userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
             oldUser.permit = newPermit
-            print(newPermit)
             localUserRef.setValue(oldUser.toAnyObject())
+            print(oldUser.toAnyObject())
+            print(localUserRef)
         }) { (error) in
             print(error.localizedDescription)
         }
