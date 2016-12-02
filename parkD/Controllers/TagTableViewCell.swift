@@ -11,14 +11,18 @@ import UIKit
 class TagTableViewCell: UITableViewCell {
     
     // MARK: Outlets
-    @IBOutlet weak var lastUpvoteTime: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var agreeCountLabel: UILabel!
-    @IBOutlet weak var lastDownvoteTime: UILabel!
-    @IBOutlet weak var lastDownvoteLabel: UILabel!
-    @IBOutlet weak var lastUpvoteLabel: UILabel!
     @IBOutlet weak var disagreeCountLabel: UILabel!
     
+    @IBAction func accurateUp(_ sender: UIButton) {
+    }
+    @IBAction func notAccurateUp(_ sender: UIButton) {
+    }
+    @IBAction func notAccurateDown(_ sender: UIButton) {
+    }
+    @IBAction func accurateDown(_ sender: UIButton) {
+    }
     // MARK: Variables
     var cellTag: Tag?
     
