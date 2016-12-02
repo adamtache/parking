@@ -17,15 +17,18 @@ class TagTableViewCell: UITableViewCell {
     
     @IBAction func accurateUp(_ sender: UIButton) {
     }
+    
     @IBAction func notAccurateUp(_ sender: UIButton) {
     }
+    
     @IBAction func notAccurateDown(_ sender: UIButton) {
     }
+    
     @IBAction func accurateDown(_ sender: UIButton) {
     }
+    
     // MARK: Variables
     var cellTag: Tag?
-    
     
     // MARK: Actions
     @IBAction func clickAgreeUp(_ sender: Any) {

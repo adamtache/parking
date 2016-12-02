@@ -52,7 +52,6 @@ class ZoneViewController: UIViewController {
     }
     
     private func updateInfo() {
-        print("Zone: \(zone)")
         if (zone != nil) {
             nameLabel.text = zone.name
             capacityValLabel.text = String(zone.capacity)
@@ -60,7 +59,12 @@ class ZoneViewController: UIViewController {
                 distanceLabel.text = DistanceCalculator.getDistanceString(userController: userController!, zone: zone)
             }
             percentFullLabel.text = String(zone.percentFull)
+            setupTagController()
         }
+    }
+    
+    private func setupTagController() {
+        
     }
 
 }

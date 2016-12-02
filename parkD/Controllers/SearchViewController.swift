@@ -104,7 +104,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        print("Updating location")
         userController.lastLocation = locations.last!
     }
     
@@ -172,7 +171,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 listController.items.append(zone)
                 listController.tableView.reloadData()
                 mapController.addZone(zone: zone)
-                print(zone)
             }) { (error) in
                 print(error.localizedDescription)
             }

@@ -36,9 +36,6 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
-        if (segue.identifier == editSuccess) {
-            setupLabels()
-        }
     }
     
     // MARK: Functions

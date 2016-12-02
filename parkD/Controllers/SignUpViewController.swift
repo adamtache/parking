@@ -58,6 +58,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
     @IBAction func signUpClick(_ sender: Any) {
         let email = getEmail()
         let pass = getPass()
@@ -96,10 +97,6 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         return false
     }
-    
-    private func getSelectedPermit() -> String {
-        return permitTypes[0].name
-    }
 
     //Get the permits from Firebase
     private func getPermitTypes() {
@@ -111,17 +108,11 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 let name = value?["name"] as? String ?? ""
                 let number = value?["number"] as! Int64
                 self.permitTypes.append(self.getPass(name: name, number: number))
-                self.permitPicker.selectRow(0, inComponent: 0, animated: true)
-                self.myPermit = self.permitTypes[0].name
                 self.permitPicker.reloadAllComponents()
             }) { (error) in
                 print(error.localizedDescription)
             }
         }
-    }
-    
-    private func getDefaults() -> [ParkingPass] {
-        return ParkingPassLoader().getItems()
     }
     
     // The number of columns of data
@@ -162,7 +153,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     private func signedUp(_ user: FIRUser?, email: String) {
-        UserVerifier().addUserWithPermitToDB(email: email, permit: self.getSelectedPermit())
+        UserVerifier().addUserWithPermitToDB(email: email, permit: self.myPermit)
         performSegue(withIdentifier: signUpClick, sender: nil)
     }
     
