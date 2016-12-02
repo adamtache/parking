@@ -34,10 +34,6 @@ class ParkingListTableViewController: UITableViewController {
         
     }
     
-    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
-        
-    }
-    
     func setLocationManager(userController: UserController) {
         self.userController = userController
         self.locationManager = userController.locationManager

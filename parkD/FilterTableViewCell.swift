@@ -13,7 +13,6 @@ class FilterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellLabel: UILabel!
     
-    @IBAction func flippedSwitch(_ sender: UISwitch) {
-    }
+    @IBOutlet var cellSwitch: UISwitch!
     
 }

@@ -522,10 +522,10 @@
             </objects>
             <point key="canvasLocation" x="270" y="860"/>
         </scene>
-        <!--View Controller-->
+        <!--Filter View Controller-->
         <scene sceneID="4kB-vW-5hz">
             <objects>
-                <viewController id="6O6-Ej-lB0" sceneMemberID="viewController">
+                <viewController id="6O6-Ej-lB0" customClass="FilterViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v0u-Vk-dxd"/>
                         <viewControllerLayoutGuide type="bottom" id="ZXx-Ix-1Dh"/>
@@ -541,10 +541,14 @@
                                     <navigationItem title="Filter" id="hcc-G4-Mae">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="LXe-6s-N0y">
                                             <connections>
-                                                <segue destination="6IO-4P-NQR" kind="unwind" unwindAction="unwindFromFilterWithSegue:" id="U4u-BK-TYj"/>
+                                                <segue destination="6IO-4P-NQR" kind="unwind" unwindAction="unwindFromFilterCancel:" id="uAd-38-Biw"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Search" id="S5H-rD-qap"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Search" id="S5H-rD-qap">
+                                            <connections>
+                                                <segue destination="6IO-4P-NQR" kind="unwind" unwindAction="unwindFromFilter:" id="ZuE-XU-BC8"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -556,7 +560,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1f-iC-stX">
-                                <rect key="frame" x="96" y="379" width="134" height="30"/>
+                                <rect key="frame" x="91" y="379" width="134" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Have a destination?"/>
                             </button>
@@ -564,6 +568,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="W3a-i2-6Va"/>
+                    <connections>
+                        <outlet property="uiView" destination="2r2-pc-4HQ" id="sgf-pU-dNu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZI1-31-zBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6IO-4P-NQR" userLabel="Exit" sceneMemberID="exit"/>
@@ -613,14 +620,12 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SkG-lw-yzN">
                                             <rect key="frame" x="220" y="9" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <action selector="flippedSwitch:" destination="oMx-NI-edk" eventType="valueChanged" id="3vo-qg-eQL"/>
-                                            </connections>
                                         </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cellLabel" destination="TMJ-cM-8FZ" id="4ux-PP-kml"/>
+                                    <outlet property="cellSwitch" destination="SkG-lw-yzN" id="MOh-ve-Lp7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

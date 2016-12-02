@@ -77,6 +77,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         setupZones(listController: listController!, mapController: mapController!)
     }
     
+    @IBAction func unwindFromFilterCancel(_ sender: UIStoryboardSegue) {
+    }
+    
+    @IBAction func unwindFromFilter(_ sender: UIStoryboardSegue) {
+        if (sender.source.isKind(of: FilterViewController.self)) {
+            let source:FilterViewController = sender.source as! FilterViewController
+            let filterTableController = source.childViewControllers[0] as! FilterTableViewController
+            
+            let validPermitRow : NSIndexPath = NSIndexPath(row: 0, section: 0)
+            let validPermitCell = filterTableController.tableView.cellForRow(at: validPermitRow as IndexPath) as! FilterTableViewCell
+            let validPermitOn = validPermitCell.cellSwitch.isOn
+            
+            let openNowRow : NSIndexPath = NSIndexPath(row: 1, section: 0)
+            let openNowCell = filterTableController.tableView.cellForRow(at: openNowRow as IndexPath) as! FilterTableViewCell
+            let openNowOn = openNowCell.cellSwitch.isOn
+            
+            let closestDistanceRow : NSIndexPath = NSIndexPath(row: 2, section: 0)
+            let closestDistanceCell = filterTableController.tableView.cellForRow(at: closestDistanceRow as IndexPath) as! FilterTableViewCell
+            let closestDistanceOn = closestDistanceCell.cellSwitch.isOn
+            
+            print(validPermitOn)
+            print(openNowOn)
+            print(closestDistanceOn)
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         userController.lastLocation = locations.last!
