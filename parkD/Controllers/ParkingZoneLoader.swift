@@ -51,7 +51,7 @@ class ParkingZoneLoader {
         coordinates[35.997452] = -78.939005
 
 //        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, coordinates: coordinates, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: percentFull, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: Double(percentFull), overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
 }

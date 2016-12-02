@@ -28,6 +28,7 @@ class ZoneViewController: UIViewController {
     @IBOutlet weak var commentsView: UITableView!
     @IBOutlet weak var capacityLabel: UILabel!
     @IBOutlet weak var capacityValLabel: UILabel!
+    @IBOutlet weak var percentFullLabel: UILabel!
 
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
@@ -57,10 +58,11 @@ class ZoneViewController: UIViewController {
         print("Zone: \(zone)")
         if (zone != nil) {
             nameLabel.text = zone.name
-            capacityValLabel.text = String(zone.percentFull)
+            capacityValLabel.text = String(zone.capacity)
             if(userController != nil){
                 distanceLabel.text = DistanceCalculator.getDistanceString(userController: userController!, zone: zone)
             }
+            percentFullLabel.text = String(zone.percentFull)
         }
     }
 

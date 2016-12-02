@@ -182,7 +182,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Int,  markerLat: Double, markerLong: Double)-> ParkingZone {
         let overlayColor = UIColor.blue
         let image = UIImage(named: "defaultPhoto")!
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: percentFull, overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: Double(percentFull), overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
     }
     
     private func getDefaultUser() -> User{
