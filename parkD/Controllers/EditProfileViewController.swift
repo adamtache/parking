@@ -98,17 +98,22 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     //Get the permits from Firebase
     private func getPermitTypes() {
-        ParkingPassLoader().setDefaults()
-        for name in passNames {
-            passRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+        passRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                 // Get user value
-                let value = snapshot.value as? NSDictionary
+                let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                self.permitTypes.append(ParkingPassLoader().getPass(pass: name)!)
+                print(name)
+                let afterHoursZones = value?["afterHoursZones"] as? [String]
+                print(afterHoursZones)
+                let standardZones = value?["standardZones"] as? [String]
+                print(standardZones)
+                self.permitTypes.append(ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!))
                 self.myPermitPicker.reloadAllComponents()
-            }) { (error) in
-                print(error.localizedDescription)
             }
+        }) { (error) in
+            print(error.localizedDescription)
         }
     }
     

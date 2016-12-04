@@ -37,6 +37,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     let mapTitle = "Map"
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
+    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let zoneNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     
     // MARK: Outlets
@@ -229,21 +230,31 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
             let permit = value?["permit"] as? String
-            let pass : ParkingPass = ParkingPassLoader().getPass(pass: permit!)!
-            
-            // TODO: Integrate open now check
-            
-            if((!self.validZoneActive && !self.openZoneActive) || pass.isValidZoneRightNow(zone: zone.name)) {
-                if(!self.containsZone(list: self.filtered, zone: zone)){
-                    self.filtered.append(zone)
-                    self.preSearchItems.append(zone)
-                    self.updateZones(filtered: self.filtered)
+            self.passRef.child(permit!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                let afterHoursZones = value?["afterHoursZones"] as? [String]
+                let standardZones = value?["standardZones"] as? [String]
+                let pass = ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!)
+                
+                // TODO: Integrate open now check
+                
+                if((!self.validZoneActive && !self.openZoneActive) || pass.isValidZoneRightNow(zone: zone.name)) {
+                    if(!self.containsZone(list: self.filtered, zone: zone)){
+                        self.filtered.append(zone)
+                        self.preSearchItems.append(zone)
+                        self.updateZones(filtered: self.filtered)
+                    }
                 }
-            }
-            if(self.closestDistanceActive) {
-                self.sortZones(toSort: self.filtered, closest: true)
-                self.sortZones(toSort: self.preSearchItems, closest: true)
-                self.sortZones(toSort: self.listController!.items, closest: true)
+                if(self.closestDistanceActive) {
+                    self.sortZones(toSort: self.filtered, closest: true)
+                    self.sortZones(toSort: self.preSearchItems, closest: true)
+                    self.sortZones(toSort: self.listController!.items, closest: true)
+                }
+                
+            }) { (error) in
+                print(error.localizedDescription)
             }
         }) { (error) in
             print(error.localizedDescription)

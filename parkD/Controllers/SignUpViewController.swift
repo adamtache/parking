@@ -12,8 +12,6 @@ import Firebase
 class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Constants
-    let passNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
-    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let signUpClick             = "signUpClick"
     let cancel                  = "signUpCancel"
     let invalidEmailTitle       = "Invalid Email"
@@ -31,6 +29,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     // MARK: Variables
     var permitTypes     : [ParkingPass] = []
     var myPermit        : String!
+    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
  
     // MARK: Outlets
     @IBOutlet weak var myEmail: UITextField!
@@ -100,17 +99,19 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     //Get the permits from Firebase
     private func getPermitTypes() {
-        ParkingPassLoader().setDefaults()
-        for name in passNames {
-            passRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+        passRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                 // Get user value
-                let value = snapshot.value as? NSDictionary
+                let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                self.permitTypes.append(self.getPass(name: name))
+                let afterHoursZones = value?["afterHoursZones"] as? [String]
+                let standardZones = value?["standardZones"] as? [String]
+                self.permitTypes.append(ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!))
                 self.permitPicker.reloadAllComponents()
-            }) { (error) in
-                print(error.localizedDescription)
             }
+        }) { (error) in
+            print(error.localizedDescription)
         }
     }
     
@@ -154,11 +155,6 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     private func signedUp(_ user: FIRUser?, email: String) {
         UserVerifier().addUserWithPermitToDB(email: email, permit: self.myPermit)
         performSegue(withIdentifier: signUpClick, sender: nil)
-    }
-    
-    
-    private func getPass(name: String) -> ParkingPass {
-        return ParkingPassLoader().getPass(pass: name)!
     }
 
 }
