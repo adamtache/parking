@@ -12,28 +12,27 @@ import FirebaseDatabase
 
 struct ParkingPass {
     
-    let key: String
     let name: String
     let ref: FIRDatabaseReference?
-    var number: Int64
+    var standardZones: [String]
+    var afterHoursZones: [String]
     
-    init(name: String, key: String = "", number: Int64){
+    init(name: String, standardZones: [String], afterHoursZones: [String]) {
         
         // Initializes pass through parameters.
-        self.key = key
         self.name = name
-        self.number = number
         self.ref = nil
+        self.standardZones = standardZones
+        self.afterHoursZones = afterHoursZones
     }
     
     init(snapshot: FIRDataSnapshot){
         
         // Initializes pass through Firebase data called 'FIRDataSnapshot'.
-        
-        key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
-        number = Int64(snapshotValue["number"] as! Int)
+        standardZones = snapshotValue["standardZones"] as! [String]
+        afterHoursZones = snapshotValue["afterHoursZones"] as! [String]
         ref = snapshot.ref
     }
     
@@ -43,8 +42,23 @@ struct ParkingPass {
             // Creates data to be stored into Firebase database.
             
             "name": name,
-            "number": number
+            "standardZones": standardZones,
+            "afterHoursZones": afterHoursZones
         ]
+    }
+    
+    func isValidZoneRightNow(zone: String) -> Bool {
+        if(self.isAfterHours()){
+            return afterHoursZones.contains(zone)
+        }
+        return standardZones.contains(zone)
+    }
+    
+    private func isAfterHours() -> Bool {
+        let now = TimeHandler.getDate() as Date
+        let sevenam_today = TimeHandler.dateAt(hours: 7, minutes: 0)
+        let fivepm_today = TimeHandler.dateAt(hours: 17, minutes: 0)
+        return now >= sevenam_today && now < fivepm_today
     }
     
 }

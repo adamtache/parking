@@ -12,7 +12,6 @@ class UserController: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     var lastLocation : CLLocation?
-    var user: User?
     
     // MARK: Constants
     let dukeLat     = 36.0014258
@@ -27,10 +26,6 @@ class UserController: NSObject, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.distanceFilter = 10.0
-    }
-    
-    func setUser(user: User) {
-        self.user = user
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
