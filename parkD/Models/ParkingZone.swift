@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-struct ParkingZone {
+struct ParkingZone : Equatable {
     
     let key: String
     let name: String
@@ -88,6 +88,10 @@ struct ParkingZone {
             "markerLong": markerLong,
             "percentFull": percentFull
         ]
+    }
+    
+    static func == (lhs: ParkingZone, rhs: ParkingZone) -> Bool {
+        return lhs.name == rhs.name
     }
     
 }

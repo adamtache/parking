@@ -13,13 +13,17 @@ class DistanceHandler {
     
     let feetInMile : Double = 5280.0
     
-    func getDistanceString(locationHandler: LocationHandler, zone: ParkingZone) -> String {
+    func getDistanceAway(locationHandler: LocationHandler, zone: ParkingZone) -> Double {
         let zoneLoc = self.getZoneLocation(zone: zone)
         let distance = self.getDistanceFromCurrLoc(location: zoneLoc, locationHandler: locationHandler)
-        let rounded = Double(String(format: "%.2f", ceil(distance*100)/100))
+        return Double(String(format: "%.2f", ceil(distance*100)/100))!
+    }
+    
+    func getDistanceString(locationHandler: LocationHandler, zone: ParkingZone) -> String {
+        let rounded = getDistanceAway(locationHandler: locationHandler, zone: zone)
         var distanceText = ""
-        if(rounded! < 1.0){
-            let feet = rounded!*5280
+        if(rounded<1.0){
+            let feet = rounded*5280
             distanceText = "\(feet) feet"
         }
         else{

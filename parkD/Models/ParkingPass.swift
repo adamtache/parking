@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-struct ParkingPass {
+struct ParkingPass: Equatable {
     
     let name: String
     let ref: FIRDatabaseReference?
@@ -52,6 +52,10 @@ struct ParkingPass {
             return afterHoursZones.contains(zone)
         }
         return standardZones.contains(zone)
+    }
+    
+    static func == (lhs: ParkingPass, rhs: ParkingPass) -> Bool {
+        return lhs.name == rhs.name
     }
     
     private func isAfterHours() -> Bool {

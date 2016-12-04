@@ -18,8 +18,6 @@ class ParkingListTableViewController: UITableViewController {
     
     // MARK: Vars
     var items: [ParkingZone] = []
-    var searchActive : Bool = false
-    var filtered = [ParkingZone]()
     var locationHandler : LocationHandler!
     var locationManager: CLLocationManager!
     var user: User?
@@ -67,16 +65,12 @@ class ParkingListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(searchActive){
-            return filtered.count
-        }
         return items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ParkingTableViewCell
-        let zone : ParkingZone
-        zone = searchActive ? filtered[(indexPath as NSIndexPath).row] : items[(indexPath as NSIndexPath).row]
+        let zone : ParkingZone = items[(indexPath as NSIndexPath).row]
         cell.zone = zone
         cell.nameLabel.text = zone.name
         cell.photoView.image = zone.image
