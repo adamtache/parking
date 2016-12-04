@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class UserController: NSObject, CLLocationManagerDelegate {
+class LocationHandler: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     var lastLocation : CLLocation?
