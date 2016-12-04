@@ -229,14 +229,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         userRef.child((user?.email.replacingOccurrences(of: ".", with: ","))!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
-            let permit = value?["permit"] as? String
-            self.passRef.child(permit!).observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot)
+            let abbr = value?["abbr"] as! String
+            self.passRef.child(abbr).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
+                print(snapshot)
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let afterHoursZones = value?["afterHoursZones"] as? [String]
                 let standardZones = value?["standardZones"] as? [String]
-                let pass = ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!)
+                let abbr = value?["abbr"] as! String
+                let pass = ParkingPass(name: name, abbr: abbr, standardZones: standardZones!, afterHoursZones: afterHoursZones!)
                 
                 // TODO: Integrate open now check
                 

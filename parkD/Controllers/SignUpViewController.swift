@@ -25,11 +25,12 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let invalidSignupMessage    = "Sorry, your signup is not valid."
     let emailTakenTitle         = "Email taken"
     let emailTakenMessage       = "Sorry, a user with that email already exists."
+    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     
     // MARK: Variables
     var permitTypes     : [ParkingPass] = []
     var myPermit        : String!
-    let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
+    var permitToAbbr    : [String:String] = [:]
  
     // MARK: Outlets
     @IBOutlet weak var myEmail: UITextField!
@@ -105,10 +106,12 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 // Get user value
                 let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                let afterHoursZones = value?["afterHoursZones"] as? [String]
-                let standardZones = value?["standardZones"] as? [String]
-                self.permitTypes.append(ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!))
+                let afterHoursZones = value?["afterHoursZones"] as! [String]
+                let standardZones = value?["standardZones"] as! [String]
+                let abbr = value?["abbr"] as! String
+                self.permitTypes.append(ParkingPass(name: name, abbr: abbr, standardZones: standardZones, afterHoursZones: afterHoursZones))
                 self.permitPicker.reloadAllComponents()
+                self.permitToAbbr[name] = abbr
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -153,7 +156,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     private func signedUp(_ user: FIRUser?, email: String) {
-        UserVerifier().addUserWithPermitToDB(email: email, permit: self.myPermit)
+        let name = self.myPermit
+        UserVerifier().addUserWithPermitToDB(email: email, permit: name!, abbr: permitToAbbr[name!]!)
         performSegue(withIdentifier: signUpClick, sender: nil)
     }
 

@@ -12,7 +12,8 @@ class UserVerifier {
     
     // MARK: Constants
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
- 
+    let permitTransferRef = FIRDatabase.database().reference(withPath: "permit-transfer")
+    
     init() {
     }
     
@@ -34,14 +35,14 @@ class UserVerifier {
         try! FIRAuth.auth()!.signOut()
     }
     
-    func addUserWithPermitToDB(email: String, permit: String){
-        let user = createUser(email: email, permit: permit)
+    func addUserWithPermitToDB(email: String, permit: String, abbr: String){
+        let user = createUser(email: email, permit: permit, abbr: abbr)
         let localUserRef = userRef.child(user.email.replacingOccurrences(of: ".", with: ","))
         localUserRef.setValue(user.toAnyObject())
     }
     
-    private func createUser(email: String, permit: String) -> EmailPermit{
-        return EmailPermit(email: email, permit: permit)
+    private func createUser(email: String, permit: String, abbr: String) -> UserPermitInfo{
+        return UserPermitInfo(email: email, permit: permit, abbr: abbr)
     }
 
 }

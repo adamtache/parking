@@ -14,23 +14,24 @@ struct ParkingPass: Equatable {
     
     let name: String
     let ref: FIRDatabaseReference?
+    let abbr: String
     var standardZones: [String]
     var afterHoursZones: [String]
     
-    init(name: String, standardZones: [String], afterHoursZones: [String]) {
-        
+    init(name: String, abbr: String, standardZones: [String], afterHoursZones: [String]) {
         // Initializes pass through parameters.
         self.name = name
+        self.abbr = abbr
         self.ref = nil
         self.standardZones = standardZones
         self.afterHoursZones = afterHoursZones
     }
     
     init(snapshot: FIRDataSnapshot){
-        
         // Initializes pass through Firebase data called 'FIRDataSnapshot'.
         let snapshotValue = snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
+        abbr = snapshotValue["abbr"] as! String
         standardZones = snapshotValue["standardZones"] as! [String]
         afterHoursZones = snapshotValue["afterHoursZones"] as! [String]
         ref = snapshot.ref
@@ -38,10 +39,9 @@ struct ParkingPass: Equatable {
     
     func toAnyObject() -> Any {
         return [
-            
             // Creates data to be stored into Firebase database.
-            
             "name": name,
+            "abbr": abbr,
             "standardZones": standardZones,
             "afterHoursZones": afterHoursZones
         ]

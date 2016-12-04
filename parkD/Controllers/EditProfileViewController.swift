@@ -104,12 +104,10 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 // Get user value
                 let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                print(name)
-                let afterHoursZones = value?["afterHoursZones"] as? [String]
-                print(afterHoursZones)
-                let standardZones = value?["standardZones"] as? [String]
-                print(standardZones)
-                self.permitTypes.append(ParkingPass(name: name, standardZones: standardZones!, afterHoursZones: afterHoursZones!))
+                let afterHoursZones = value?["afterHoursZones"] as! [String]
+                let standardZones = value?["standardZones"] as! [String]
+                let abbr = value?["abbr"] as! String
+                self.permitTypes.append(ParkingPass(name: name, abbr: abbr, standardZones: standardZones, afterHoursZones: afterHoursZones))
                 self.myPermitPicker.reloadAllComponents()
             }
         }) { (error) in
