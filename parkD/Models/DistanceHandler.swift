@@ -21,13 +21,17 @@ class DistanceHandler {
     
     func getDistanceString(locationHandler: LocationHandler, zone: ParkingZone) -> String {
         let rounded = getDistanceAway(locationHandler: locationHandler, zone: zone)
+        return self.getDistanceString(distance: rounded)
+    }
+    
+    func getDistanceString(distance: Double) -> String {
         var distanceText = ""
-        if(rounded<1.0){
-            let feet = rounded*5280
+        if(distance<1.0){
+            let feet = distance*5280
             distanceText = "\(feet) feet"
         }
         else{
-            distanceText = "\(rounded) mi."
+            distanceText = "\(distance) mi."
         }
         return distanceText
     }

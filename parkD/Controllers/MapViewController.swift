@@ -26,7 +26,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var zoneTapped: ParkingZone?
     
     //MARK: Outlets
-    
     @IBOutlet var mapView: GMSMapView!
    
     
@@ -52,42 +51,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     }
     
     func setupCamera() {
-        let location = locationManager.location
-        if (CLLocationManager.authorizationStatus() == .denied || location == nil) {
+        let location = locationHandler.getCurrLocation()
+        if (CLLocationManager.authorizationStatus() == .denied) {
             mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
         } else {
-            mapView.camera = GMSCameraPosition(target:(location?.coordinate)!, zoom:15,bearing:0, viewingAngle:0)
+            mapView.camera = GMSCameraPosition(target:(location.coordinate), zoom:15,bearing:0, viewingAngle:0)
         }
     }
     
     func addZone(zone: ParkingZone) {
         zonesDict[zone.name] = zone
         self.addZoneOverlay(zone: zone)
-    }
-    
-    private func addZoneOverlay(zone: ParkingZone){
-        createZoneOverlay(zone: zone)
-        createZoneMarker(zone: zone)
-    }
-    
-    private func addZonesToDict(zones: [ParkingZone]) {
-        for zone in zones {
-            zonesDict[zone.name] = zone
-        }
-    }
-    
-    private func createZoneOverlay(zone: ParkingZone){
-//        let coordinates = zone.coordinates
-        let coordinates : [Double: Double] = [:]
-        let path = GMSMutablePath()
-        for (lat, long) in coordinates {
-            path.add(CLLocationCoordinate2D(latitude: lat, longitude: long))
-        }
-        let polygon = GMSPolygon(path: path)
-        polygon.fillColor = zone.overlayColor
-        polygon.title = zone.name
-        polygon.isTappable = true
-        polygon.map = mapView
     }
     
     func createZoneOverlay(zones: [ParkingZone]) {
@@ -102,20 +76,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         }
     }
     
-    private func createZoneMarker(zone: ParkingZone) {
-//        let coordinates = zone.coordinates
-        let coordinates : [Double: Double] = [:]
-        let position = CLLocationCoordinate2DMake((zone.markerLat), (zone.markerLong))
-        let marker = GMSMarker(position: position)
-        marker.title = zone.name
-        marker.map = mapView
-    }
-    
     //Setting location manager, user and zone loader so it's the same as with the list view
     func setLocationManager(locationHandler: LocationHandler) {
         self.locationHandler = locationHandler
         self.locationManager = locationHandler.locationManager
-        print("location manager and parking zone loader set for the map")
     }
     
     func setUser(user: User) {
@@ -124,14 +88,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     //GMSMapViewDelegate methods
     func mapView(_ mapView: GMSMapView, didTap overlay: GMSOverlay) {
-        print("you tapped a lot")
         let tapped = overlay as! GMSPolygon
         zoneTapped = zonesDict[tapped.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("you tapped a marker")
         zoneTapped = zonesDict[marker.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
         return true
@@ -144,6 +106,44 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             print("asking again to use location")
         }
         return false
+    }
+    
+    func clearMap() {
+        self.mapView.clear()
+    }
+    
+    private func addZoneOverlay(zone: ParkingZone){
+        createZoneOverlay(zone: zone)
+        createZoneMarker(zone: zone)
+    }
+    
+    private func addZonesToDict(zones: [ParkingZone]) {
+        for zone in zones {
+            zonesDict[zone.name] = zone
+        }
+    }
+    
+    private func createZoneOverlay(zone: ParkingZone){
+        //        let coordinates = zone.coordinates
+        let coordinates : [Double: Double] = [:]
+        let path = GMSMutablePath()
+        for (lat, long) in coordinates {
+            path.add(CLLocationCoordinate2D(latitude: lat, longitude: long))
+        }
+        let polygon = GMSPolygon(path: path)
+        polygon.fillColor = zone.overlayColor
+        polygon.title = zone.name
+        polygon.isTappable = true
+        polygon.map = mapView
+    }
+    
+    private func createZoneMarker(zone: ParkingZone) {
+        //        let coordinates = zone.coordinates
+        let coordinates : [Double: Double] = [:]
+        let position = CLLocationCoordinate2DMake((zone.markerLat), (zone.markerLong))
+        let marker = GMSMarker(position: position)
+        marker.title = zone.name
+        marker.map = mapView
     }
     
     //MARK: Navigation

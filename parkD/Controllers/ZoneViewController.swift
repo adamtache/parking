@@ -33,7 +33,6 @@ class ZoneViewController: UIViewController {
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
         updateInfo()
-        print("Refreshing")
     }
     
     @IBAction func navigateButton(_ sender: Any) {
@@ -63,9 +62,10 @@ class ZoneViewController: UIViewController {
             let percentFull = value?["percentFull"] as! Double
             let markerLat = value?["markerLat"] as! Double
             let markerLong = value?["markerLong"] as! Double
-            print("Percent full: \(percentFull)")
             var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
-            zone.distanceAway = DistanceHandler().getDistanceAway(locationHandler: self.locationHandler!, zone: zone)
+            if(self.locationHandler != nil){
+                zone.distanceAway = DistanceHandler().getDistanceAway(locationHandler: self.locationHandler!, zone: zone)
+            }
             self.updateLabels(name: name, capacity: capacity, percentFull: percentFull)
         }) { (error) in
             print(error.localizedDescription)
@@ -75,8 +75,11 @@ class ZoneViewController: UIViewController {
     private func updateLabels(name: String, capacity: Int, percentFull: Double) {
         nameLabel.text = name
         capacityValLabel.text = "\(capacity)"
-        if(locationHandler != nil){
+        if(self.locationHandler != nil){
             distanceLabel.text = DistanceHandler().getDistanceString(locationHandler: locationHandler!, zone: zone)
+        }
+        else{
+            distanceLabel.text = DistanceHandler().getDistanceString(distance: zone.distanceAway)
         }
         percentFullLabel.text = String(percentFull)
     }

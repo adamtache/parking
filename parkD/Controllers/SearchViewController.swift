@@ -155,15 +155,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     private func updateZones(filtered: [ParkingZone]) {
+        resetItems()
         if(self.closestDistanceActive) {
-            self.sortZones(toSort: self.filtered, closest: true)
+            self.sortZones(toSort: filtered, closest: true)
         }
         self.listController?.items = filtered
         listController?.tableView.reloadData()
         for zone in filtered {
             mapController?.addZone(zone: zone)
         }
-        // TODO: Remove non-filtered zones from map
     }
     
     private func configureControllers(listController: ParkingListTableViewController, mapController: MapViewController) {
@@ -270,7 +270,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         self.listController?.items = []
         self.filtered = []
         self.preSearchItems = []
-        // TODO: Reset map items
+        self.mapController?.clearMap()
     }
     
     //MARK: Navigation
