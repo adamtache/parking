@@ -17,7 +17,7 @@ class ZoneViewController: UIViewController {
     
     //MARK: Vars
     var zone: ParkingZone!
-    var userController : UserController?
+    var locationHandler : LocationHandler?
     
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -55,8 +55,8 @@ class ZoneViewController: UIViewController {
         if (zone != nil) {
             nameLabel.text = zone.name
             capacityValLabel.text = String(zone.capacity)
-            if(userController != nil){
-                distanceLabel.text = DistanceCalculator.getDistanceString(userController: userController!, zone: zone)
+            if(locationHandler != nil){
+                distanceLabel.text = DistanceHandler().getDistanceString(locationHandler: locationHandler!, zone: zone)
             }
             percentFullLabel.text = String(zone.percentFull)
             setupTagController()

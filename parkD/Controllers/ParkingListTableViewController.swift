@@ -20,7 +20,7 @@ class ParkingListTableViewController: UITableViewController {
     var items: [ParkingZone] = []
     var searchActive : Bool = false
     var filtered = [ParkingZone]()
-    var userController : UserController!
+    var locationHandler : LocationHandler!
     var locationManager: CLLocationManager!
     var user: User?
     var current: ParkingZone?
@@ -34,9 +34,9 @@ class ParkingListTableViewController: UITableViewController {
         
     }
     
-    func setLocationManager(userController: UserController) {
-        self.userController = userController
-        self.locationManager = userController.locationManager
+    func setLocationManager(locationHandler: LocationHandler) {
+        self.locationHandler = locationHandler
+        self.locationManager = locationHandler.locationManager
     }
     
     override func viewDidLoad() {
@@ -80,7 +80,7 @@ class ParkingListTableViewController: UITableViewController {
         cell.zone = zone
         cell.nameLabel.text = zone.name
         cell.photoView.image = zone.image
-        cell.distanceLabel.text = DistanceCalculator.getDistanceString(userController: userController, zone: zone)
+        cell.distanceLabel.text = DistanceHandler().getDistanceString(locationHandler: locationHandler, zone: zone)
         return cell
     }
     
@@ -94,7 +94,7 @@ class ParkingListTableViewController: UITableViewController {
             let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)
             let navController = segue.destination as! UINavigationController
             let zoneVC = navController.topViewController as! ZoneViewController
-            zoneVC.userController = userController
+            zoneVC.locationHandler = locationHandler
             zoneVC.zone = self.items[(selectedIndex?.row)!]
         }
     }

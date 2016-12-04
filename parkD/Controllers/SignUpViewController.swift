@@ -106,8 +106,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                let number = value?["number"] as! Int64
-                self.permitTypes.append(self.getPass(name: name, number: number))
+                self.permitTypes.append(self.getPass(name: name))
                 self.permitPicker.reloadAllComponents()
             }) { (error) in
                 print(error.localizedDescription)
@@ -157,8 +156,9 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         performSegue(withIdentifier: signUpClick, sender: nil)
     }
     
-    private func getPass(name: String, number: Int64) -> ParkingPass {
-        return ParkingPass(name: name, number: number)
+    
+    private func getPass(name: String) -> ParkingPass {
+        return ParkingPassLoader().getPass(pass: name)!
     }
 
 }

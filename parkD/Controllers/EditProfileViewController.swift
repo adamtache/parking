@@ -104,17 +104,12 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                let number = value?["number"] as! Int64
-                self.permitTypes.append(self.getPass(name: name, number: number))
+                self.permitTypes.append(ParkingPassLoader().getPass(pass: name)!)
                 self.myPermitPicker.reloadAllComponents()
             }) { (error) in
                 print(error.localizedDescription)
             }
         }
-    }
-    
-    private func getPass(name: String, number: Int64) -> ParkingPass {
-        return ParkingPass(name: name, number: number)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {

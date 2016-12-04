@@ -21,7 +21,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     //MARK: Other Variables
     var zonesDict = [String:ParkingZone]()
     var user: User!
-    var userController: UserController!
+    var locationHandler: LocationHandler!
     var locationManager: CLLocationManager!
     var zoneTapped: ParkingZone?
     
@@ -112,9 +112,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     }
     
     //Setting location manager, user and zone loader so it's the same as with the list view
-    func setLocationManager(userController: UserController) {
-        self.userController = userController
-        self.locationManager = userController.locationManager
+    func setLocationManager(locationHandler: LocationHandler) {
+        self.locationHandler = locationHandler
+        self.locationManager = locationHandler.locationManager
         print("location manager and parking zone loader set for the map")
     }
     

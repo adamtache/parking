@@ -16,7 +16,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var containerB: UIView!
     @IBOutlet weak var containerA: UIView!
     
-    var userController : UserController = UserController()
+    var locationHandler : LocationHandler = LocationHandler()
     var user: User?
     var searchActive : Bool = false
     var items = [ParkingZone]()
@@ -104,7 +104,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        userController.lastLocation = locations.last!
+        locationHandler.lastLocation = locations.last!
     }
     
     private func configureControllers(listController: ParkingListTableViewController, mapController: MapViewController) {
@@ -118,8 +118,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             mapController.setUser(user: defaultUser)
         }
         
-        mapController.setLocationManager(userController: userController)
-        listController.setLocationManager(userController: userController)
+        mapController.setLocationManager(locationHandler: locationHandler)
+        listController.setLocationManager(locationHandler: locationHandler)
         
         addChildViewController(listController)
         listController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +151,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     private func getListController() -> ParkingListTableViewController {
         let listController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: listIdentifier) as! ParkingListTableViewController
         
-        listController.setLocationManager(userController: userController)
+        listController.setLocationManager(locationHandler: locationHandler)
         return listController
     }
     
