@@ -141,10 +141,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return list.contains(where: { $0 == zone })
     }
     
-    private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Int, markerLat: Double, markerLong: Double)-> ParkingZone {
-        let overlayColor = UIColor.blue
-        let image = UIImage(named: "defaultPhoto")!
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: Double(percentFull), overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+    private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Double, markerLat: Double, markerLong: Double)-> ParkingZone {
+        return CreationHandler().getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
     }
     
     private func sortZones(toSort: [ParkingZone], closest: Bool) {
@@ -222,7 +220,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 let name = value?["name"] as? String ?? ""
                 let addedByUser = value?["addedByUser"] as? String ?? ""
                 let capacity = value?["capacity"] as! Int
-                let percentFull = value?["percentFull"] as! Int
+                let percentFull = value?["percentFull"] as! Double
                 let markerLat = value?["markerLat"] as! Double
                 let markerLong = value?["markerLong"] as! Double
                 var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
