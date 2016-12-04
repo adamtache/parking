@@ -154,18 +154,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    private func updateZones(filtered: [ParkingZone]) {
-        resetItems()
-        if(self.closestDistanceActive) {
-            self.sortZones(toSort: filtered, closest: true)
-        }
-        self.listController?.items = filtered
-        listController?.tableView.reloadData()
-        for zone in filtered {
-            mapController?.addZone(zone: zone)
-        }
-    }
-    
     private func configureControllers(listController: ParkingListTableViewController, mapController: MapViewController) {
         if(self.user != nil){
             listController.setUser(user: self.user!)
@@ -259,6 +247,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         }) { (error) in
             print(error.localizedDescription)
+        }
+    }
+    
+    private func updateZones(filtered: [ParkingZone]) {
+        resetItems()
+        if(self.closestDistanceActive) {
+            self.sortZones(toSort: filtered, closest: true)
+        }
+        self.filtered = filtered
+        self.preSearchItems = filtered
+        self.listController?.items = filtered
+        listController?.tableView.reloadData()
+        for zone in filtered {
+            mapController?.addZone(zone: zone)
         }
     }
     
