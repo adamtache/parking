@@ -13,6 +13,12 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
     // MARK: Constants
     let cellIdentifier = "FilterTableViewCell"
     let items : [String] = ["Valid Permit", "Open Now", "Closest Distance"]
+    let validPermit = "Valid Permit"
+    let openNow = "Open Now"
+    let closestDistance = "Closest Distance"
+    let defaultSwitch : [String: Bool] = ["Valid Permit": false, "Open Now" : false, "Closest Distance" : true]
+    
+    // MARK: Constants
     var switches : [String: Bool] = [String: Bool]()
     
     override func viewDidLoad() {
@@ -21,20 +27,13 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        setDefaultSwitches()
-        
         self.tableView.reloadData()
-    }
-    
-    private func setDefaultSwitches() {
-        switches["Valid Permit"] = false
-        switches["Open Now"] = false
-        switches["Closest Distance"] = true
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -45,6 +44,9 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
         cell.delegate = self
         cell.row = indexPath.row
         cell.cellLabel.text = name
+        if(switches[name] == nil) {
+            setDefault(name: name)
+        }
         cell.cellSwitch.setOn(switches[name]!, animated: false)
         return cell
     }
@@ -55,6 +57,10 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
     
     func changeStateTo(isOn: Bool, row: Int) {
         switches["\(row)"] = isOn
+    }
+    
+    private func setDefault(name: String) {
+        switches[name] = defaultSwitch[name] == nil ? true : defaultSwitch[name]
     }
 
 }

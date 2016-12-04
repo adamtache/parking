@@ -33,8 +33,6 @@ class UserModifier{
             let localUserRef = self.userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
             oldUser.permit = newPermit
             localUserRef.setValue(oldUser.toAnyObject())
-            print(oldUser.toAnyObject())
-            print(localUserRef)
         }) { (error) in
             print(error.localizedDescription)
         }

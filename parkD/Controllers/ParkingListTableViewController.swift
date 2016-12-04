@@ -21,11 +21,6 @@ class ParkingListTableViewController: UITableViewController {
     var locationHandler : LocationHandler!
     var locationManager: CLLocationManager!
     var user: User?
-    var current: ParkingZone?
-    var lastSelected = 0
-    
-    // MARK: Outlets
-    @IBOutlet var searchBar: UISearchBar!
     
     // MARK: Actions
     @IBAction func unwindFromZoneViewController(segue: UIStoryboardSegue) {
@@ -40,9 +35,6 @@ class ParkingListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
-        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
@@ -53,12 +45,6 @@ class ParkingListTableViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
-    
-    //Keyboard dismissal
-//    func dismissKeyboard() {
-//        self.view.endEditing(true)
-//    }
-//    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

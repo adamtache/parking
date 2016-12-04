@@ -28,6 +28,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var preSearchItems = [ParkingZone]()
     
     // MARK: Constants
+    let searchToFilter = "SearchToFilter"
     let mapIdentifier = "MapViewController"
     let listIdentifier = "ParkingListTableViewController"
     let profileIdentifier = "ProfileViewController"
@@ -45,7 +46,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func refreshClicked(_ sender: UIBarButtonItem) {
         setupZones()
-        self.listController?.tableView.reloadData()
     }
     
     @IBAction func flipButton(_ sender: UIBarButtonItem) {
@@ -77,7 +77,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             openZoneActive = source.getOpenFilter()
             closestDistanceActive = source.getClosestFilter()
             validZoneActive = source.getValidFilter()
-            sortZones(toSort: items, closest: closestDistanceActive)
+            setupZones()
         }
     }
     
@@ -101,6 +101,71 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         locationHandler.lastLocation = locations.last!
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText == "") {
+            setupZones()
+        }
+        let toFilter = listController == nil ? items : preSearchItems
+        filtered = toFilter.filter({ (item) -> Bool in
+            let tmp: NSString = item.name as NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if(filtered.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        updateZones(filtered: filtered)
+    }
+    
+    private func containsZone(list: [ParkingZone], zone: ParkingZone) -> Bool {
+        return list.contains(where: { $0 == zone })
+    }
+    
+    private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Int, markerLat: Double, markerLong: Double)-> ParkingZone {
+        let overlayColor = UIColor.blue
+        let image = UIImage(named: "defaultPhoto")!
+        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: Double(percentFull), overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
+    }
+    
+    private func sortZones(toSort: [ParkingZone], closest: Bool) {
+        if(closest){
+            filtered = toSort.sorted() { $0.distanceAway < $1.distanceAway }
+            preSearchItems = filtered
+            listController?.items = filtered
+            listController?.tableView.reloadData()
+        }
+    }
+    
+    private func updateZones(filtered: [ParkingZone]) {
+        if(self.closestDistanceActive) {
+            self.sortZones(toSort: self.filtered, closest: true)
+        }
+        self.listController?.items = filtered
+        listController?.tableView.reloadData()
+        for zone in filtered {
+            mapController?.addZone(zone: zone)
+        }
+        // TODO: Remove non-filtered zones from map
     }
     
     private func configureControllers(listController: ParkingListTableViewController, mapController: MapViewController) {
@@ -127,7 +192,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             listController.view.bottomAnchor.constraint(equalTo: containerA.bottomAnchor)
             ])
         listController.didMove(toParentViewController: self)
-
+        
         addChildViewController(mapController)
         mapController.view.translatesAutoresizingMaskIntoConstraints = false
         containerB.addSubview(mapController.view)
@@ -137,21 +202,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             mapController.view.topAnchor.constraint(equalTo: containerB.topAnchor),
             mapController.view.bottomAnchor.constraint(equalTo: containerB.bottomAnchor)
             ])
-        listController.didMove(toParentViewController: self)
+        mapController.didMove(toParentViewController: self)
     }
     
     private func getMapController() -> MapViewController {
         return UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: mapIdentifier) as! MapViewController
     }
-
+    
     private func getListController() -> ParkingListTableViewController {
-        let listController = UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: listIdentifier) as! ParkingListTableViewController
-        
-        listController.setLocationManager(locationHandler: locationHandler)
-        return listController
+        return UIStoryboard(name: mainIdentifier, bundle: nil).instantiateViewController(withIdentifier: listIdentifier) as! ParkingListTableViewController
     }
     
     private func setupZones() {
+        self.resetItems()
         for name in zoneNames {
             zoneRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
@@ -169,25 +232,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 print(error.localizedDescription)
             }
         }
+        self.listController?.tableView.reloadData()
     }
     
     private func addZone(zone: ParkingZone) {
-        self.items.append(zone)
-        
+        if(!containsZone(list: self.items, zone: zone)){
+            self.items.append(zone)
+        }
         userRef.child((user?.email.replacingOccurrences(of: ".", with: ","))!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
             let permit = value?["permit"] as? String
             let pass : ParkingPass = ParkingPassLoader().getPass(pass: permit!)!
-            if(!self.validZoneActive || !self.openZoneActive || pass.isValidZoneRightNow(zone: zone.name)) {
-                if(!self.filtered.contains(where: { $0 == zone })){
+            
+            // TODO: Integrate open now check
+            
+            if((!self.validZoneActive && !self.openZoneActive) || pass.isValidZoneRightNow(zone: zone.name)) {
+                if(!self.containsZone(list: self.filtered, zone: zone)){
                     self.filtered.append(zone)
                     self.preSearchItems.append(zone)
                     self.updateZones(filtered: self.filtered)
-                    if(self.closestDistanceActive) {
-                        self.sortZones(toSort: self.filtered, closest: true)
-                    }
                 }
+            }
+            if(self.closestDistanceActive) {
+                self.sortZones(toSort: self.filtered, closest: true)
+                self.sortZones(toSort: self.preSearchItems, closest: true)
+                self.sortZones(toSort: self.listController!.items, closest: true)
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -198,64 +268,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return User()
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
+    private func resetItems() {
+        self.listController?.items = []
+        self.filtered = []
+        self.preSearchItems = []
+        // TODO: Reset map items
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText == "") {
-            filtered = self.preSearchItems
-            updateZones(filtered: filtered)
-            return
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == searchToFilter) {
+            let filterController = segue.destination as! FilterViewController
+            filterController.setFilters(validFilter: validZoneActive, openFilter: openZoneActive, distanceFilter: closestDistanceActive)
         }
-        let toFilter = listController == nil ? items : preSearchItems
-        filtered = toFilter.filter({ (item) -> Bool in
-            let tmp: NSString = item.name as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        updateZones(filtered: filtered)
-    }
-    
-    private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Int, markerLat: Double, markerLong: Double)-> ParkingZone {
-        let overlayColor = UIColor.blue
-        let image = UIImage(named: "defaultPhoto")!
-        return ParkingZone(name: name, addedByUser: addedByUser, key: "", capacity: capacity, percentFull: Double(percentFull), overlayColor: overlayColor, markerLat: markerLat, markerLong: markerLong, image: image)
-    }
-    
-    private func sortZones(toSort: [ParkingZone], closest: Bool) {
-        if(closest){
-            filtered = toSort.sorted() { $0.distanceAway < $1.distanceAway }
-            preSearchItems = filtered
-            listController?.items = filtered
-            listController?.tableView.reloadData()
-        }
-    }
-    
-    private func updateZones(filtered: [ParkingZone]) {
-        self.listController?.items = filtered
-        listController?.tableView.reloadData()
-        for zone in filtered {
-            mapController?.addZone(zone: zone)
-        }
-        // TODO: Remove non-filtered zones from map
     }
     
 }

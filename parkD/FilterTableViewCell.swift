@@ -17,9 +17,9 @@ class FilterTableViewCell: UITableViewCell {
     
     @IBOutlet var cellSwitch: UISwitch!
     
-    
     @IBAction func changedBoolValue(_ sender: UISwitch) {
         self.delegate?.changeStateTo(isOn: sender.isOn, row: row!)
+        cellSwitch.setOn(sender.isOn, animated: true)
     }
     
 }

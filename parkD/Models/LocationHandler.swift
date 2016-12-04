@@ -29,9 +29,8 @@ class LocationHandler: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if locations.first != nil {
             //No additional code needed currently, but the func needs to remain
-            print("location:: \(location)")
         }
     }
     
@@ -39,12 +38,10 @@ class LocationHandler: NSObject, CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse:
             locationManager.requestLocation()
-            print("Location only when in the app")
         case .authorizedAlways:
             locationManager.requestLocation()
-            print("Location always in use")
         default:
-            print("No location tracking")
+            break
         }
     }
     
