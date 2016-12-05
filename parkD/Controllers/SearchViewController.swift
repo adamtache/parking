@@ -74,6 +74,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBAction func unwindFromFilter(_ sender: UIStoryboardSegue) {
         if (sender.source.isKind(of: FilterViewController.self)) {
             let source:FilterViewController = sender.source as! FilterViewController
+            if (source.destination != nil) {
+                let destination = source.destination
+                print("\(destination)")
+                let lat = destination?.latitude
+                let long = destination?.longitude
+                let location = CLLocation(latitude: lat!, longitude: long!)
+            }
             closestDistanceActive = source.getClosestFilter()
             validZoneActive = source.getValidFilter()
             setupZones()
@@ -302,5 +309,4 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             filterController.setFilters(validFilter: validZoneActive, distanceFilter: closestDistanceActive)
         }
     }
-    
 }
