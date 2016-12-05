@@ -75,7 +75,7 @@ class ParkingListTableViewController: UITableViewController {
             let navController = segue.destination as! UINavigationController
             let zoneVC = navController.topViewController as! ZoneViewController
             zoneVC.locationHandler = locationHandler
-            zoneVC.zone = self.items[(selectedIndex?.row)!]
+            zoneVC.setZone(zone: self.items[(selectedIndex?.row)!])
         }
     }
     

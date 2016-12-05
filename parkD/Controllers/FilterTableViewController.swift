@@ -12,11 +12,11 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
 
     // MARK: Constants
     let cellIdentifier = "FilterTableViewCell"
-    let items : [String] = ["Valid Permit", "Open Now", "Closest Distance"]
+    let items : [String] = ["Valid Permit", "Closest Distance"]
     let validPermit = "Valid Permit"
     let openNow = "Open Now"
     let closestDistance = "Closest Distance"
-    let defaultSwitch : [String: Bool] = ["Valid Permit": false, "Open Now" : false, "Closest Distance" : true]
+    let defaultSwitch : [String: Bool] = ["Valid Permit": false, "Closest Distance" : true]
     
     // MARK: Constants
     var switches : [String: Bool] = [String: Bool]()

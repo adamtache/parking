@@ -357,12 +357,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-AG-Ryn">
-                                            <rect key="frame" x="224" y="35" width="88" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-AG-Ryn">
+                                            <rect key="frame" x="224" y="40" width="88" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="88" id="CTX-iQ-EG2"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -623,7 +623,7 @@
                                 </items>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2r2-pc-4HQ">
-                                <rect key="frame" x="0.0" y="72" width="320" height="101"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="79"/>
                                 <connections>
                                     <segue destination="zMI-ra-U6F" kind="embed" id="FV8-tC-ejM"/>
                                 </connections>
@@ -678,7 +678,7 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="zMI-ra-U6F" customClass="FilterTableViewController" customModule="parkD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="3" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="30" id="xhO-oY-3nx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

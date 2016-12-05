@@ -33,6 +33,7 @@ class ZoneViewController: UIViewController {
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
         updateInfo()
+        getTagTableViewController().refresh()
     }
     
     @IBAction func navigateButton(_ sender: Any) {
@@ -50,6 +51,11 @@ class ZoneViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
         updateInfo()
+        self.setupTagController()
+    }
+    
+    func setZone(zone: ParkingZone) {
+        self.zone = zone
     }
     
     private func updateInfo() {
@@ -88,8 +94,12 @@ class ZoneViewController: UIViewController {
         return CreationHandler().getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
     }
     
+    private func getTagTableViewController() -> TagListTableViewController {
+        return childViewControllers[0] as! TagListTableViewController
+    }
+    
     private func setupTagController() {
-        
+        getTagTableViewController().setZone(zone: zone)
     }
 
 }

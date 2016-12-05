@@ -11,10 +11,12 @@ import Firebase
 
 class TagListTableViewController: UITableViewController {
     
+    // MARK: Constants
     let tagRef = FIRDatabase.database().reference(withPath: "tags")
+    let tagCellIdentifier = "TagTableViewCell"
     
-    var tagNames : [String] = ["Space Available", "Full", "Ticketing", "Towing", "Blocked"]
-    
+    // MARK: Variables
+    var zone : ParkingZone?
     var items : [Tag] = []
     
     override func viewDidLoad() {
@@ -24,8 +26,6 @@ class TagListTableViewController: UITableViewController {
         tableView.dataSource = self
         
         self.tableView.reloadData()
-        
-        getPermitTypes()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,7 +37,7 @@ class TagListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagTableViewCell", for: indexPath) as! TagTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: tagCellIdentifier, for: indexPath) as! TagTableViewCell
         let tag : Tag
         tag = items[(indexPath as NSIndexPath).row]
         cell.cellTag = tag
@@ -47,21 +47,30 @@ class TagListTableViewController: UITableViewController {
         return cell
     }
     
+    func refresh() {
+        getPermitTypes()
+    }
+    
+    func setZone(zone: ParkingZone) {
+        self.zone = zone
+        getPermitTypes()
+    }
+    
     //Get the tags from Firebase
     private func getPermitTypes() {
-        TagLoader().setDefaults()
-        for name in tagNames {
-            tagRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
+        tagRef.child((zone?.name)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                 // Get user value
-                let value = snapshot.value as? NSDictionary
+                let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let agreeScore = value?["agreeScore"] as! Int
                 let disagreeScore = value?["disagreeScore"] as! Int
                 self.items.append(self.getTag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore))
                 self.tableView.reloadData()
-            }) { (error) in
-                print(error.localizedDescription)
             }
+        }) { (error) in
+            print(error.localizedDescription)
         }
     }
     

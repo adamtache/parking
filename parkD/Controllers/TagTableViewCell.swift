@@ -16,15 +16,19 @@ class TagTableViewCell: UITableViewCell {
     @IBOutlet weak var disagreeCountLabel: UILabel!
     
     @IBAction func accurateUp(_ sender: UIButton) {
+        cellTag?.upvoteAgree()
     }
     
     @IBAction func notAccurateUp(_ sender: UIButton) {
+        cellTag?.downvoteAgree()
     }
     
     @IBAction func notAccurateDown(_ sender: UIButton) {
+        cellTag?.downvoteDisagree()
     }
     
     @IBAction func accurateDown(_ sender: UIButton) {
+        cellTag?.upvoteDisagree()
     }
     
     // MARK: Variables

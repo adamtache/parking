@@ -10,9 +10,11 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
+    // MARK: Outlets
     @IBOutlet var uiView: UIView!
+    
+    // MARK: Variables
     var validFilter = false
-    var openFilter = false
     var distanceFilter = false
     
     override func viewDidLoad() {
@@ -24,26 +26,17 @@ class FilterViewController: UIViewController {
         self.getValidCell().cellSwitch.setOn(validFilter, animated: false)
         getFilterTableViewController().switches["Valid Permit"] = validFilter
         
-        self.getOpenCell().cellSwitch.setOn(openFilter, animated: false)
-        getFilterTableViewController().switches["Open Now"] = openFilter
-        
         self.getClosestDistanceCell().cellSwitch.setOn(distanceFilter, animated: false)
         getFilterTableViewController().switches["Closest Distance"] = distanceFilter
-
     }
     
-    func setFilters(validFilter: Bool, openFilter: Bool, distanceFilter: Bool) {
+    func setFilters(validFilter: Bool, distanceFilter: Bool) {
         self.validFilter = validFilter
-        self.openFilter = openFilter
         self.distanceFilter = distanceFilter
     }
     
     func getValidFilter() -> Bool {
         return self.getValidCell().cellSwitch.isOn
-    }
-    
-    func getOpenFilter() -> Bool {
-        return self.getOpenCell().cellSwitch.isOn
     }
     
     func getClosestFilter() -> Bool {
@@ -59,13 +52,8 @@ class FilterViewController: UIViewController {
         return getFilterTableViewController().tableView.cellForRow(at: validPermitRow as IndexPath) as! FilterTableViewCell
     }
     
-    private func getOpenCell() -> FilterTableViewCell {
-        let openNowRow : NSIndexPath = NSIndexPath(row: 1, section: 0)
-        return getFilterTableViewController().tableView.cellForRow(at: openNowRow as IndexPath) as! FilterTableViewCell
-    }
-    
     private func getClosestDistanceCell() -> FilterTableViewCell {
-        let closestDistanceRow : NSIndexPath = NSIndexPath(row: 2, section: 0)
+        let closestDistanceRow : NSIndexPath = NSIndexPath(row: 1, section: 0)
         return getFilterTableViewController().tableView.cellForRow(at: closestDistanceRow as IndexPath) as! FilterTableViewCell
     }
     

@@ -24,7 +24,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var mapActive : Bool = false
     var closestDistanceActive = true
     var validZoneActive = false
-    var openZoneActive = false
     var preSearchItems = [ParkingZone]()
     
     // MARK: Constants
@@ -32,13 +31,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     let mapIdentifier = "MapViewController"
     let listIdentifier = "ParkingListTableViewController"
     let profileIdentifier = "ProfileViewController"
+    let zoneCellToZoneInfo = "zoneCellToZoneInfo"
     let mainIdentifier = "Main"
     let listTitle = "List"
     let mapTitle = "Map"
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
-    let zoneNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     
     // MARK: Outlets
     @IBOutlet weak var containerB: UIView!
@@ -75,7 +74,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBAction func unwindFromFilter(_ sender: UIStoryboardSegue) {
         if (sender.source.isKind(of: FilterViewController.self)) {
             let source:FilterViewController = sender.source as! FilterViewController
-            openZoneActive = source.getOpenFilter()
             closestDistanceActive = source.getClosestFilter()
             validZoneActive = source.getValidFilter()
             setupZones()
@@ -202,49 +200,56 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     private func setupZones() {
         self.resetItems()
-        for name in zoneNames {
-            zoneRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                let value = snapshot.value as? NSDictionary
+        zoneRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get all zones
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+                // Get each zone's values
+                let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let addedByUser = value?["addedByUser"] as? String ?? ""
                 let capacity = value?["capacity"] as! Int
                 let percentFull = value?["percentFull"] as! Double
                 let markerLat = value?["markerLat"] as! Double
                 let markerLong = value?["markerLong"] as! Double
+                
+                // Create zone object with values
                 var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
+                // Calculate current distance from zone
                 zone.distanceAway = DistanceHandler().getDistanceAway(locationHandler: self.locationHandler, zone: zone)
-                self.addZone(zone: zone)
-            }) { (error) in
-                print(error.localizedDescription)
+                
+                // Initialize zone
+                self.initZone(zone: zone)
             }
+        }) { (error) in
+            print(error.localizedDescription)
         }
-        self.listController?.tableView.reloadData()
     }
     
-    private func addZone(zone: ParkingZone) {
+    private func initZone(zone: ParkingZone) {
         if(!containsZone(list: self.items, zone: zone)){
+            // If duplicate zone doesn't already exist, add to items
             self.items.append(zone)
         }
         userRef.child((user?.email.replacingOccurrences(of: ".", with: ","))!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
+            // Get current user values
             let value = snapshot.value as? [String: AnyObject]
-            print(snapshot)
             let abbr = value?["abbr"] as! String
             self.passRef.child(abbr).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                print(snapshot)
+                // Get permit values
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let afterHoursZones = value?["afterHoursZones"] as? [String]
                 let standardZones = value?["standardZones"] as? [String]
                 let abbr = value?["abbr"] as! String
+                
+                // Create pass object with values
                 let pass = ParkingPass(name: name, abbr: abbr, standardZones: standardZones!, afterHoursZones: afterHoursZones!)
                 
-                // TODO: Integrate open now check
-                
-                if((!self.validZoneActive && !self.openZoneActive) || pass.isValidZoneRightNow(zone: zone.name)) {
+                if(!self.validZoneActive || pass.isValidZoneRightNow(zone: zone.name)) {
+                    // Zone validated with current filters
                     if(!self.containsZone(list: self.filtered, zone: zone)){
+                        // If filtered list doesn't contain zone, update zone data with new zone
                         self.filtered.append(zone)
                         self.preSearchItems.append(zone)
                         self.updateZones(filtered: self.filtered)
@@ -265,6 +270,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     private func updateZones(filtered: [ParkingZone]) {
+        // Replaces old filtered zone data with new filtered zones
         resetItems()
         if(self.closestDistanceActive) {
             self.sortZones(toSort: filtered, closest: true)
@@ -293,7 +299,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == searchToFilter) {
             let filterController = segue.destination as! FilterViewController
-            filterController.setFilters(validFilter: validZoneActive, openFilter: openZoneActive, distanceFilter: closestDistanceActive)
+            filterController.setFilters(validFilter: validZoneActive, distanceFilter: closestDistanceActive)
         }
     }
     

@@ -47,18 +47,22 @@ struct Tag {
     
     mutating func upvoteAgree() {
         agreeScore = agreeScore + 1
+        ref?.setValue(toAnyObject())
     }
     
     mutating func downvoteAgree() {
         agreeScore = agreeScore - 1
+        ref?.setValue(toAnyObject())
     }
     
     mutating func upvoteDisagree() {
         disagreeScore = disagreeScore + 1
+        ref?.setValue(toAnyObject())
     }
     
     mutating func downvoteDisagree() {
         disagreeScore = disagreeScore - 1
+        ref?.setValue(toAnyObject())
     }
     
 }
