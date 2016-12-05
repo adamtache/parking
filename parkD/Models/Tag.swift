@@ -26,8 +26,8 @@ struct Tag {
         self.name = name
         self.accurateAgreeScore = accurateAgreeScore
         self.accurateDisagreeScore = accurateDisagreeScore
-        self.notAccurateAgreeScore = accurateAgreeScore
-        self.notAccurateDisagreeScore = accurateDisagreeScore
+        self.notAccurateAgreeScore = notAccurateAgreeScore
+        self.notAccurateDisagreeScore = notAccurateDisagreeScore
         self.key = ""
         self.zoneName = zoneName
         self.ref = nil

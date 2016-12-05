@@ -32,8 +32,8 @@ class ZoneViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func refreshData(_ sender: Any) {
-        updateInfo()
-        getTagTableViewController().refresh()
+        self.updateInfo()
+        self.refreshTags()
     }
     
     @IBAction func navigateButton(_ sender: Any) {
@@ -100,6 +100,10 @@ class ZoneViewController: UIViewController {
     
     private func setupTagController() {
         getTagTableViewController().setZone(zone: zone)
+    }
+    
+    private func refreshTags() {
+        getTagTableViewController().refresh()
     }
 
 }

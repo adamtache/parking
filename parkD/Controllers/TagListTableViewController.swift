@@ -43,25 +43,27 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
         cell.agreeCountLabel.text = "\(getAccurateScore(accurateAgreeScore: tag.accurateAgreeScore, accurateDisagreeScore: tag.accurateDisagreeScore))"
         cell.disagreeCountLabel.text = "\(getNotAccurateScore(notAccurateAgreeScore: tag.notAccurateAgreeScore, notAccurateDisagreeScore: tag.notAccurateDisagreeScore))"
         cell.nameLabel.text = "\(tag.name)"
+        cell.delegate = self
         return cell
     }
     
-    func changedState() {
+    func changedState(){
         self.refresh()
     }
     
     func refresh() {
         self.items = []
-        getPermitTypes()
+        loadTags()
+        self.tableView.reloadData()
     }
     
     func setZone(zone: ParkingZone) {
         self.zone = zone
-        getPermitTypes()
+        loadTags()
     }
     
     //Get the tags from Firebase
-    private func getPermitTypes() {
+    private func loadTags() {
         tagRef.child((zone?.name)!).observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
             while let rest = enumerator.nextObject() as? FIRDataSnapshot {
