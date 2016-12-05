@@ -13,16 +13,23 @@ struct Tag {
     
     let key: String
     let name: String
-    var agreeScore: Int
-    var disagreeScore: Int
+    var accurateAgreeScore: Int
+    var accurateDisagreeScore: Int
+    var notAccurateAgreeScore: Int
+    var notAccurateDisagreeScore: Int
     let ref: FIRDatabaseReference?
+    let tagRef = FIRDatabase.database().reference(withPath: "tags")
+    var zoneName: String
     
-    init(name: String, agreeScore: Int, disagreeScore: Int){
+    init(name: String, accurateAgreeScore: Int, accurateDisagreeScore: Int, notAccurateAgreeScore: Int, notAccurateDisagreeScore: Int, zoneName: String){
         // Initializes comment through parameters.
         self.name = name
-        self.agreeScore = agreeScore
-        self.disagreeScore = disagreeScore
+        self.accurateAgreeScore = accurateAgreeScore
+        self.accurateDisagreeScore = accurateDisagreeScore
+        self.notAccurateAgreeScore = accurateAgreeScore
+        self.notAccurateDisagreeScore = accurateDisagreeScore
         self.key = ""
+        self.zoneName = zoneName
         self.ref = nil
     }
     
@@ -31,8 +38,11 @@ struct Tag {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         name = snapshotValue["name"] as! String
-        agreeScore = snapshotValue["agreeScore"] as! Int
-        disagreeScore = snapshotValue["disagreeScore"] as! Int
+        zoneName = snapshotValue["zoneName"] as! String
+        accurateAgreeScore = snapshotValue["accurateAgreeScore"] as! Int
+        accurateDisagreeScore = snapshotValue["accurateDisagreeScore"] as! Int
+        notAccurateAgreeScore = snapshotValue["notAccurateAgreeScore"] as! Int
+        notAccurateDisagreeScore = snapshotValue["notAccurateDisagreeScore"] as! Int
         ref = snapshot.ref
     }
     
@@ -40,29 +50,36 @@ struct Tag {
         return [
             // Creates data to be stored into Firebase database.
             "name": name,
-            "agreeScore": agreeScore,
-            "disagreeScore": disagreeScore
+            "accurateAgreeScore": accurateAgreeScore,
+            "accurateDisagreeScore": accurateDisagreeScore,
+            "notAccurateAgreeScore": notAccurateAgreeScore,
+            "notAccurateDisagreeScore": notAccurateDisagreeScore,
+            "zoneName": zoneName
         ]
     }
     
-    mutating func upvoteAgree() {
-        agreeScore = agreeScore + 1
-        ref?.setValue(toAnyObject())
+    mutating func clickAccurateUp() {
+        accurateAgreeScore = accurateAgreeScore + 1
+        self.updateDB()
     }
     
-    mutating func downvoteAgree() {
-        agreeScore = agreeScore - 1
-        ref?.setValue(toAnyObject())
+    mutating func clickNotAccurateUp() {
+        notAccurateAgreeScore = notAccurateAgreeScore + 1
+        self.updateDB()
     }
     
-    mutating func upvoteDisagree() {
-        disagreeScore = disagreeScore + 1
-        ref?.setValue(toAnyObject())
+    mutating func clickAccurateDown() {
+        accurateDisagreeScore = accurateDisagreeScore + 1
+        self.updateDB()
     }
     
-    mutating func downvoteDisagree() {
-        disagreeScore = disagreeScore - 1
-        ref?.setValue(toAnyObject())
+    mutating func clickNotAccurateDown() {
+        notAccurateDisagreeScore = notAccurateDisagreeScore + 1
+        self.updateDB()
+    }
+    
+    private func updateDB() {
+        tagRef.child(zoneName).child(name).setValue(toAnyObject())
     }
     
 }

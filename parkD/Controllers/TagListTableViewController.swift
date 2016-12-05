@@ -9,12 +9,11 @@
 import UIKit
 import Firebase
 
-class TagListTableViewController: UITableViewController {
+class TagListTableViewController: UITableViewController, TagVoteChanged {
     
     // MARK: Constants
     let tagRef = FIRDatabase.database().reference(withPath: "tags")
     let tagCellIdentifier = "TagTableViewCell"
-    
     // MARK: Variables
     var zone : ParkingZone?
     var items : [Tag] = []
@@ -38,16 +37,21 @@ class TagListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tagCellIdentifier, for: indexPath) as! TagTableViewCell
-        let tag : Tag
-        tag = items[(indexPath as NSIndexPath).row]
+        var tag : Tag = items[(indexPath as NSIndexPath).row]
         cell.cellTag = tag
-        cell.agreeCountLabel.text = "\(tag.agreeScore)"
-        cell.disagreeCountLabel.text = "\(tag.disagreeScore)"
+        tag.zoneName = (zone?.name)!
+        cell.agreeCountLabel.text = "\(getAccurateScore(accurateAgreeScore: tag.accurateAgreeScore, accurateDisagreeScore: tag.accurateDisagreeScore))"
+        cell.disagreeCountLabel.text = "\(getNotAccurateScore(notAccurateAgreeScore: tag.notAccurateAgreeScore, notAccurateDisagreeScore: tag.notAccurateDisagreeScore))"
         cell.nameLabel.text = "\(tag.name)"
         return cell
     }
     
+    func changedState() {
+        self.refresh()
+    }
+    
     func refresh() {
+        self.items = []
         getPermitTypes()
     }
     
@@ -64,9 +68,12 @@ class TagListTableViewController: UITableViewController {
                 // Get user value
                 let value = rest.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
-                let agreeScore = value?["agreeScore"] as! Int
-                let disagreeScore = value?["disagreeScore"] as! Int
-                self.items.append(self.getTag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore))
+                let accurateAgreeScore = value?["accurateAgreeScore"] as! Int
+                let accurateDisagreeScore = value?["accurateDisagreeScore"] as! Int
+                let notAccurateAgreeScore = value?["notAccurateAgreeScore"] as! Int
+                let notAccurateDisagreeScore = value?["notAccurateDisagreeScore"] as! Int
+                let zoneName = value?["zoneName"] as! String
+                self.items.append(self.getTag(name: name, accurateAgreeScore: accurateAgreeScore, accurateDisagreeScore: accurateDisagreeScore, notAccurateAgreeScore: notAccurateAgreeScore, notAccurateDisagreeScore: notAccurateDisagreeScore, zoneName: zoneName))
                 self.tableView.reloadData()
             }
         }) { (error) in
@@ -74,8 +81,16 @@ class TagListTableViewController: UITableViewController {
         }
     }
     
-    private func getTag(name: String, agreeScore: Int, disagreeScore: Int) -> Tag {
-        return Tag(name: name, agreeScore: agreeScore, disagreeScore: disagreeScore)
+    private func getAccurateScore(accurateAgreeScore: Int, accurateDisagreeScore: Int) -> Int {
+        return abs(accurateAgreeScore) - abs(accurateDisagreeScore)
+    }
+    
+    private func getNotAccurateScore(notAccurateAgreeScore: Int, notAccurateDisagreeScore: Int) -> Int {
+        return abs(notAccurateAgreeScore) - abs(notAccurateDisagreeScore)
+    }
+    
+    private func getTag(name: String, accurateAgreeScore: Int, accurateDisagreeScore: Int, notAccurateAgreeScore: Int, notAccurateDisagreeScore: Int, zoneName: String) -> Tag {
+        return Tag(name: name, accurateAgreeScore: accurateAgreeScore, accurateDisagreeScore: accurateDisagreeScore, notAccurateAgreeScore: notAccurateAgreeScore, notAccurateDisagreeScore: notAccurateDisagreeScore, zoneName: zoneName)
     }
     
 }

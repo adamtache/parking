@@ -10,57 +10,34 @@ import UIKit
 
 class TagTableViewCell: UITableViewCell {
     
+    // MARK: Variables
+    var cellTag: Tag?
+    var delegate: TagVoteChanged?
+    
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var agreeCountLabel: UILabel!
     @IBOutlet weak var disagreeCountLabel: UILabel!
     
-    @IBAction func accurateUp(_ sender: UIButton) {
-        cellTag?.upvoteAgree()
-    }
-    
-    @IBAction func notAccurateUp(_ sender: UIButton) {
-        cellTag?.downvoteAgree()
-    }
-    
-    @IBAction func notAccurateDown(_ sender: UIButton) {
-        cellTag?.downvoteDisagree()
-    }
-    
-    @IBAction func accurateDown(_ sender: UIButton) {
-        cellTag?.upvoteDisagree()
-    }
-    
-    // MARK: Variables
-    var cellTag: Tag?
-    
     // MARK: Actions
-    @IBAction func clickAgreeUp(_ sender: Any) {
-        cellTag?.upvoteAgree()
-        agreeCountLabel.text = getAgreeScore()
+    @IBAction func clickAgreeUp(_ sender: UIButton) {
+        cellTag?.clickAccurateUp()
+        self.delegate?.changedState()
     }
     
-    @IBAction func clickDisagreeUp(_ sender: Any) {
-        cellTag?.upvoteDisagree()
-        disagreeCountLabel.text = getDisagreeScore()
+    @IBAction func clickDisagreeUp(_ sender: UIButton) {
+        cellTag?.clickNotAccurateUp()
+        self.delegate?.changedState()
     }
     
-    @IBAction func clickDisagreeDown(_ sender: Any) {
-        cellTag?.downvoteDisagree()
-        disagreeCountLabel.text = getDisagreeScore()
+    @IBAction func clickDisagreeDown(_ sender: UIButton) {
+        cellTag?.clickNotAccurateDown()
+        self.delegate?.changedState()
     }
     
-    @IBAction func clickAgreeDown(_ sender: Any) {
-        cellTag?.downvoteAgree()
-        agreeCountLabel.text = getAgreeScore()
-    }
-    
-    private func getAgreeScore() -> String{
-        return "\(cellTag!.agreeScore)"
-    }
-    
-    private func getDisagreeScore() -> String{
-        return "\(cellTag!.disagreeScore)"
+    @IBAction func clickAgreeDown(_ sender: UIButton) {
+        cellTag?.clickAccurateDown()
+        self.delegate?.changedState()
     }
 
 }

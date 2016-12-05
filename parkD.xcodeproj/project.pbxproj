@@ -33,6 +33,7 @@
 		6686D7811DDE9EBF007D7CD3 /* UserModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */; };
 		66881A961DF4898A0038A774 /* CreationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66881A951DF4898A0038A774 /* CreationHandler.swift */; };
 		66881A9C1DF4D90C0038A774 /* TagLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66881A9B1DF4D90C0038A774 /* TagLoader.swift */; };
+		66881A9E1DF4FF0C0038A774 /* TagVoteChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66881A9D1DF4FF0C0038A774 /* TagVoteChanged.swift */; };
 		66BA51681DDD9F6A0024E6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66BA51671DDD9F6A0024E6CC /* Main.storyboard */; };
 		66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BA516B1DDDA9290024E6CC /* MapKit.framework */; };
 		66CDF8901DF011C00092BF4F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF88F1DF011C00092BF4F /* SearchViewController.swift */; };
@@ -102,6 +103,7 @@
 		6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModifier.swift; sourceTree = "<group>"; };
 		66881A951DF4898A0038A774 /* CreationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationHandler.swift; sourceTree = "<group>"; };
 		66881A9B1DF4D90C0038A774 /* TagLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLoader.swift; sourceTree = "<group>"; };
+		66881A9D1DF4FF0C0038A774 /* TagVoteChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagVoteChanged.swift; sourceTree = "<group>"; };
 		66BA51671DDD9F6A0024E6CC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66BA516B1DDDA9290024E6CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		66CDF88F1DF011C00092BF4F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				66405D411DF3DFE500FB58F0 /* SwitchChangedDelegate.swift */,
+				66881A9D1DF4FF0C0038A774 /* TagVoteChanged.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			files = (
 				66D1E8EB1DD2CC72004446AC /* LoginViewController.swift in Sources */,
 				66CDF8951DF0C5C30092BF4F /* FilterTableViewController.swift in Sources */,
+				66881A9E1DF4FF0C0038A774 /* TagVoteChanged.swift in Sources */,
 				66D1E8E91DD2C797004446AC /* ParkingZone.swift in Sources */,
 				66137D4D1DDD5FE100B99C50 /* TagListTableViewController.swift in Sources */,
 				667141061DD326E80012D6DC /* ParkingTableViewCell.swift in Sources */,
