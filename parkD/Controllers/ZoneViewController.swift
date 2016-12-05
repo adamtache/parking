@@ -70,7 +70,7 @@ class ZoneViewController: UIViewController {
             let markerLong = value?["markerLong"] as! Double
             var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
             if(self.locationHandler != nil){
-                zone.distanceAway = DistanceHandler().getDistanceAway(locationHandler: self.locationHandler!, zone: zone)
+                zone.distanceAway = DistanceHandler().getDistanceAway(source: self.locationHandler!.getCurrLocation(), destination: zone)
             }
             self.updateLabels(name: name, capacity: capacity, percentFull: percentFull)
         }) { (error) in
@@ -82,7 +82,7 @@ class ZoneViewController: UIViewController {
         nameLabel.text = name
         capacityValLabel.text = "\(capacity)"
         if(self.locationHandler != nil){
-            distanceLabel.text = DistanceHandler().getDistanceString(locationHandler: locationHandler!, zone: zone)
+            distanceLabel.text = DistanceHandler().getDistanceString(source: self.locationHandler!.getCurrLocation(), zone: zone)
         }
         else{
             distanceLabel.text = DistanceHandler().getDistanceString(distance: zone.distanceAway)

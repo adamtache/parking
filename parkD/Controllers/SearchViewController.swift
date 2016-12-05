@@ -80,7 +80,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 print("\(destination)")
                 let lat = destination?.latitude
                 let long = destination?.longitude
-                let location = CLLocation(latitude: lat!, longitude: long!)
+                self.destination = CLLocation(latitude: lat!, longitude: long!)
             }
             closestDistanceActive = source.getClosestFilter()
             validZoneActive = source.getValidFilter()
@@ -224,7 +224,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 // Create zone object with values
                 var zone = self.getZone(name: name, addedByUser: addedByUser, capacity: capacity, percentFull: percentFull, markerLat: markerLat, markerLong: markerLong)
                 // Calculate current distance from zone
-                zone.distanceAway = DistanceHandler().getDistanceAway(locationHandler: self.locationHandler, zone: zone)
+                let source = self.destination == nil ? self.locationHandler.getCurrLocation() : self.destination
+                zone.distanceAway = DistanceHandler().getDistanceAway(source: source!, destination: zone)
                 
                 // Initialize zone
                 self.initZone(zone: zone)

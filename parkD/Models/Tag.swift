@@ -77,18 +77,6 @@ struct Tag {
     }
     
     func clickAccurateUp() {
-        // Increase accurate agree score by 1
-        let localTagRef = tagRef.child(zoneName).child(name)
-        let accurateTagRef = localTagRef.child(self.accurateAgreeScoreRef)
-        localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? [String: AnyObject]
-            let count = value?[self.accurateAgreeScoreRef] as! Int
-            accurateTagRef.setValue(count + 1)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard user != nil else { return }
@@ -96,19 +84,21 @@ struct Tag {
             self.accurateVotersFBRef.child(self.name).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? [String: AnyObject]
                 let accurateVoters = value?[self.zoneName] as! NSDictionary
-                if(accurateVoters[userUID!] != nil) {
-                    // If userUID lookup is not nil, user has already voted
+                if(accurateVoters[userUID!] == nil) {
+                    // If userUID lookup is nil, user has not already voted
+                    let localTagRef = self.tagRef.child(self.zoneName).child(self.name)
+                    let accurateTagRef = localTagRef.child(self.accurateAgreeScoreRef)
                     localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        // Reverse score update due to existing vote
+                        // Increase count by 1 vote
                         let value = snapshot.value as? [String: AnyObject]
                         let count = value?[self.accurateAgreeScoreRef] as! Int
-                        accurateTagRef.setValue(count - 1)
-                        return
+                        accurateTagRef.setValue(count + 1)
+                        self.accurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
+                        self.callDelegate()
                     }) { (error) in
                         print(error.localizedDescription)
                     }
                 }
-                self.accurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
             }) { (error) in
                 print(error.localizedDescription)
             }
@@ -116,18 +106,6 @@ struct Tag {
     }
     
     func clickNotAccurateUp() {
-        // Increase not accurate agree score by 1
-        let localTagRef = tagRef.child(zoneName).child(name)
-        let notAccurateTagRef = localTagRef.child(self.notAccurateAgreeScoreRef)
-        localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? [String: AnyObject]
-            let count = value?[self.notAccurateAgreeScoreRef] as! Int
-            notAccurateTagRef.setValue(count + 1)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard user != nil else { return }
@@ -135,20 +113,21 @@ struct Tag {
             self.notAccurateVotersFBRef.child(self.name).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? [String: AnyObject]
                 let notAccurateVoters = value?[self.zoneName] as! NSDictionary
-                if(notAccurateVoters[userUID!] != nil) {
-                    // If userUID lookup is not nil, user has already voted
+                if(notAccurateVoters[userUID!] == nil) {
+                    // If userUID lookup is nil, user has not already voted
+                    let localTagRef = self.tagRef.child(self.zoneName).child(self.name)
+                    let notAccurateTagRef = localTagRef.child(self.notAccurateAgreeScoreRef)
                     localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        // Reverse score update due to existing vote
+                        // Increase count by 1 vote
                         let value = snapshot.value as? [String: AnyObject]
                         let count = value?[self.notAccurateAgreeScoreRef] as! Int
-                        notAccurateTagRef.setValue(count - 1)
-                        return
+                        notAccurateTagRef.setValue(count + 1)
+                        self.notAccurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
+                        self.callDelegate()
                     }) { (error) in
                         print(error.localizedDescription)
                     }
                 }
-                self.notAccurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
-                self.delegate?.changedState()
             }) { (error) in
                 print(error.localizedDescription)
             }
@@ -156,18 +135,6 @@ struct Tag {
     }
     
     func clickAccurateDown() {
-        // Increase accurate disagree score by 1
-        let localTagRef = tagRef.child(zoneName).child(name)
-        let accurateTagRef = localTagRef.child(self.accurateDisagreeScoreRef)
-        localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? [String: AnyObject]
-            let count = value?[self.accurateDisagreeScoreRef] as! Int
-            accurateTagRef.setValue(count + 1)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard user != nil else { return }
@@ -175,20 +142,21 @@ struct Tag {
             self.accurateVotersFBRef.child(self.name).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? [String: AnyObject]
                 let accurateVoters = value?[self.zoneName] as! NSDictionary
-                if(accurateVoters[userUID!] != nil) {
-                    // If userUID lookup is not nil, user has already voted
+                if(accurateVoters[userUID!] == nil) {
+                    // If userUID lookup is nil, user has not already voted
+                    let localTagRef = self.tagRef.child(self.zoneName).child(self.name)
+                    let accurateTagRef = localTagRef.child(self.accurateDisagreeScoreRef)
                     localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        // Reverse score update due to existing vote
+                        // Increase count by 1 vote
                         let value = snapshot.value as? [String: AnyObject]
                         let count = value?[self.accurateDisagreeScoreRef] as! Int
-                        accurateTagRef.setValue(count - 1)
-                        return
+                        accurateTagRef.setValue(count + 1)
+                        self.accurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
+                        self.callDelegate()
                     }) { (error) in
                         print(error.localizedDescription)
                     }
                 }
-                self.accurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
-                self.delegate?.changedState()
             }) { (error) in
                 print(error.localizedDescription)
             }
@@ -196,18 +164,6 @@ struct Tag {
     }
     
     func clickNotAccurateDown() {
-        // Increase not accurate disagree score by 1
-        let localTagRef = tagRef.child(zoneName).child(name)
-        let notAccurateTagRef = localTagRef.child(self.notAccurateDisagreeScoreRef)
-        localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? [String: AnyObject]
-            let count = value?[self.notAccurateDisagreeScoreRef] as! Int
-            notAccurateTagRef.setValue(count + 1)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
         // Authenticate user via Firebase.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard user != nil else { return }
@@ -215,24 +171,29 @@ struct Tag {
             self.notAccurateVotersFBRef.child(self.name).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? [String: AnyObject]
                 let notAccurateVoters = value?[self.zoneName] as! NSDictionary
-                if(notAccurateVoters[userUID!] != nil) {
-                    // If userUID lookup is not nil, user has already voted
+                if(notAccurateVoters[userUID!] == nil) {
+                    // If userUID lookup is nil, user has not already voted
+                    let localTagRef = self.tagRef.child(self.zoneName).child(self.name)
+                    let notAccurateTagRef = localTagRef.child(self.notAccurateDisagreeScoreRef)
                     localTagRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                        // Reverse score update due to existing vote
+                        // Increase count by 1 vote
                         let value = snapshot.value as? [String: AnyObject]
                         let count = value?[self.notAccurateDisagreeScoreRef] as! Int
-                        notAccurateTagRef.setValue(count - 1)
-                        return
+                        notAccurateTagRef.setValue(count + 1)
+                        self.notAccurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
+                        self.callDelegate()
                     }) { (error) in
                         print(error.localizedDescription)
                     }
                 }
-                self.notAccurateVotersFBRef.child(self.name).child(self.zoneName).child(userUID!).setValue(userUID)
-                self.delegate?.changedState()
             }) { (error) in
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func callDelegate() {
+        self.delegate?.changedState()
     }
     
 }

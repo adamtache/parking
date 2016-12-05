@@ -60,7 +60,7 @@ class ParkingListTableViewController: UITableViewController {
         cell.zone = zone
         cell.nameLabel.text = zone.name
         cell.photoView.image = zone.image
-        cell.distanceLabel.text = DistanceHandler().getDistanceString(locationHandler: locationHandler, zone: zone)
+        cell.distanceLabel.text = DistanceHandler().getDistanceString(source: locationHandler.getCurrLocation(), zone: zone)
         return cell
     }
     
