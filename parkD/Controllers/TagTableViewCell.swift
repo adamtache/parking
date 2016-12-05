@@ -12,7 +12,6 @@ class TagTableViewCell: UITableViewCell {
     
     // MARK: Variables
     var cellTag: Tag?
-    var delegate: TagVoteChanged?
     
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -22,22 +21,18 @@ class TagTableViewCell: UITableViewCell {
     // MARK: Actions
     @IBAction func clickAgreeUp(_ sender: UIButton) {
         cellTag?.clickAccurateUp()
-        self.delegate?.changedState()
     }
     
     @IBAction func clickDisagreeUp(_ sender: UIButton) {
         cellTag?.clickNotAccurateUp()
-        self.delegate?.changedState()
     }
     
     @IBAction func clickDisagreeDown(_ sender: UIButton) {
         cellTag?.clickNotAccurateDown()
-        self.delegate?.changedState()
     }
     
     @IBAction func clickAgreeDown(_ sender: UIButton) {
         cellTag?.clickAccurateDown()
-        self.delegate?.changedState()
     }
 
 }

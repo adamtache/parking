@@ -25,6 +25,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var closestDistanceActive = true
     var validZoneActive = false
     var preSearchItems = [ParkingZone]()
+    var destination: CLLocation?
     
     // MARK: Constants
     let searchToFilter = "SearchToFilter"
