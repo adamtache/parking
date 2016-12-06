@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageUI
 import MapKit
 
 class ZoneViewController: UIViewController {
@@ -96,6 +97,13 @@ class ZoneViewController: UIViewController {
             distanceLabel.text = DistanceHandler().getDistanceString(distance: zone.distanceAway)
         }
         percentFullLabel.text = String(percentFull)
+        // Reference to an image file in Firebase Storage
+        let storage = FIRStorage.storage()
+        let reference = storage.reference(withPath: name + ".jpg")
+        
+        // Load the image using SDWebImage
+        imageLabel.sd_setImage(with: reference)
+        
     }
     
     private func getZone(name: String, addedByUser: String, capacity: Int, percentFull: Double, markerLat: Double, markerLong: Double)-> ParkingZone {

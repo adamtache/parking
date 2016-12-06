@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageUI
 import CoreLocation
 
 class ParkingListTableViewController: UITableViewController {
@@ -59,7 +60,13 @@ class ParkingListTableViewController: UITableViewController {
         let zone : ParkingZone = items[(indexPath as NSIndexPath).row]
         cell.zone = zone
         cell.nameLabel.text = zone.name
-        cell.photoView.image = zone.image
+        //cell.photoView.image = zone.image
+        // Reference to an image file in Firebase Storage
+        let storage = FIRStorage.storage()
+        let reference = storage.reference(withPath: zone.name + ".jpg")
+        
+        // Load the image using SDWebImage
+        cell.photoView.sd_setImage(with: reference)
         cell.distanceLabel.text = DistanceHandler().getDistanceString(source: locationHandler.getCurrLocation(), zone: zone)
         return cell
     }
