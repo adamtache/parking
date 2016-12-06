@@ -27,6 +27,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var preSearchItems = [ParkingZone]()
     var destination: CLLocation?
     var twoDdestination : CLLocationCoordinate2D?
+    var button : UIBarButtonItem?
     
     // MARK: Constants
     let searchToFilter = "SearchToFilter"
@@ -48,7 +49,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func refreshClicked(_ sender: UIBarButtonItem) {
+        self.button = sender
+        self.button?.isEnabled = false
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchViewController.enableButton), userInfo: nil, repeats: false)
         setupZones()
+    }
+    
+    func enableButton() {
+        self.button?.isEnabled = true
     }
     
     @IBAction func flipButton(_ sender: UIBarButtonItem) {
@@ -79,7 +87,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             let source:FilterViewController = sender.source as! FilterViewController
             if (source.data.destination != nil) {
                 let destination = source.data.destination
-                print("\(destination)")
                 let lat = destination?.latitude
                 let long = destination?.longitude
                 self.twoDdestination = destination

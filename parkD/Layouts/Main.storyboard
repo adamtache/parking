@@ -31,19 +31,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTS-yw-d3T">
-                                <rect key="frame" x="20" y="318.5" width="335" height="30"/>
+                                <rect key="frame" x="20" y="319" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVR-ew-Rdq">
-                                <rect key="frame" x="20" y="280.5" width="335" height="30"/>
+                                <rect key="frame" x="20" y="281" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-kH-Fzv">
-                                <rect key="frame" x="82" y="356.5" width="68" height="50"/>
+                                <rect key="frame" x="82" y="357" width="68" height="50"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="EFE-N5-iSS"/>
@@ -79,7 +79,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDF-1d-uLg">
-                                <rect key="frame" x="158" y="356.5" width="158" height="50"/>
+                                <rect key="frame" x="158" y="357" width="158" height="50"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" red="0.56862745098039214" green="0.30980392156862746" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
@@ -530,7 +530,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ORw-ZU-a63">
                             <connections>
-                                <action selector="refreshData:" destination="kvT-3D-r2S" id="wUm-0y-aj9"/>
+                                <action selector="refreshData:" destination="kvT-3D-r2S" id="2ce-Tw-suv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

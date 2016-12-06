@@ -20,6 +20,7 @@ class FilterTableViewController: UITableViewController, SwitchChangedDelegate {
     
     // MARK: Constants
     var switches : [String: Bool] = [String: Bool]()
+    var button : UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()

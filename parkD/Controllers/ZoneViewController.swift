@@ -17,6 +17,7 @@ class ZoneViewController: UIViewController {
     
     //MARK: Vars
     var zone: ParkingZone!
+    var button: UIBarButtonItem?
     var locationHandler : LocationHandler?
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     
@@ -31,9 +32,16 @@ class ZoneViewController: UIViewController {
     @IBOutlet weak var percentFullLabel: UILabel!
 
     // MARK: Actions
-    @IBAction func refreshData(_ sender: Any) {
+    @IBAction func refreshData(_ sender: UIBarButtonItem) {
+        self.button = sender
+        self.button?.isEnabled = false
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchViewController.enableButton), userInfo: nil, repeats: false)
         self.updateInfo()
         self.refreshTags()
+    }
+    
+    func enableButton() {
+        self.button?.isEnabled = true
     }
     
     @IBAction func navigateButton(_ sender: Any) {
