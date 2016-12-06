@@ -67,7 +67,8 @@ class ParkingListTableViewController: UITableViewController {
         
         // Load the image using SDWebImage
         cell.photoView.sd_setImage(with: reference)
-        cell.distanceLabel.text = DistanceHandler().getDistanceString(source: locationHandler.getCurrLocation(), zone: zone)
+        cell.distanceLabel.text = "\(zone.distanceAway) mi"
+//        cell.distanceLabel.text = DistanceHandler().getDistanceString(source: locationHandler.getCurrLocation(), zone: zone)
         return cell
     }
     
