@@ -52,7 +52,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func setupCamera() {
         let location = locationHandler.getCurrLocation()
-        if (CLLocationManager.authorizationStatus() == .denied) {
+        if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() != .authorizedAlways) {
             mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
         } else {
             mapView.camera = GMSCameraPosition(target:(location.coordinate), zoom:15,bearing:0, viewingAngle:0)
@@ -93,10 +94,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         performSegue(withIdentifier: mapToZone, sender: self)
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        zoneTapped = zonesDict[marker.title!]
+//        performSegue(withIdentifier: mapToZone, sender: self)
+//        return true
+//    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        print("test")
         zoneTapped = zonesDict[marker.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
-        return true
     }
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
