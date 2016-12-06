@@ -12,6 +12,7 @@ class UserModifier{
     
     // MARK: Constants
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
+    let abbrRef = FIRDatabase.database().reference(withPath: "abbr")
     
     init() {
     }
@@ -23,7 +24,6 @@ class UserModifier{
     
     func changePermit(email: String, newPermit: String) {
         let user = FIRAuth.auth()?.currentUser
-        
         userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? [String: AnyObject]
@@ -32,7 +32,14 @@ class UserModifier{
             var oldUser = self.createUser(email: email, permit: permit!, abbr: abbr)
             let localUserRef = self.userRef.child((user?.email?.replacingOccurrences(of: ".", with: ","))!)
             oldUser.permit = newPermit
-            localUserRef.setValue(oldUser.toAnyObject())
+            self.abbrRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? [String: AnyObject]
+                let abbr = value?[newPermit] as! String
+                oldUser.abbr = abbr
+                localUserRef.setValue(oldUser.toAnyObject())
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         }) { (error) in
             print(error.localizedDescription)
         }

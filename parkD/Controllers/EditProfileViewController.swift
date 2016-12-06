@@ -12,7 +12,6 @@ import FirebaseDatabase
 class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //Mark: Constants
-    let passNames : [String] = ["Blue", "IM", "Green", "Bryan Research Garage", "PG4 - Visitor"]
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
     let missingFieldsTitle      = "Missing password fields"
     let missingFieldsMessage    = "You need to enter and re-enter your new password"

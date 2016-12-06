@@ -12,9 +12,13 @@ import FirebaseDatabase
 
 struct ParkingPass: Equatable {
     
+    // MARK: Constants
     let name: String
     let ref: FIRDatabaseReference?
     let abbr: String
+    let ALL = "All"
+    
+    // MARK: Variables
     var standardZones: [String]
     var afterHoursZones: [String]
     
@@ -49,9 +53,21 @@ struct ParkingPass: Equatable {
     
     func isValidZoneRightNow(zone: String) -> Bool {
         if(self.isAfterHours()){
+            if(afterHoursZones.count > 0){
+                if(afterHoursZones[0] == ALL) {
+                    return true
+                }
+            }
             return afterHoursZones.contains(zone)
         }
-        return standardZones.contains(zone)
+        else{
+            if(standardZones.count > 0){
+                if(standardZones[0] == ALL) {
+                    return true
+                }
+            }
+            return standardZones.contains(zone)
+        }
     }
     
     static func == (lhs: ParkingPass, rhs: ParkingPass) -> Bool {
@@ -62,7 +78,7 @@ struct ParkingPass: Equatable {
         let now = TimeHandler.getDate() as Date
         let sevenam_today = TimeHandler.dateAt(hours: 7, minutes: 0)
         let fivepm_today = TimeHandler.dateAt(hours: 17, minutes: 0)
-        return now >= sevenam_today && now < fivepm_today
+        return now <= sevenam_today || now >= fivepm_today
     }
     
 }
