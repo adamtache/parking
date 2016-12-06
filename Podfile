@@ -8,4 +8,5 @@ target 'parkD' do
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
   pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage', '~> 0.6'
 end
