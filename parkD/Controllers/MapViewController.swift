@@ -94,10 +94,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         performSegue(withIdentifier: mapToZone, sender: self)
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        zoneTapped = zonesDict[marker.title!]
+//        performSegue(withIdentifier: mapToZone, sender: self)
+//        return true
+//    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        print("test")
         zoneTapped = zonesDict[marker.title!]
         performSegue(withIdentifier: mapToZone, sender: self)
-        return true
     }
     
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
