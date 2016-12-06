@@ -40,6 +40,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     let userRef = FIRDatabase.database().reference(withPath: "user-info")
     let passRef = FIRDatabase.database().reference(withPath: "parking-passes")
+    let guestEmail = "guest@guest.com"
     
     // MARK: Outlets
     @IBOutlet weak var containerB: UIView!
@@ -242,7 +243,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             // If duplicate zone doesn't already exist, add to items
             self.items.append(zone)
         }
-        userRef.child((user?.email.replacingOccurrences(of: ".", with: ","))!).observeSingleEvent(of: .value, with: { (snapshot) in
+        let userEmail = (user == nil) ? guestEmail : user?.email
+        userRef.child((userEmail!.replacingOccurrences(of: ".", with: ","))).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get current user values
             let value = snapshot.value as? [String: AnyObject]
             let abbr = value?["abbr"] as! String
