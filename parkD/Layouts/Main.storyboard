@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AZo-je-wAR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,19 +31,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTS-yw-d3T">
-                                <rect key="frame" x="20" y="318.5" width="335" height="30"/>
+                                <rect key="frame" x="20" y="319" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVR-ew-Rdq">
-                                <rect key="frame" x="20" y="280.5" width="335" height="30"/>
+                                <rect key="frame" x="20" y="281" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-kH-Fzv">
-                                <rect key="frame" x="82" y="356.5" width="68" height="50"/>
+                                <rect key="frame" x="82" y="357" width="68" height="50"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="EFE-N5-iSS"/>
@@ -79,7 +79,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDF-1d-uLg">
-                                <rect key="frame" x="158" y="356.5" width="158" height="50"/>
+                                <rect key="frame" x="158" y="357" width="158" height="50"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" red="0.56862745098039214" green="0.30980392156862746" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
@@ -239,7 +239,7 @@
             <objects>
                 <navigationController id="dES-ha-fsZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Y35-cE-8UL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fu2-Ab-aro">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Fu2-Ab-aro">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -401,7 +401,7 @@
         <scene sceneID="wLL-jw-1Sj">
             <objects>
                 <navigationController id="AdW-JX-qRA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p0N-aY-NUf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p0N-aY-NUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -661,7 +661,7 @@
             <objects>
                 <navigationController id="Rst-3W-mJH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="q3D-8q-pdA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sQa-86-fQ8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sQa-86-fQ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -948,7 +948,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZo-je-wAR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7BQ-ad-IDV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7BQ-ad-IDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1002,7 +1002,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azy-wG-Zpd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GEv-Hx-GHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEv-Hx-GHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1117,15 +1117,15 @@ if you want to change it</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-QR-q5U">
-                                            <rect key="frame" x="8" y="9" width="115" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-QR-q5U">
+                                            <rect key="frame" x="8" y="8" width="163" height="27.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kf1-QR-q5U" secondAttribute="bottom" id="1go-rR-CmP"/>
                                         <constraint firstItem="XYF-1g-xgB" firstAttribute="top" secondItem="EbI-DD-9Sy" secondAttribute="bottom" constant="3" id="3RB-GT-hlc"/>
                                         <constraint firstAttribute="bottom" secondItem="ym1-j6-Egw" secondAttribute="bottom" constant="2" id="45S-QO-Vaw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fBp-9A-xu4" secondAttribute="trailing" constant="6" id="48r-7W-YPw"/>
@@ -1133,6 +1133,7 @@ if you want to change it</string>
                                         <constraint firstItem="XYF-1g-xgB" firstAttribute="top" secondItem="EbI-DD-9Sy" secondAttribute="bottom" constant="3" id="7fR-3g-dQw"/>
                                         <constraint firstItem="bZi-ao-ISS" firstAttribute="top" secondItem="zQC-Yv-ruA" secondAttribute="bottom" constant="2" id="83O-Fr-hmD"/>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="leading" secondItem="ym1-j6-Egw" secondAttribute="trailing" constant="1" id="9hU-7J-SGg"/>
+                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="leading" secondItem="aP8-se-h0s" secondAttribute="leadingMargin" id="AUG-Zx-C0e"/>
                                         <constraint firstAttribute="bottom" secondItem="fBp-9A-xu4" secondAttribute="bottom" constant="2" id="Eyd-72-MnS"/>
                                         <constraint firstAttribute="bottom" secondItem="sOE-Br-SBA" secondAttribute="bottom" constant="1" id="GMS-ba-0sF"/>
                                         <constraint firstAttribute="bottom" secondItem="x7h-k0-ope" secondAttribute="bottom" constant="2" id="KOg-b4-2sV"/>
@@ -1153,6 +1154,7 @@ if you want to change it</string>
                                         <constraint firstItem="fBp-9A-xu4" firstAttribute="top" secondItem="zQC-Yv-ruA" secondAttribute="bottom" constant="2" id="jFu-bd-sQ0"/>
                                         <constraint firstItem="ym1-j6-Egw" firstAttribute="top" secondItem="EbI-DD-9Sy" secondAttribute="bottom" constant="2" id="lWW-wp-OwB"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ym1-j6-Egw" secondAttribute="bottom" constant="-6" id="n56-C6-Nt5"/>
+                                        <constraint firstItem="kf1-QR-q5U" firstAttribute="top" secondItem="aP8-se-h0s" secondAttribute="topMargin" id="pad-EL-MOv"/>
                                         <constraint firstItem="x7h-k0-ope" firstAttribute="leading" secondItem="zQC-Yv-ruA" secondAttribute="leading" id="q20-Cx-gGU"/>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="leading" secondItem="ym1-j6-Egw" secondAttribute="trailing" constant="1" id="tJI-fz-wjp"/>
                                         <constraint firstItem="x7h-k0-ope" firstAttribute="leading" secondItem="sOE-Br-SBA" secondAttribute="trailing" constant="18" id="thJ-sy-530"/>
@@ -1161,6 +1163,7 @@ if you want to change it</string>
                                         <constraint firstItem="zQC-Yv-ruA" firstAttribute="top" secondItem="aP8-se-h0s" secondAttribute="top" id="wNa-NA-o0D"/>
                                         <constraint firstAttribute="bottom" secondItem="bZi-ao-ISS" secondAttribute="bottom" constant="2" id="we9-nT-JXM"/>
                                         <constraint firstItem="XYF-1g-xgB" firstAttribute="leading" secondItem="EbI-DD-9Sy" secondAttribute="leading" id="xe8-lI-F65"/>
+                                        <constraint firstItem="XYF-1g-xgB" firstAttribute="leading" secondItem="kf1-QR-q5U" secondAttribute="trailing" constant="10" id="zc1-LL-H3q"/>
                                         <constraint firstItem="sOE-Br-SBA" firstAttribute="top" secondItem="EbI-DD-9Sy" secondAttribute="bottom" constant="3" id="zfs-9G-UAU"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1186,7 +1189,7 @@ if you want to change it</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bOJ-9W-oXr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LyH-UJ-cJ9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LyH-UJ-cJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
