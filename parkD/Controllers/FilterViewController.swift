@@ -10,15 +10,17 @@ import UIKit
 import GooglePlaces
 
 class FilterViewController: UIViewController {
-
+    
     // MARK: Outlets
     @IBOutlet var uiView: UIView!
     @IBOutlet weak var destinationLabel: UILabel!
     
     // MARK: Variables
-    var validFilter = false
-    var distanceFilter = false
-    var destination : CLLocationCoordinate2D?
+    var data = FilterData()
+    
+    // MARK: Constants
+    let validPermitText = "Valid Permit"
+    let closestDistanceTest = "Closest Distance"
     
     // MARK: Actions
     @IBAction func autocompleteClicked(_ sender: Any) {
@@ -33,17 +35,20 @@ class FilterViewController: UIViewController {
         destinationLabel.text = ""
     }
     
-    private func setFilterValues() {
-        self.getValidCell().cellSwitch.setOn(validFilter, animated: false)
-        getFilterTableViewController().switches["Valid Permit"] = validFilter
-        
-        self.getClosestDistanceCell().cellSwitch.setOn(distanceFilter, animated: false)
-        getFilterTableViewController().switches["Closest Distance"] = distanceFilter
+    func setData(data: FilterData) {
+        self.data.validFilter = data.validFilter
+        self.data.distanceFilter = data.distanceFilter
+        self.data.destination = data.destination
     }
     
-    func setFilters(validFilter: Bool, distanceFilter: Bool) {
-        self.validFilter = validFilter
-        self.distanceFilter = distanceFilter
+    private func setFilterValues() {
+        let validFilter = data.validFilter
+        self.getValidCell().cellSwitch.setOn(validFilter, animated: false)
+        getFilterTableViewController().switches[validPermitText] = validFilter
+        
+        let distanceFilter = data.distanceFilter
+        self.getClosestDistanceCell().cellSwitch.setOn(distanceFilter, animated: false)
+        getFilterTableViewController().switches[closestDistanceTest] = distanceFilter
     }
     
     func getValidFilter() -> Bool {
@@ -73,11 +78,8 @@ extension FilterViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        destination = place.coordinate
+        data.destination = place.coordinate
         destinationLabel.text = place.name
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         dismiss(animated: true, completion: nil)
     }
     

@@ -36,6 +36,7 @@
 		66881A9E1DF4FF0C0038A774 /* TagVoteChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66881A9D1DF4FF0C0038A774 /* TagVoteChanged.swift */; };
 		66BA51681DDD9F6A0024E6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66BA51671DDD9F6A0024E6CC /* Main.storyboard */; };
 		66BA516C1DDDA9290024E6CC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BA516B1DDDA9290024E6CC /* MapKit.framework */; };
+		66CD37841DF637FA005FB5AE /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD37831DF637FA005FB5AE /* FilterData.swift */; };
 		66CDF8901DF011C00092BF4F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF88F1DF011C00092BF4F /* SearchViewController.swift */; };
 		66CDF8931DF0C5340092BF4F /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */; };
 		66CDF8951DF0C5C30092BF4F /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */; };
@@ -106,6 +107,7 @@
 		66881A9D1DF4FF0C0038A774 /* TagVoteChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagVoteChanged.swift; sourceTree = "<group>"; };
 		66BA51671DDD9F6A0024E6CC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66BA516B1DDDA9290024E6CC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		66CD37831DF637FA005FB5AE /* FilterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
 		66CDF88F1DF011C00092BF4F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		66CDF8921DF0C5340092BF4F /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		66CDF8941DF0C5C30092BF4F /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				66137D461DDD515E00B99C50 /* ParkingPass.swift */,
 				6686D77E1DDE4F2F007D7CD3 /* UserPermitInfo.swift */,
 				6686D7801DDE9EBF007D7CD3 /* UserModifier.swift */,
+				66CD37831DF637FA005FB5AE /* FilterData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				6686D77F1DDE4F2F007D7CD3 /* UserPermitInfo.swift in Sources */,
 				66CDF8991DF14F070092BF4F /* DistanceHandler.swift in Sources */,
 				66CDF8901DF011C00092BF4F /* SearchViewController.swift in Sources */,
+				66CD37841DF637FA005FB5AE /* FilterData.swift in Sources */,
 				6060B9321DE2AAF400A9AEF8 /* EditProfileViewController.swift in Sources */,
 				66D1E8E71DD2C702004446AC /* ParkingListTableViewController.swift in Sources */,
 				6686D7811DDE9EBF007D7CD3 /* UserModifier.swift in Sources */,

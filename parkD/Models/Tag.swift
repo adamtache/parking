@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Tag {
+struct Tag : Equatable {
     
     // MARK: Constants
     let key: String
@@ -194,6 +194,10 @@ struct Tag {
     
     private func callDelegate() {
         self.delegate?.changedState()
+    }
+    
+    static func == (lhs: Tag, rhs: Tag) -> Bool {
+        return lhs.name == rhs.name
     }
     
 }

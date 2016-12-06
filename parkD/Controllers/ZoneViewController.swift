@@ -21,7 +21,7 @@ class ZoneViewController: UIViewController {
     let zoneRef = FIRDatabase.database().reference(withPath: "parking-lots")
     
     // MARK: Outlets
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
@@ -79,7 +79,7 @@ class ZoneViewController: UIViewController {
     }
     
     private func updateLabels(name: String, capacity: Int, percentFull: Double) {
-        nameLabel.text = name
+        nameLabel.title = name
         capacityValLabel.text = "\(capacity)"
         if(self.locationHandler != nil){
             distanceLabel.text = DistanceHandler().getDistanceString(source: self.locationHandler!.getCurrLocation(), zone: zone)

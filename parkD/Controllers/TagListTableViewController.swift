@@ -27,6 +27,7 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
         tableView.delegate = self
         tableView.dataSource = self
         
+        items = items.sorted() { $0.name < $1.name }
         self.tableView.reloadData()
     }
     
@@ -55,8 +56,10 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
     }
     
     func refresh() {
+        // Resets and refreshes tags
         self.items = []
         loadTags()
+        items = items.sorted() { $0.name < $1.name }
         self.tableView.reloadData()
     }
     
@@ -65,8 +68,8 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
         loadTags()
     }
     
-    //Get the tags from Firebase
     private func loadTags() {
+        // Loads tags from Firebase into the items array for table view
         let zoneName = (zone?.name)!
         tagRef.child(zoneName).observeSingleEvent(of: .value, with: { (snapshot) in
             let enumerator = snapshot.children
@@ -86,8 +89,12 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
                     self.notAccurateVotersRef.child(name).observeSingleEvent(of: .value, with: { (snapshot) in
                         let value3 = snapshot.value as? [String: AnyObject]
                         let notAccurateVoters = value3?[zoneName] as! NSDictionary
-                        self.items.append(self.getTag(name: name, accurateAgreeScore: accurateAgreeScore, accurateDisagreeScore: accurateDisagreeScore, notAccurateAgreeScore: notAccurateAgreeScore, notAccurateDisagreeScore: notAccurateDisagreeScore, zoneName: zoneName, accurateVoters: accurateVoters as! [String : String], notAccurateVoters: notAccurateVoters as! [String : String]))
-                        self.tableView.reloadData()
+                        let tag = self.getTag(name: name, accurateAgreeScore: accurateAgreeScore, accurateDisagreeScore: accurateDisagreeScore, notAccurateAgreeScore: notAccurateAgreeScore, notAccurateDisagreeScore: notAccurateDisagreeScore, zoneName: zoneName, accurateVoters: accurateVoters as! [String : String], notAccurateVoters: notAccurateVoters as! [String : String])
+                        if(!self.containsTag(tag: tag)){
+                            self.items.append(tag)
+                            self.items = self.items.sorted() { $0.name < $1.name }
+                            self.tableView.reloadData()
+                        }
                     }) { (error) in
                         print(error.localizedDescription)
                     }
@@ -100,15 +107,22 @@ class TagListTableViewController: UITableViewController, TagVoteChanged {
         }
     }
     
+    private func containsTag(tag: Tag) -> Bool {
+        return self.items.contains(where: { $0 == tag })
+    }
+    
     private func getAccurateScore(accurateAgreeScore: Int, accurateDisagreeScore: Int) -> Int {
+        // Calculates accurate score from accurate agree and disagree ratings
         return abs(accurateAgreeScore) - abs(accurateDisagreeScore)
     }
     
     private func getNotAccurateScore(notAccurateAgreeScore: Int, notAccurateDisagreeScore: Int) -> Int {
+        // Calculates not accurate score from not accurate agree and disagree ratings
         return abs(notAccurateAgreeScore) - abs(notAccurateDisagreeScore)
     }
     
     private func getTag(name: String, accurateAgreeScore: Int, accurateDisagreeScore: Int, notAccurateAgreeScore: Int, notAccurateDisagreeScore: Int, zoneName: String, accurateVoters: [String: String], notAccurateVoters: [String: String]) -> Tag {
+        // Creates tag from parameters
         return Tag(name: name, accurateAgreeScore: accurateAgreeScore, accurateDisagreeScore: accurateDisagreeScore, notAccurateAgreeScore: notAccurateAgreeScore, notAccurateDisagreeScore: notAccurateDisagreeScore, zoneName: zoneName, accurateVoters: accurateVoters, notAccurateVoters: notAccurateVoters)
     }
     
