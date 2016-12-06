@@ -52,7 +52,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     func setupCamera() {
         let location = locationHandler.getCurrLocation()
-        if (CLLocationManager.authorizationStatus() == .denied) {
+        if (CLLocationManager.authorizationStatus() != .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() != .authorizedAlways) {
             mapView.camera = GMSCameraPosition.camera(withLatitude: dukeLat, longitude: dukeLong, zoom: 16)
         } else {
             mapView.camera = GMSCameraPosition(target:(location.coordinate), zoom:15,bearing:0, viewingAngle:0)

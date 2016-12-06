@@ -22,9 +22,15 @@ class LocationHandler: NSObject, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        if (CLLocationManager.authorizationStatus() == .notDetermined) {
-            locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            lastLocation = locationManager.location
+        } else {
+            lastLocation = CLLocation(latitude: dukeLat, longitude: dukeLong)
+
         }
+
         locationManager.distanceFilter = 10.0
     }
     
@@ -50,9 +56,6 @@ class LocationHandler: NSObject, CLLocationManagerDelegate {
     }
     
     func getCurrLocation() -> CLLocation{
-        if(lastLocation == nil){
-            return CLLocation(latitude: dukeLat, longitude: dukeLong)
-        }
         return lastLocation!
     }
     
