@@ -49,6 +49,8 @@ class FilterViewController: UIViewController {
         let distanceFilter = data.distanceFilter
         self.getClosestDistanceCell().cellSwitch.setOn(distanceFilter, animated: false)
         getFilterTableViewController().switches[closestDistanceTest] = distanceFilter
+        
+//        self.destinationLabel.text = destination
     }
     
     func getValidFilter() -> Bool {
